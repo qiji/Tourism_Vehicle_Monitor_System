@@ -1,0 +1,99 @@
+body {
+	font-size: 1em;
+	font-family: "微软雅黑", Dotum, sans-serif;
+	color: #2B2B2B;
+	font-size: 14px;
+	line-height: 20px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-left: 0px;
+	margin-bottom: 0px;
+	background-color: #999;
+    background-image: url(../image/bg.jpg);
+    background-size: cover;
+	width: 640px;
+	word-spacing: 2px;
+	letter-spacing: 1px;
+	text-align: left;
+}
+.clear {
+	clear: both;
+}
+.blankline{
+	line-height: 0px;
+	display: block;
+	height: 15px;
+	width: 100%;
+	clear: both;
+}
+.logintl
+{
+	text-align: center;
+	font-size: 30px;
+	color: #FFF;
+	display: block;
+	clear: both;
+	line-height: 80px;
+	padding-top: 120px;
+	padding-bottom: 40px;
+}
+.logblock
+{
+    font-size: 26px;
+    width: 450px;
+    border-radius: 0.4em;
+    background-color: #FFF;
+    clear: both;
+    line-height: 80px;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+}
+.logcname {
+	font-size: 20px;
+	text-align: center;
+	display: block;
+	float: left;
+	width: 30%;
+	border-right: 1px dashed #74B1AC;
+}
+.logcinput
+{
+	width: 69%;
+	display: block;
+	float: right;
+	line-height: 80px;
+	height: 80px;
+	min-height: 0px;
+}
+.textfield
+{
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	color: #494949;
+	line-height: 30px;
+	height: 30px;
+	margin-top: 25px;
+}
+.bulogin
+{
+	color: #FFF;
+	text-decoration: none;
+	background-color: #F90;
+	border-radius: 0.4em;
+	box-shadow: 0.1em 0.1em 0.5em 0em hsla(0,0%,20%,0.5);
+	text-align: center;
+	border: 1px solid #FFF;
+	display: block;
+	clear: both;
+	width: 450px;
+	margin-top: 30px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	font-size: 28px;
+	line-height:80px;
+}

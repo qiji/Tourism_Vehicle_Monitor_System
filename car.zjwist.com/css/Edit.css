@@ -1,0 +1,86 @@
+﻿.block_list
+{
+    display: block;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #E4E4E4;
+    padding: 1.5em;
+    clear: both;
+    line-height: 2em;
+}
+
+.blkl_left
+{
+    float: left;
+    width: 80%;
+    display: block;
+}
+
+.blkl_right
+{
+    float: right;
+    width: 20%;
+    display: block;
+    text-align: center;
+}
+
+.blkl_l
+{
+    float: left;
+}
+
+.blkl_r
+{
+    float: right;
+}
+.blkl_01
+{
+    width: 20%;
+    float: left;
+    font-weight: bold;
+    text-align: center;
+}
+.blkl_02
+{
+    width: 80%;
+    float: right;
+}
+
+.con_ins
+{
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #49A9AC;
+    border-bottom: 2px solid #C8D2DC;
+}
+.conins_block
+{
+    border: 1px solid #49A9AC;
+    padding-left: 30px;
+    padding-top: 10px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+    background-color: #E9EDF2;
+}
+.conins_tl
+{
+    line-height: 40px;
+    font-weight: bold;
+}
+.conins_txt
+{
+    line-height: 35px;
+}
+.conins_txt p
+{
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+}

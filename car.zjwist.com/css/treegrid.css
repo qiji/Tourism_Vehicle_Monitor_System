@@ -1,0 +1,23 @@
+﻿.type
+{
+	width: 100%;
+	height: auto;
+	overflow: auto;
+	border-bottom: 1px solid #c2d3ed;
+}
+
+.types_s
+{
+	float: left;
+	font-size: 12px;
+	line-height: 20px;
+	margin: 0px;
+}
+
+.clear
+{
+	line-height: 0px;
+	clear: both;
+	float: none;
+}
+

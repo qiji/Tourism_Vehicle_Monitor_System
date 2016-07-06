@@ -1,0 +1,161 @@
+Create Table Sys_UserInfo
+(
+  UserName VarChar(100),
+  TrueName VarChar(100),
+  Pwd VarChar(100),
+  LastLoginTime DateTime
+  Constraint PK_Sys_UserInfo Primary Key (UserName)
+)
+Go
+
+Create Table Sys_DeviceInfo
+(
+  DeviceID Varchar(100),
+  DeviceName VarChar(100),
+  IPAddress VarChar(20),
+  Constraint PK_Sys_DeviceInfo Primary Key (DeviceID)
+)
+Go
+
+--如果在车牌前缀没有找到对应的，那么就根据省份简称找到第一个，放进去！
+--如果对于军队车牌等，没有找到的话？暂时先放弃掉！
+Create Table Sys_CarPlace
+(
+  ID int not null identity(1,1),
+  AreaCode VarChar(100),
+  Province VarChar(100),
+  City VarChar(100),
+  CarNoPre VarChar(10),	--车牌前缀
+  ProvinceShort VarChar(10),	--省份简称
+  Lat VarChar(20) --纬度
+  Lon varchar(20) --经度
+  Constraint PK_Sys_CarPlace Primary key (ID)
+)
+Go
+
+Create Table Car_Info
+(
+  CarNo VarChar(10) not null,	--车牌号码
+  CarColor Int,	--车牌颜色
+  CarType Int,	--车型 大车，小车
+  AreaCode VarChar(100),
+  CarFlag VarChar(100),	--车品牌 预留
+  constraint PK_Car_Info Primary key (CarNo)
+)
+Go
+
+Create Table Car_CurrInfo
+(
+  CarNo VarChar(10) not null,
+  CarNoPre VarChar(10), --车牌前缀，关联，关联地区信息
+  EnterTime DateTime,	--进入时间
+  Constraint PK_Car_CurrInfo Primary Key (CarNo)
+)
+Go
+
+Create Table Car_ChangeInfo
+(
+  ID int not null identity(1,1),
+  rTime DateTime ,
+  CarCount int,	
+  ChangeType int,	--0 景区内车辆数量，1 进入车辆数量，2 离开车辆数量
+  Constraint PK_Car_ChangeInfo Primary Key (ID)
+)
+Go
+
+--当前的进出车辆数量数据
+Create Table Car_CurrCount
+(
+   id int not null identity(1,1),
+   DeviceID varchar(100),
+   EnterCount int,
+   LeaveCount int,
+   Constraint PK_Car_CurrCount Primary Key (ID)
+)
+Go
+
+--设备进出车辆的5分钟记录
+Create Table Car_DeviceCount
+(
+   id int not null identity(1,1),
+   dTime DateTime,
+   DeviceID varchar(100),
+   EnterCount int,
+   LeaveCount int,
+   Constraint PK_Car_DeviceCount Primary Key (ID)
+)
+Go
+
+Create Table Car_StayInfo
+(
+  ID int not null identity(1,1),
+  CarNo VarChar(10) not null,
+  CarNoPre VarChar(10),
+  EnterTime DateTime,
+  LeaveTime DateTime,
+  StayTime int,	--分钟
+  Constraint PK_Car_StayInfo Primary Key (ID)
+)
+Go
+
+Create Table Car_PassInfo
+(
+  ID int not null identity(1,1),
+  DeviceID VarChar(100),	--设备号
+  CarNo VarChar(10),	--车牌号
+  PassTime DateTime,	--车辆通过时间
+  DataTime DateTime,	--数据接收时间
+  CarColor int,	--车牌颜色
+  CarType int,	--过车类型
+  CarDirection int, -- 0 进入，1 离开
+  CarImg VarChar(100),	--过车图片的网址
+  Constraint PK_Car_Info Primary Key (ID)
+)
+Go
+
+Create Table Car_EmployeeNo
+(
+  CarNo VarChar(10) not null,
+  AddTime DateTime,
+  Constraint PK_Car_EmployeeNo Primary key (CarNo)
+)
+Go
+
+--员工车辆的过车记录
+Create Table Car_EmployeePassInfo
+(
+  ID int not null identity(1,1),
+  DeviceID VarChar(100),	--设备号
+  CarNo VarChar(10),	--车牌号
+  PassTime DateTime,	--车辆通过时间
+  DataTime DateTime,	--数据接收时间
+  CarColor int,	--车牌颜色
+  CarType int,	--过车类型
+  CarDirection int, -- 0 进入，1 离开
+  CarImg VarChar(100),	--过车图片的网址
+  Constraint PK_Car_EmployeePassInfo Primary Key (ID)
+)
+Go
+
+--员工车辆停留时间
+Create Table Car_EmployeeStayInfo
+(
+  ID int not null identity(1,1),
+  CarNo VarChar(10) not null,
+  CarNoPre VarChar(10),
+  EnterTime DateTime,
+  LeaveTime DateTime,
+  StayTime int,	--分钟
+  Constraint PK_Car_EmployeeStayInfo Primary Key (ID)
+)
+Go
+
+--当前停留的员工车辆
+Create Table Car_EmployeeCurrInfo
+(
+  CarNo VarChar(10) not null,
+  CarNoPre VarChar(10), --车牌前缀，关联，关联地区信息
+  EnterTime DateTime,	--进入时间
+  Constraint PK_Car_EmployeeCurrInfo Primary Key (CarNo)
+)
+Go

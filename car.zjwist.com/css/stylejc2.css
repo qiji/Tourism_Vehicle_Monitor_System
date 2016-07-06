@@ -1,0 +1,382 @@
+.ssjiance
+{
+    font-size: 1em;
+    line-height: 1.5;
+    font-family: "微软雅黑" , Dotum, sans-serif;
+    color: #C5C5C5;
+    padding-top: 10px;
+    padding-right: 1%;
+    padding-left: 1%;
+    padding-bottom: 10px;
+    background-color: #626262;
+    width: 98%;
+    margin: 0px;
+    background-image: url(../images/bg_02.png);
+    background-repeat: repeat;
+}
+.blackline
+{
+    line-height: 0px;
+    height: 20px;
+    clear: both;
+}
+
+.clear
+{
+    clear: both;
+}
+.ssjc_top
+{
+    clear: both;
+}
+
+.ssjct_tl
+{
+    background-image: url(../images/icon_logo.png);
+    background-repeat: no-repeat;
+    line-height: 55px;
+    height: 55px;
+    display: block;
+    float: left;
+    padding-left: 80px;
+    font-weight: normal;
+    font-size: 20px;
+}
+.ssjct_right
+{
+    display: block;
+    float: right;
+    background-color: #3E3E3C;
+    line-height: 55px;
+    height: 55px;
+    width: 420px;
+    padding-left: 10px;
+    padding-right: 20px;
+}
+.ssjct_jk
+{
+    display: block;
+    float: left;
+    font-size: 16px;
+    background-image: url(../images/icon_jk.png);
+    background-repeat: no-repeat;
+    background-position: 0px 12px;
+    padding-left: 30px;
+    color: #EEA33E;
+}
+.ssjct_time
+{
+    display: block;
+    float: right;
+    color: #49b4cf;
+    background-image: url(../images/icon_time.png);
+    background-repeat: no-repeat;
+    background-position: 0px 12px;
+    padding-left: 40px;
+}
+
+
+.ssjct_coner
+{
+    border-top: 55px solid transparent;
+    border-right: 55px solid #3E3E3C;
+    border-left: 0px solid transparent;
+    border-bottom: 0px solid transparent;
+    line-height: 0px;
+    width: 0px;
+    height: 0px;
+    display: block;
+    float: right;
+}
+.ssjc_switch
+{
+    height: 200px;
+    display: block;
+    clear: both;
+}
+
+.bt_line
+{
+    margin-top: 0px;
+    height: 12px;
+    display: block;
+    clear: both;
+}
+.btl_blue
+{
+    background-color: #49b4cf;
+}
+.btl_yellow
+{
+    background-color: #EEA33E;
+}
+.btl_red
+{
+    background-color: #d64e50;
+}
+.btl_green
+{
+    background-color: #86ab66;
+}
+.ssw_00
+{
+    height: 196px;
+    width: 39.1%;
+    background-color: #191919;
+    display: block;
+    float: left;
+    line-height: normal;
+}
+.ssw00_data
+{
+    padding-top: 40px;
+    padding-right: 8%;
+    padding-bottom: 20px;
+    padding-left: 8%;
+    line-height: 30px;
+}
+.sp_red_big
+{
+    color: #D64E50;
+    font-size: 30px;
+}
+.sp_green
+{
+    color: #86AB66;
+}
+
+
+
+.ssw_01
+{
+    height: 196px;
+    width: 20%;
+    display: block;
+    float: left;
+    margin-left: 0.3%;
+    background-color: #EEA33E;
+    background-image: url(../images/icon_sw.png);
+    background-repeat: no-repeat;
+    background-position: right top;
+}
+
+.sswtl_bu
+{
+    position: relative;
+    top: -196px;
+    width: 30px;
+    height: 25px;
+    float: right;
+}
+
+.ssw_02
+{
+    height: 196px;
+    width: 20%;
+    display: block;
+    float: left;
+    margin-left: 0.3%;
+    background-color: #d64e50;
+    background-image: url(../images/icon_sw.png);
+    background-repeat: no-repeat;
+    background-position: right top;
+}
+.ssw_03
+{
+    height: 196px;
+    width: 20%;
+    display: block;
+    float: left;
+    margin-left: 0.3%;
+    background-color: #86ab66;
+    background-image: url(../images/icon_sw.png);
+    background-repeat: no-repeat;
+    background-position: right top;
+}
+.ssw_04
+{
+    position: absolute;
+    width: 70%;
+    height: 70%;
+}
+.ssw_tl
+{
+    float: left;
+    display: block;
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    color: #212222;
+    text-align: center;
+    line-height: 30px;
+    font-size: 16px;
+}
+
+
+
+
+.ssjc_main
+{
+    background-color: #212222;
+    display: block;
+    width: 100%;
+    border-radius: 3px;
+    margin-top: 0px;
+}
+.ssjc_right
+{
+    background-color: #2b2b2b;
+    display: block;
+    width: 24%;
+    height: 500px;
+    color: #4F5F6F;
+    border-radius: 3px;
+}
+.ssjc_right_in
+{
+    position: relative;
+    float: right;
+    top: 50px;
+    background-color: #393939;
+    width: 20%;
+    height: auto;
+    border: 1px solid #49B4CF;
+    left: auto;
+    right: 20px;
+    z-index: 99;
+}
+.ssjcr_tl
+{
+    background-color: #49B4CF;
+    line-height: 30px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+.ssjcrtl_txt
+{
+    color: #212222;
+    display: block;
+    padding-left: 10px;
+    font-size: 18px;
+}
+.summary
+{
+    background-color: #393939;
+    display: block;
+    float: right;
+    color: #FFFFFF;
+    font-size: 40px;
+    padding-top: 0px;
+    padding-right: 10px;
+    padding-bottom: 0px;
+    padding-left: 10px;
+    border-radius: 10px;
+}
+.ssjcr_list
+{
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+}
+.ssjcr_li
+{
+    border-bottom: 1px dotted #212222;
+    display: block;
+    clear: both;
+    line-height: 40px;
+    height: 40px;
+}
+.cityname
+{
+    color: #49B4CF;
+    display: block;
+    float: left;
+    width: 40%;
+    text-align: center;
+}
+.citycardata
+{
+    color: #FFFFFF;
+    display: block;
+    float: right;
+    width: 60%;
+    text-align: center;
+    font-size: 28px;
+}
+
+
+.ssScreen
+{
+    position: relative;
+    width: 50px;
+    left: 20px;
+    top: -50px;
+    z-index: 99;
+}
+
+.sswtl_name {
+	display: block;
+	float: left;
+	text-align: left;
+	padding-left: 20px;
+}
+.sswtl_bu {
+	display: block;
+	width: 30px;
+	height: 25px;
+	float: right;
+}
+.ssw00_pre {
+	display: block;
+	width: 40px;
+	float: left;
+	height: 184px;
+}
+.ssw00_pre a {
+	display: block;
+	width: 40px;
+	height: 184px;
+	background-image: url(../images/bu_swleft.png);
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+.ssw00_pre a:hover {
+	background-color: #212222;
+}
+.ssw00_main {
+	display: block;
+	float: left;
+	padding-left: 8%;
+	line-height: 30px;
+}
+
+.ssw00_next {
+	display: block;
+	width: 40px;
+	float: right;
+	height: 184px;
+}
+.ssw00_next a {
+	display: block;
+	width: 40px;
+	height: 184px;
+	background-image: url(../images/bu_swright.png);
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+.ssw00_next a:hover {
+	background-color: #212222;
+}
+.sswm_tl {
+	display: block;
+	clear: both;
+	color: #49B4CF;
+	line-height: 40px;
+	text-decoration: none;
+	font-size: 18px;
+	font-weight: bold;
+}

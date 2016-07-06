@@ -1,0 +1,49 @@
+﻿
+
+.cilineforgridview
+{
+    float: none;
+    width: auto;
+    line-height: 25px;
+    padding-bottom: 3px;
+    height: auto;
+    overflow: auto;
+}
+.cilineforgridview table td a
+{
+    text-decoration: none;
+}
+.cilineforgridview table td a:hover
+{
+    text-decoration: none;
+}
+.cilineforgridview table td a:visited
+{
+    text-decoration: none;
+    color: Blue;
+}
+.cilineforgridview table
+{
+    border-collapse: collapse;
+    border-width: 1px 0 0 1px;
+    border-color: #C2D3ED;
+    border-style: solid; /*border: 1px solid #DDDDDD; #73c73a; #C2D3ED;*/
+}
+.cilineforgridview table th
+{
+    line-height: 28px;
+    height: 28px;
+    padding: 0px 2px;
+    border-width: 0 1px 1px 0;
+    border-color: #C2D3ED;
+    border-style: solid;
+}
+.cilineforgridview table td
+{
+    line-height: 28px;
+    height: 28px;
+    padding: 0px 2px;
+    border-width: 0 1px 1px 0;
+    border-color: #C2D3ED;
+    border-style: solid;
+}
