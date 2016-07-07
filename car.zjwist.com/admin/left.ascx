@@ -35,6 +35,8 @@
         <ul>
             <li class="sideoff classmenu CarTemp"><a href="CarTemp.aspx" onclick="SetSideMenu('CarTemp')">
                 待处理车辆</a></li>
+            <li class="sideoff classmenu ExecutionLog"><a href="ExecutionLog.aspx" onclick="SetSideMenu('ExecutionLog')">
+                执行日志</a></li>
             <li class="sideoff classmenu ErrorLog"><a href="ErrorLog.aspx" onclick="SetSideMenu('ErrorLog')">
                 错误日志</a></li>
             <li class="sideoff classmenu UnitInfo"><a href="SysUnitInfo.aspx" onclick="SetSideMenu('UnitInfo')">
