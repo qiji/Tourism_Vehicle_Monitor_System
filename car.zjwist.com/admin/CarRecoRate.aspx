@@ -29,11 +29,11 @@
             <asp:Button ID="btnQuery" runat="server" Text="查询" OnClick="Button1_Click" />
         </div>
     </div>
-    <div class="ciline">
+    <div class="ciline" style="height: 80%">
         <div class="cill">
             <a href="SysUnitInfo.aspx">返回</a>
         </div>
-        <div class="cilineforgridview">
+        <div class="cilineforgridview" style="height: 90%">
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White"
                 GridLines="Vertical" BorderColor="#C2D3ED" CellPadding="3" BorderStyle="Solid"
                 BorderWidth="1px" HeaderStyle-Height="25" EmptyDataText="没有相关数据">
@@ -56,4 +56,5 @@
             </asp:GridView>
         </div>
     </div>
+    
 </asp:Content>

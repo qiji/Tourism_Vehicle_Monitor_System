@@ -78,7 +78,6 @@
                 </div>
             </div>
         </div>
-    </div>
     <div class="weui_dialog_alert" id="divalert" style="display: none">
         <div class="weui_mask" onclick="cls()">
         </div>
