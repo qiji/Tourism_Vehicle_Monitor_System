@@ -1,0 +1,21 @@
+﻿body {
+}
+.divtop{
+    background-color:#2f1671;
+    float:left;
+    width:32%;
+    border:1px solid black;
+    height: 50px;
+    color: white;
+    letter-spacing: 5px;
+}
+
+
+.modecheck{
+    width: 45% ;
+    float:right;
+    font-size: 15px;
+    text-align: left;
+    line-height:50px;
+    overflow:hidden;
+}
