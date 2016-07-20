@@ -7,12 +7,20 @@ namespace CaptureDevSys
 {
     public class DeviceInfo
     {
+        public enum DeviceState:byte 
+        {
+            正常状态=1,
+            重启状态,
+            注册状态,
+        }
+
         public const int Const_DeviceDisable = -1;
 
         public DeviceInfo()
         {
             DVRLoginID = Const_DeviceDisable;
             DVRAlarmHandle = Const_DeviceDisable;
+            State = DeviceState.正常状态;
         }
 
         public int DeviceID { get; set; }
@@ -30,6 +38,7 @@ namespace CaptureDevSys
 
         public int DVRLoginID { get; set; }
         public int DVRAlarmHandle { get; set; }
+        public DeviceState State { get; set; }
 
         public override string ToString()
         {
