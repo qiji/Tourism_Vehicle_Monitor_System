@@ -6,23 +6,47 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=false">
     <link href="css/Default1.css" type="text/css" rel="stylesheet">
 </head>
-
 <body>
-<div style="text-align:center;font-size: 15px;line-height:50px; font-family: 微软雅黑;width: auto" >
-    <div class="divtop">实时数据</div>
-    <div class="divtop">统计数据</div>
-    <div class="divtop">
-        <div style="width: 50%;float:left;text-align:right; padding-right:2px">
-            <img src="images/Night.png" style="vertical-align:middle">
-        </div>
-        <div class="modecheck">
-            夜间模式
+    <div class="csstitle">
+        <div class="csstitletext" style="margin-left: 5px">
+            实时数据</div>
+        <div class="csstitletext">
+            统计数据</div>
+        <div class="csstitletext">
+            <div class="csstitleimg">
+                <img src="images/Night.png">
+            </div>
+            <div class="cssmodel">
+                夜间<br />
+                模式
+            </div>
         </div>
     </div>
-</div>
-<div >
-
-</div>
-
+    <div class="clear">
+    </div>
+    <div class="csscurrdata">
+        <div class="csscurrdataimg">
+            <img src="images/staynow.png" />
+        </div>
+        <div class="csscurrdatatext">
+            当前景区停留
+        </div>
+        <div class="csscurrdatavalue">
+            888
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+    <div class="csscurrdata">
+        <div class="csscurrdataimg">
+            <img src="images/scale.png" />
+        </div>
+        <div class="csscurrdatatext">
+            当前饱和度
+        </div>
+        <div class="csscurrdatavalue">
+            80%
+        </div>
+    </div>
 </body>
 </html>

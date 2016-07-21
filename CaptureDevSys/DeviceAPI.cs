@@ -169,7 +169,7 @@ namespace CaptureDevSys
 
             di.LastTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             //上传结果
-            string stringAlarm = "抓拍上传，" + "车牌：" + struITSPlateResult.struPlateInfo.sLicense + "，车辆序号：" + struITSPlateResult.struVehicleInfo.dwIndex;
+            string stringAlarm = di.DeviceName + "抓拍上传，" + "车牌：" + struITSPlateResult.struPlateInfo.sLicense + "，车辆序号：" + struITSPlateResult.struVehicleInfo.dwIndex;
 
             //struITSPlateResult.struPlateInfo.sLicense 车牌号码 
 
@@ -285,6 +285,7 @@ namespace CaptureDevSys
                         DeviceInfo dvi = dvs.ToArray()[0];
                         di.DVRLoginID = dvi.DVRLoginID;
                         di.DVRAlarmHandle = dvi.DVRAlarmHandle;
+                        di.LastTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                         dlist.Remove(dvi);
                     }
                 }
@@ -474,6 +475,7 @@ namespace CaptureDevSys
                 {
                     OnShowInfoData(InfoType.设备信息, deviceInfo, "布防成功!");
                 }
+                deviceInfo.State = DeviceInfo.DeviceState.正常状态;
             }
         }
 
@@ -500,6 +502,7 @@ namespace CaptureDevSys
                     OnShowInfoData(InfoType.设备信息, deviceInfo, "已经撤防，不需要重复撤防！");
                 }
             }
+
 
             if (!CHCNetSDK.NET_DVR_CloseAlarmChan_V30(deviceInfo.DVRAlarmHandle))
             {
@@ -643,11 +646,15 @@ namespace CaptureDevSys
                 DeviceUnRegist(deviceInfo);
 
 
+
                 if (sendNotify)
                 {
                     //发送通知！！！
                     carstatbyday.SendMsgForCarToAdmin("【" + deviceInfo.UnitName + "】的" + deviceInfo.DeviceName + " 设备重启失败,错误原因：" + CHCNetSDK.NET_DVR_GetLastError().ToString());
                 }
+
+                deviceInfo.State = DeviceInfo.DeviceState.注册状态;
+
             }
             else
             {
@@ -656,6 +663,8 @@ namespace CaptureDevSys
                 {
                     OnShowInfoData(InfoType.设备信息, deviceInfo, "设备重启成功");
                 }
+                deviceInfo.State = DeviceInfo.DeviceState.正常状态;
+
             }
 
 
@@ -718,7 +727,8 @@ namespace CaptureDevSys
                 {
                     OnShowInfoData(InfoType.设备信息, deviceInfo, "手动抓拍成功！");
                 }
-                deviceInfo.LastTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+
             }
             else
             {
@@ -726,7 +736,9 @@ namespace CaptureDevSys
                 {
                     OnShowInfoData(InfoType.设备信息, deviceInfo, "手动抓拍失败,错误原因：" + CHCNetSDK.NET_DVR_GetLastError().ToString());
                 }
+                deviceInfo.State = DeviceInfo.DeviceState.重启状态;
             }
+
         }
 
         /// <summary>
@@ -737,23 +749,25 @@ namespace CaptureDevSys
         {
             foreach (DeviceInfo di in devicelists)
             {
-                if (di.DVRAlarmHandle != DeviceInfo.Const_DeviceDisable)
+                if (di.DVRAlarmHandle != DeviceInfo.Const_DeviceDisable || di.State == DeviceInfo.DeviceState.注册状态)
                 {
                     TimeSpan timespan = (TimeSpan)(DateTime.Now - Convert.ToDateTime(di.LastTime));
-
-                    if (timespan.Minutes > 10)
+                    if (timespan.Minutes >= 1)
                     {
-                        //超过10分钟没有数据！
-                        //发送重启命令
-                        DeviceReboot(di, true);
-
-
-                    }
-                    else if (timespan.Minutes > 5)
-                    {
-                        //超过5分钟没有数据！
-                        //发送手动抓拍命令
-                        DeviceManualSpan(di);
+                        switch (di.State)
+                        {
+                            case DeviceInfo.DeviceState.正常状态:
+                                DeviceManualSpan(di);
+                                break;
+                            case DeviceInfo.DeviceState.重启状态:
+                                DeviceReboot(di, true);
+                                break;
+                            case DeviceInfo.DeviceState.注册状态:
+                                DeviceRegist(di);
+                                DeviceAlarmOpen(di);
+                                break;
+                        }
+                        di.LastTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     }
                 }
             }

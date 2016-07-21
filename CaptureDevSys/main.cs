@@ -138,12 +138,12 @@ namespace CaptureDevSys
                 }
                 if (deviceinfo != null)
                 {
-                    tbDevice.Text = string.Format("时间:{0} 设备:{1} 信息：{2}", DateTime.Now.ToString("yy-MM-dd HH:mm:ss"), deviceinfo.DeviceName, data)
+                    tbDevice.Text = string.Format("时间:{0} 设备:{1} 信息：{2}", DateTime.Now.ToString("yyMMdd HHmmss"), deviceinfo.DeviceName, data)
                         + Environment.NewLine + tbDevice.Text;
                 }
                 else
                 {
-                    tbDevice.Text = string.Format("时间:{0}  信息：{1}", DateTime.Now.ToString("yy-MM-dd HH:mm:ss"), data)
+                    tbDevice.Text = string.Format("时间:{0}  信息：{1}", DateTime.Now.ToString("yyMMdd HHmmss"), data)
                                            + Environment.NewLine + tbDevice.Text;
                 }
                 ListboxDeviceInfo.Refresh();
@@ -178,7 +178,7 @@ namespace CaptureDevSys
                 tbData.Clear();
             }
 
-            tbData.Text = string.Format("时间:{0} 信息:{1}", DateTime.Now.ToString("yy-MM-dd HH:mm:ss"), info)
+            tbData.Text = string.Format("时间:{0} 信息:{1}", DateTime.Now.ToString("yyMMdd HHmmss"), info)
                 + Environment.NewLine + tbData.Text;
         }
 
@@ -274,6 +274,8 @@ namespace CaptureDevSys
 
         private void FiveMin_Tick(object sender, EventArgs e)
         {
+            //tbData.Text = DateTime.Now.ToString() + "\r\n" + tbData.Text;
+
             if (NeedBootService)
             {
                 //重启
@@ -297,5 +299,7 @@ namespace CaptureDevSys
         {
             deviceapi.IsSaveImage = cbSaveImg.Checked;
         }
+
+
     }
 }
