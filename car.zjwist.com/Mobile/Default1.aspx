@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="csstitle">
-        <div class="csstitletext" style="margin-left: 5px">
+        <div class="csstitletext" >
             实时数据</div>
         <div class="csstitletext">
             统计数据</div>
