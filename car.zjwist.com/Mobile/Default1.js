@@ -1,63 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Carstat.aspx.cs" Inherits="Mobile_Carstat" %>
-
-<!DOCTYPE html >
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
-    <title></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=false">
-    <link type="text/css" href="css/car.css" rel="stylesheet">
-    <link type="text/css" href="http://weui.github.io/weui/weui.css" rel="stylesheet">
-    <script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-    <%--echarts 引入--%>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.2.2/echarts.min.js"></script>
-    <script src="iscroll.js"></script>
-</head>
-<body>
-    <div class="linediv" id="wrapper" style="overflow: hidden; left: 0px; background-color: rgb(36, 8, 77); height:auto">
-        <div id="scroller">
-            <div id="pullDown" style="text-align: center;">
-                <div style="display: inline-block">
-                    <span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>
-                </div>
-            </div>
-            <ul id="thelist">
-                <div style="position: relative;height: 300px;">
-                    <div style="position: absolute; left: 30px; top: 20px;">
-                        <img src="images/title.png">
-                        <span style="color: White; font-size: large; font-style: normal">今日车辆变化</span>
-                    </div>
-                    <div id="CharCurr" style="position: absolute; left: 10px; top: 10px; height: 300px; width: 98%;
-                        margin: auto;">
-                    </div>
-                </div>
-                <div style="clear:both"></div>
-                <div style="position: relative;height: 300px;">
-                    <div style="position: absolute; left: 30px; top: 20px;">
-                        <img src="images/title.png">
-                        <span style="color: White; font-size: large; font-style: normal">今日进出车辆</span>
-                    </div>
-                    <div id="divCarCountChange" style="position: absolute; left: 10px; top: 10px; height: 300px; width: 98%;
-                        margin: auto;">
-                    </div>
-                </div>
-                <div style="clear:both"></div>
-                <div style="position: relative;height: 300px;">
-                    <div style="position: absolute; left: 30px; top: 20px;">
-                        <img src="images/title.png">
-                        <span style="color: White; font-size: large; font-style: normal">今日车辆来源</span>
-                    </div>
-                    <div id="divCharCityFrom" style="position: absolute; left: 10px; top: 10px; height: 300px; width: 98%;
-                        margin: auto;">
-                    </div>
-                </div>
-            </ul>
-        </div>
-    </div>
-
-   
-    <script>
-
-    function GetData() {
+﻿  function GetData() {
         $.getJSON("ajax/WelComeMobile.ashx",
             {
                 UnitID: 3,
@@ -382,6 +323,3 @@
     document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
 
     GetData();
-    </script>
-</body>
-</html>

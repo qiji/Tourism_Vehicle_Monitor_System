@@ -180,7 +180,7 @@
     width: 20%;
     line-height: 30px;
     text-align: left;
-    float:left;
+    float: left;
 }
 .svleftflag img
 {
@@ -198,9 +198,136 @@
     width: 20%;
     line-height: 30px;
     text-align: left;
-    float:left;
+    float: left;
 }
 .svrightflag img
 {
     vertical-align: top;
+}
+
+
+/*标题*/
+.titlepostion
+{
+    position: relative;
+    height: 300px;
+}
+.titleimg
+{
+    position: absolute;
+    left: 30px;
+    top: 20px;
+}
+.titleimg span
+{
+    color: White;
+    left: 60px;
+    font-size: 15px;
+    font-style: normal;
+    text-left: 60px;
+    letter-spacing: 1px;
+    font-weight: bolder;
+}
+.CurrChart, .CountChangChart, .CityFromChart
+{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    height: 300px;
+    line-height: 300px;
+    width: 98%;
+    margin: auto;
+}
+
+.countchang
+{
+    height: 100px;
+    color: white;
+    margin-top: 30px;
+}
+.countchangenter, .countchangleave
+{
+    float: left;
+    line-height: 50px;
+    width: 50%;
+    height: 55px;
+    box-sizing: border-box;
+    border-right: 1px solid #59417b;
+    text-align: right;
+}
+
+.countchangenter img, .countchangleave img
+{
+    vertical-align: top;
+}
+
+.cartext
+{
+    font-size: 15px;
+    letter-spacing: 3px;
+    text-align: center;
+}
+.carentervalue, .carleavevalue
+{
+    width: 32%;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 70px;
+    display: table-cell;
+    height: 5px;
+    text-align: center;
+}
+.carentervalue
+{
+    color: #74ffde;
+}
+.carleavevalue
+{
+    color: #eb5872;
+}
+
+/*车辆类型*/
+.titletypepostion
+{
+    position: relative;
+    height: 160px;
+}
+
+.cartypetitleimg
+{
+    position: absolute;
+    left: 30px;
+    top: -30px;
+    color: White;
+    font-size: 15px;
+    letter-spacing: 1px;
+    font-weight: bolder;
+}
+
+.cartypebycar, .cartypebybus
+{
+    position: absolute;
+    top: 10px;
+    height: 80px;
+    line-height: 30px;
+    width: 50%;
+    text-align: center;
+    box-sizing: border-box;
+    border-right: 1px solid #59417b;
+}
+
+
+.cartypetext
+{
+    color: White;
+}
+.cartypevalue
+{
+    color: #74ffde;
+}
+
+.cartypebybus
+{
+    left: 50%;
 }
