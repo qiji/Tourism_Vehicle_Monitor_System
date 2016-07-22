@@ -1,4 +1,6 @@
-﻿  function GetData() {
+﻿ var cssmodelonclick;
+ 
+  function GetData() {
         $.getJSON("ajax/WelComeMobile.ashx",
             {
                 UnitID: 3,
@@ -69,7 +71,10 @@
                     sampling: 'average',
                     itemStyle: {
                    	    normal: {
-                            color: 'rgb(61, 254, 206)'
+                            color:function getcolor(){ 
+                                if()
+                                'rgb(61, 254, 206)'
+                            }
                         }
                     },
                     areaStyle: {

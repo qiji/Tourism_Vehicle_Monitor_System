@@ -6,11 +6,22 @@
 
 body
 {
-    background-color: #1d063e;
-    margin: 0;
-    padding: 0;
+    background-color: #ffffff;
     font-family: 微软雅黑;
     width: auto;
+}
+
+ul
+{
+    list-style: none;
+}
+
+.linediv
+{
+    overflow: hidden;
+    left: 0px;
+    width: 100%;
+    height: auto;
 }
 
 .clear
@@ -27,26 +38,22 @@ body
 
 .csstitletext
 {
-    background-color: #2f1671;
+    background-color: #ffffff;
     float: left;
     width: 33.3%;
-    border: 1px solid black;
-    color: white;
+    border: 1px solid #d1d1d1;
+    color: #546eff;
     letter-spacing: 5px;
     box-sizing: border-box;
 }
 
 .csstitleimg
 {
+    background-image: url(../images/Day.png);
+    background-position: right;
+    background-repeat: no-repeat;
     width: 50%;
     float: left;
-    text-align: right;
-    padding-right: 2px;
-}
-
-.csstitleimg img
-{
-    vertical-align: middle;
 }
 
 .cssmodel
@@ -63,14 +70,27 @@ body
 .csscurrdata
 {
     margin-top: 20px;
-    color: White;
+    color: #797778;
 }
 
-.csscurrdataimg
+.csscurrdataimg1, .csscurrdataimg2
 {
     width: 30%;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 33px;
+    line-height: 33px;
     text-align: center;
     float: left;
+}
+
+.csscurrdataimg1
+{
+    background-image: url('../images/d_staynow.png');
+}
+.csscurrdataimg2
+{
+    background-image: url('../images/d_scale.png');
 }
 
 .csscurrdatatext
@@ -90,7 +110,7 @@ body
     text-align: right;
     font-size: 25px;
     font-weight: 500;
-    color: #74ffde;
+    color: #546eff;
 }
 
 
@@ -102,15 +122,16 @@ body
     float: left;
     margin-left: 8%;
     margin-top: 20px;
-    background: #34234d;
+    background: #e6e6e6;
     -webkit-border-radius: 300px;
     -moz-border-radius: 300px;
     border-radius: 300px;
+    border:1px solid #afafaf;
 }
 
 .cssbarflat
 {
-    background: #6fffdb;
+    background: #c6cefd;
     height: 11px;
     text-align: center;
     line-height: 150%;
@@ -118,7 +139,7 @@ body
     -webkit-border-radius: 300px;
     -moz-border-radius: 300px;
     border-radius: 300px;
-    box-shadow: 0 0 10px rgba(111, 255, 219, 1);
+    box-shadow: 0 0 10px #c6cefd;
 }
 
 .cssSumValue
@@ -144,16 +165,23 @@ body
     width: 50%;
 }
 
-.svleftimg
+.svleftimg, .svrightimg
 {
+    background-position: right center;
+    background-repeat: no-repeat;
     line-height: 50px;
     width: 20%;
     text-align: right;
     float: right;
 }
-.svleftimg img
+.svleftimg
 {
-    vertical-align: middle;
+    background-image: url(../images/d_svday.png);
+}
+
+.svrightimg
+{
+    background-image: url(../images/d_svnight.png);
 }
 
 .svleftdiv
@@ -170,7 +198,7 @@ body
     float: right;
     font-size: 30px;
     font-weight: bold;
-    color: #74ffde;
+    color: #546eff;
     line-height: 30px;
 }
 
@@ -180,18 +208,22 @@ body
     font-size: 13px;
     letter-spacing: 1px;
     text-align: right;
+    color:#878586;
 }
 
 .svleftflag, .svrightflag
 {
+    background-repeat: no-repeat;
     width: 20%;
     line-height: 30px;
     text-align: left;
     float: right;
 }
-.svleftflag img
+
+.svleftflag
 {
-    vertical-align: bottom;
+    background-position: left bottom;
+    background-image: url(../images/d_svdayflag.png);
 }
 
 .csssvright
@@ -200,9 +232,10 @@ body
     width: 50%;
 }
 
-.svrightflag img
+.svrightflag
 {
-    vertical-align: top;
+    background-position: left top;
+    background-image: url(../images/d_svnightflag.png);
 }
 
 
@@ -215,17 +248,20 @@ body
 }
 .titleimg
 {
-    position: absolute;
-    left: 30px;
     top: 20px;
+    position: absolute;
+    width: 100%;
+    background-image: url(../images/d_title.png);
+    background-repeat: no-repeat;
+    background-position: 20px center;
 }
+
 .titleimg span
 {
-    color: White;
-    left: 60px;
+    color: #536fff;
     font-size: 15px;
     font-style: normal;
-    text-left: 60px;
+    padding-left: 45px;
     letter-spacing: 1px;
     font-weight: bolder;
 }
@@ -255,11 +291,17 @@ body
     box-sizing: border-box;
     border-right: 1px solid #59417b;
     text-align: right;
+    background-position: 25px top;
+    background-repeat: no-repeat;
 }
 
-.countchangenter img, .countchangleave img
+.countchangenter
 {
-    vertical-align: top;
+    background-image: url(../images/d_carenter.png);
+}
+.countchangleave
+{
+    background-image: url(../images/d_carleave.png);
 }
 
 .cartext
@@ -267,6 +309,7 @@ body
     font-size: 15px;
     letter-spacing: 3px;
     text-align: center;
+    color:#878586;
 }
 .carentervalue, .carleavevalue
 {
@@ -281,11 +324,11 @@ body
 }
 .carentervalue
 {
-    color: #74ffde;
+    color: #546eff;
 }
 .carleavevalue
 {
-    color: #eb5872;
+    color: #eb07b2;
 }
 
 /*车辆类型*/
@@ -298,11 +341,18 @@ body
 .cartypetitleimg
 {
     position: absolute;
-    left: 30px;
-    color: White;
+    color: #536fff;
     font-size: 15px;
     letter-spacing: 1px;
     font-weight: bolder;
+    background-position: 20px top;
+    background-repeat: no-repeat;
+    background-image:url(../images/d_title.png);
+}
+
+.cartypetitleimg span
+{
+   padding-left:45px;
 }
 
 .cartypebycar, .cartypebybus
@@ -312,21 +362,33 @@ body
     height: 80px;
     line-height: 30px;
     width: 50%;
+    color:#878586;
     text-align: center;
     box-sizing: border-box;
     border-right: 1px solid #59417b;
     margin-top: 30px;
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+
+.cartypebycar
+{
+    background-image: url(../images/d_cartype.png);
 }
 
 
+.cartypebybus
+{
+    background-image: url(../images/d_bustype.png);
+}
 
 .cartypetext
 {
-    color: White;
+    color: #797778;
 }
 .cartypevalue
 {
-    color: #74ffde;
+    color: #546eff;
 }
 
 .cartypebybus
@@ -340,7 +402,7 @@ body
 {
     float: left;
     height: 50px;
-    color: White;
+    color: #5a73ff;
     width: 50%;
     font-size: 15px;
     text-align: center;

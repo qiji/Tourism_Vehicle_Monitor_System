@@ -10,8 +10,7 @@
     <script src="iscroll.js"></script>
 </head>
 <body>
-    <div class="linediv" id="wrapper" style="overflow: hidden; left: 0px; background-color: rgb(36, 8, 77);
-        height: auto">
+    <div class="linediv" id="wrapper">
         <div id="scroller">
             <div id="pullDown" style="text-align: center;">
                 <div style="display: inline-block">
@@ -136,16 +135,15 @@
                 </div>
                 <div class="titletypepostion">
                     <div class="cartypetitleimg">
-                        <img src="images/title.png">
                         <span>今日车辆类型</span>
                     </div>
                     <div class="cartypebycar">
-                       <br />
+                        <br />
                         <span class="cartypetext">轿车</span><br />
                         <span class="cartypevalue">593</span>
                     </div>
                     <div class="cartypebybus">
-                       <br />
+                        <br />
                         <span class="cartypetext">客车</span><br />
                         <span class="cartypevalue">593</span>
                     </div>
@@ -154,7 +152,6 @@
                 </div>
                 <div class="titlepostion">
                     <div class="titleimg">
-                       
                         <span>今日车辆来源</span>
                     </div>
                     <div id="divCharCityFrom" class="CityFromChart">
@@ -171,12 +168,20 @@
             </ul>
         </div>
     </div>
-    <script src="Default1.js" type="text/javascript"></script>
     <script>
-        $(".cssmodel").on("click", function () {
-            $("#cssid").attr("href", "css/Default1_D.css");
-        });
 
+        var cssmodelonclick = false;
+        $(".cssmodel").on("click", function () {
+            if (cssmodelonclick) {
+                $("#cssid").attr("href", "css/Default1_N.css");
+                cssmodelonclick = false;
+            }
+            else {
+                $("#cssid").attr("href", "css/Default1_D.css");
+                cssmodelonclick = true;
+            }
+        })
     </script>
+    <script src="Default1.js" type="text/javascript"></script>
 </body>
 </html>
