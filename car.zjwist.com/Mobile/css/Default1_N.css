@@ -1,10 +1,25 @@
-﻿body
+﻿*
+{
+    padding: 0;
+    margin: 0;
+}
+
+body
 {
     background-color: #1d063e;
-    margin: 0;
-    padding: 0;
     font-family: 微软雅黑;
-    width:auto;
+    width: auto;
+}
+
+ul
+{
+    list-style: none;
+}
+
+.linediv
+{
+    width: 100%;    
+    height: auto;      
 }
 
 .clear
@@ -205,7 +220,7 @@
 {
     position: relative;
     height: 300px;
-    width:100%
+    width: 100%;
 }
 .titleimg
 {
@@ -309,7 +324,7 @@
     text-align: center;
     box-sizing: border-box;
     border-right: 1px solid #59417b;
-    margin-top:30px;
+    margin-top: 30px;
 }
 
 
@@ -330,19 +345,19 @@
 
 
 
-.provincein,.provinceout
+.provincein, .provinceout
 {
-    float:left;
-    height:50px;
-    color:White;
+    float: left;
+    height: 50px;
+    color: White;
     width: 50%;
-    font-size:15px;
+    font-size: 15px;
     text-align: center;
-    line-height:50px;
-     margin-top:30px;
+    line-height: 50px;
+    margin-top: 30px;
 }
 .provincein
 {
     box-sizing: border-box;
     border-right: 1px solid #59417b;
-    }
+}

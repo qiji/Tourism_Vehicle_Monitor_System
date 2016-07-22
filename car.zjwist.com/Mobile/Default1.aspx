@@ -4,9 +4,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=false">
-    <link href="css/Default1.css" type="text/css" rel="stylesheet">
-    <link type="text/css" href="css/car.css" rel="stylesheet">
-    <link type="text/css" href="http://weui.github.io/weui/weui.css" rel="stylesheet">
+    <link id="cssid" href="css/Default1_N.css" type="text/css" rel="stylesheet">    
     <script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.2.2/echarts.min.js"></script>
     <script src="iscroll.js"></script>
@@ -178,5 +176,11 @@
         </div>
     </div>
     <script src="Default1.js" type="text/javascript"></script>
+    <script>
+        $(".cssmodel").on("click", function () {
+            $("#cssid").attr("href", "css/Default1_D.css");
+        });
+
+    </script>
 </body>
 </html>
