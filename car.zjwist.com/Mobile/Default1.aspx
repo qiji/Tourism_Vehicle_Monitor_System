@@ -73,8 +73,8 @@
                 </div>
                 <div class="cssSumValue">
                     <div class="csssvleft">
-                        <div class="svleftimg">
-                            <img src="images/svday.png" />
+                        <div class="svleftflag">
+                            &nbsp;<img src="images/svdayflag.png" />
                         </div>
                         <div class="svleftdiv">
                             <div class="svlefttvalue">
@@ -82,13 +82,13 @@
                             <div class="svlefttext">
                                 今日进入车辆</div>
                         </div>
-                        <div class="svleftflag">
-                            &nbsp;<img src="images/svdayflag.png" />
+                        <div class="svleftimg">
+                            <img src="images/svday.png" />
                         </div>
                     </div>
                     <div class="csssvright">
-                        <div class="svleftimg">
-                            <img src="images/svnight.png" />
+                        <div class="svrightflag">
+                            &nbsp;<img src="images/svnightflag.png" />
                         </div>
                         <div class="svleftdiv">
                             <div class="svlefttvalue">
@@ -96,8 +96,8 @@
                             <div class="svlefttext">
                                 昨日过夜车辆</div>
                         </div>
-                        <div class="svrightflag">
-                            &nbsp;<img src="images/svnightflag.png" />
+                        <div class="svleftimg">
+                            <img src="images/svnight.png" />
                         </div>
                     </div>
                 </div>
@@ -145,17 +145,17 @@
                         <img src="images/title.png">
                         <span>今日车辆类型</span>
                     </div>
-                        <div class="cartypebycar">
-                            <img src="images/cartype.png" /><br />
-                            <span class="cartypetext">轿车</span><br />
-                            <span class="cartypevalue">593</span>
-                        </div>
-                        <div class="cartypebybus">
-                            <img src="images/bustype.png" /><br />
-                            <span class="cartypetext">客车</span><br />
-                            <span class="cartypevalue">593</span>
-                        </div>
+                    <div class="cartypebycar">
+                        <img src="images/cartype.png" /><br />
+                        <span class="cartypetext">轿车</span><br />
+                        <span class="cartypevalue">593</span>
                     </div>
+                    <div class="cartypebybus">
+                        <img src="images/bustype.png" /><br />
+                        <span class="cartypetext">客车</span><br />
+                        <span class="cartypevalue">593</span>
+                    </div>
+                </div>
                 <div class="clear">
                 </div>
                 <div class="titlepostion">
@@ -164,6 +164,14 @@
                         <span>今日车辆来源</span>
                     </div>
                     <div id="divCharCityFrom" class="CityFromChart">
+                    </div>
+                </div>
+                <div class="carfrom">
+                    <div class="provincein">
+                        省内城市
+                    </div>
+                    <div class="provinceout">
+                        省外城市
                     </div>
                 </div>
             </ul>
