@@ -18,8 +18,8 @@ ul
 
 .linediv
 {
-    width: 100%;    
-    height: auto;      
+    width: 100%;
+    height: auto;
 }
 
 .clear
@@ -47,15 +47,11 @@ ul
 
 .csstitleimg
 {
+    background-image: url(../images/Night.png);
+    background-position: right;
+    background-repeat: no-repeat;
     width: 50%;
     float: left;
-    text-align: right;
-    padding-right: 2px;
-}
-
-.csstitleimg img
-{
-    vertical-align: middle;
 }
 
 .cssmodel
@@ -75,11 +71,24 @@ ul
     color: White;
 }
 
-.csscurrdataimg
+.csscurrdataimg1, .csscurrdataimg2
 {
     width: 30%;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 33px;
+    line-height: 33px;
     text-align: center;
     float: left;
+}
+
+.csscurrdataimg1
+{
+    background-image: url('../images/staynow.png');
+}
+.csscurrdataimg2
+{
+    background-image: url('../images/scale.png');
 }
 
 .csscurrdatatext
@@ -153,16 +162,23 @@ ul
     width: 50%;
 }
 
-.svleftimg
+.svleftimg, .svrightimg
 {
+    background-position: right center;
+    background-repeat: no-repeat;
     line-height: 50px;
     width: 20%;
     text-align: right;
     float: right;
 }
-.svleftimg img
+.svleftimg
 {
-    vertical-align: middle;
+    background-image: url(../images/svday.png);
+}
+
+.svrightimg
+{
+    background-image: url(../images/svnight.png);
 }
 
 .svleftdiv
@@ -193,14 +209,17 @@ ul
 
 .svleftflag, .svrightflag
 {
+    background-repeat: no-repeat;
     width: 20%;
     line-height: 30px;
     text-align: left;
     float: right;
 }
-.svleftflag img
+
+.svleftflag
 {
-    vertical-align: bottom;
+    background-position: left bottom;
+    background-image: url(../images/svdayflag.png);
 }
 
 .csssvright
@@ -209,9 +228,10 @@ ul
     width: 50%;
 }
 
-.svrightflag img
+.svrightflag
 {
-    vertical-align: top;
+    background-position: left top;
+    background-image: url(../images/svnightflag.png);
 }
 
 
@@ -224,17 +244,20 @@ ul
 }
 .titleimg
 {
-    position: absolute;
-    left: 30px;
     top: 20px;
+    position: absolute;
+    width: 100%;
+    background-image: url(../images/title.png);
+    background-repeat: no-repeat;
+    background-position: 20px center;
 }
+
 .titleimg span
 {
     color: White;
-    left: 60px;
     font-size: 15px;
     font-style: normal;
-    text-left: 60px;
+    padding-left: 45px;
     letter-spacing: 1px;
     font-weight: bolder;
 }
@@ -264,11 +287,17 @@ ul
     box-sizing: border-box;
     border-right: 1px solid #59417b;
     text-align: right;
+    background-position: 25px top;
+    background-repeat: no-repeat;
 }
 
-.countchangenter img, .countchangleave img
+.countchangenter
 {
-    vertical-align: top;
+    background-image: url(../images/carenter.png);
+}
+.countchangleave
+{
+    background-image: url(../images/carleave.png);
 }
 
 .cartext
@@ -325,9 +354,20 @@ ul
     box-sizing: border-box;
     border-right: 1px solid #59417b;
     margin-top: 30px;
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+
+.cartypebycar
+{
+    background-image: url(../images/cartype.png);
 }
 
 
+.cartypebybus
+{
+    background-image: url(../images/bustype.png);
+}
 
 .cartypetext
 {

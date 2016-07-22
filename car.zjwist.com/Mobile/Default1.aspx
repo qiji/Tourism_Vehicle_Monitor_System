@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=false">
-    <link id="cssid" href="css/Default1_N.css" type="text/css" rel="stylesheet">    
+    <link id="cssid" href="css/Default1_N.css" type="text/css" rel="stylesheet">
     <script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.2.2/echarts.min.js"></script>
     <script src="iscroll.js"></script>
@@ -26,7 +26,7 @@
                         统计数据</div>
                     <div class="csstitletext">
                         <div class="csstitleimg">
-                            <img src="images/Night.png">
+                            &nbsp;
                         </div>
                         <div class="cssmodel">
                             夜间<br />
@@ -37,8 +37,8 @@
                 <div class="clear">
                 </div>
                 <div class="csscurrdata">
-                    <div class="csscurrdataimg">
-                        <img src="images/staynow.png" />
+                    <div class="csscurrdataimg1">
+                        &nbsp;
                     </div>
                     <div class="csscurrdatatext">
                         当前景区停留
@@ -50,8 +50,8 @@
                 <div class="clear">
                 </div>
                 <div class="csscurrdata">
-                    <div class="csscurrdataimg">
-                        <img src="images/scale.png" />
+                    <div class="csscurrdataimg2">
+                        &nbsp;
                     </div>
                     <div class="csscurrdatatext">
                         当前饱和度
@@ -72,7 +72,7 @@
                 <div class="cssSumValue">
                     <div class="csssvleft">
                         <div class="svleftflag">
-                            &nbsp;<img src="images/svdayflag.png" />
+                            &nbsp;
                         </div>
                         <div class="svleftdiv">
                             <div class="svlefttvalue">
@@ -81,12 +81,12 @@
                                 今日进入车辆</div>
                         </div>
                         <div class="svleftimg">
-                            <img src="images/svday.png" />
+                            &nbsp;
                         </div>
                     </div>
                     <div class="csssvright">
                         <div class="svrightflag">
-                            &nbsp;<img src="images/svnightflag.png" />
+                            &nbsp;
                         </div>
                         <div class="svleftdiv">
                             <div class="svlefttvalue">
@@ -94,8 +94,8 @@
                             <div class="svlefttext">
                                 昨日过夜车辆</div>
                         </div>
-                        <div class="svleftimg">
-                            <img src="images/svnight.png" />
+                        <div class="svrightimg">
+                            &nbsp;
                         </div>
                     </div>
                 </div>
@@ -104,7 +104,6 @@
                 <%--折线图--%>
                 <div class="titlepostion">
                     <div class="titleimg">
-                        <img src="images/title.png">
                         <span>今日车辆变化</span>
                     </div>
                     <div id="CharCurr" class="CurrChart">
@@ -114,7 +113,6 @@
                 </div>
                 <div class="titlepostion">
                     <div class="titleimg">
-                        <img src="images/title.png">
                         <span>今日进出车辆</span>
                     </div>
                     <div id="divCarCountChange" class="CountChangChart">
@@ -124,13 +122,11 @@
                 </div>
                 <div class="countchang">
                     <div class="countchangenter">
-                        <img src="images/carenter.png" />
                         <span class="cartext">进入车辆</span>
                         <div class="carentervalue">
                             467</div>
                     </div>
                     <div class="countchangleave">
-                        <img src="images/carleave.png" />
                         <span class="cartext">离去车辆</span>
                         <div class="carleavevalue">
                             467</div>
@@ -144,12 +140,12 @@
                         <span>今日车辆类型</span>
                     </div>
                     <div class="cartypebycar">
-                        <img src="images/cartype.png" /><br />
+                       <br />
                         <span class="cartypetext">轿车</span><br />
                         <span class="cartypevalue">593</span>
                     </div>
                     <div class="cartypebybus">
-                        <img src="images/bustype.png" /><br />
+                       <br />
                         <span class="cartypetext">客车</span><br />
                         <span class="cartypevalue">593</span>
                     </div>
@@ -158,7 +154,7 @@
                 </div>
                 <div class="titlepostion">
                     <div class="titleimg">
-                        <img src="images/title.png">
+                       
                         <span>今日车辆来源</span>
                     </div>
                     <div id="divCharCityFrom" class="CityFromChart">
