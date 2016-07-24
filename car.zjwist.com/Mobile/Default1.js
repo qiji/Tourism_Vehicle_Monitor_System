@@ -1,5 +1,81 @@
-﻿ var cssmodelonclick;
+﻿
+//车辆总数颜色控制
+function getCurritemStylecolor(){
+    if(cssmodelonclick){
+        return 'rgb(84, 110, 255)'
+    }else{
+        return 'rgb(111, 255, 219)'
+    }
+}
+
+function getCurrareaStylecolor1(){
+    if(cssmodelonclick){
+        return 'rgb(108, 128, 241)'
+    }else{
+        return 'rgb(91, 19, 207)'
+    }
+}
+function getCurrareaStylecolor2(){
+    if(cssmodelonclick){
+        return 'rgb(255, 255, 255)'
+    }else{
+        return 'rgb(33, 9, 67)'
+    }
+}
+
+
+//进入车辆颜色
+function getCountinitemStylecolor(){
+    if(cssmodelonclick){
+        return 'rgb(124, 144, 255)'
+    }else{
+        return 'rgb(111, 255, 219)'
+    }
+}
+
+function getCountinareaStylecolor1(){
+    if(cssmodelonclick){
+        return 'rgb(119, 94, 242)'
+    }else{
+        return 'rgb(91, 19, 207)'
+    }
+}
+
+
+function getCountinareaStylecolor2(){
+    if(cssmodelonclick){
+        return 'rgb(255, 255, 255)'
+    }else{
+        return 'rgb(49, 14, 72)'
+    }
+} 
  
+
+//离开车辆颜色控制
+function getCountoutitemStylecolor(){
+    if(cssmodelonclick){
+        return 'rgb(216, 30, 191)'
+    }else{
+        return 'rgb(202, 67, 125)'
+    }
+}
+
+function getCountoutareaStylecolor1(){
+    if(cssmodelonclick){
+        return 'rgb(244, 114, 212)'
+    }else{
+        return 'rgb(152, 86, 124)'
+    }
+}
+
+function getCountoutareaStylecolor2(){
+    if(cssmodelonclick){
+        return 'rgb(255, 255, 255)'
+    }else{
+        return 'rgb(49, 14, 72)'
+    }
+}
+
   function GetData() {
         $.getJSON("ajax/WelComeMobile.ashx",
             {
@@ -7,9 +83,16 @@
                 r: Math.random()
             },
             function (e) {
+                $("#nowcount").text(e.CurrCount);
+                $("#nowlevel").text(e.Level);
+                $("#entercount").text(e.EnterCount);
+                $("#staynightcount").text(e.StayNightCount);
                 CharCurr(e.ChartFivMinute, e.ChartCurrCount);
                 CarCountChange(e.ChartFivMinute, e.ChartEnterCount, e.ChartLeaveCount);
                 CharCityFrom(e.ChartCityName, e.ChartCityCount);
+                $("#cartypebycar").text(e.ChartTypeCount[1]);
+                $("#cartypebybus").text(e.ChartTypeCount[0]);
+
             });
     }
 
@@ -71,20 +154,17 @@
                     sampling: 'average',
                     itemStyle: {
                    	    normal: {
-                            color:function getcolor(){ 
-                                if()
-                                'rgb(61, 254, 206)'
-                            }
+                            color:getCurritemStylecolor()
                         }
                     },
                     areaStyle: {
                          normal: {
                              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                                 offset: 0,
-                                color: 'rgb(91, 19, 207)'
+                                color:getCurrareaStylecolor1()
                                 }, {
                                 offset: 1,
-                                    color: 'rgb(33, 9, 67)'
+                                    color: getCurrareaStylecolor2()
                                 }])
                             }
                         },
@@ -98,6 +178,7 @@
 
     //今日进出车辆折线图
     function CarCountChange(ChartFivMinute, ChartEnterCount, ChartLeaveCount) {
+        
         var lineChart = echarts.init(document.getElementById('divCarCountChange'));
 
         lineChart.setOption({
@@ -159,17 +240,17 @@
                 type: 'line',
                 itemStyle: {
                    	    normal: {
-                            color: 'rgb(111, 255, 219)'
+                            color: getCountinitemStylecolor()
                         }
                     },
                 areaStyle: { 
                     normal: {
                         color : new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                                 offset: 0,
-                                color: 'rgb(91, 19, 207)'
+                                color: getCountinareaStylecolor1()
                                 }, {
                                 offset: 1,
-                                    color: 'rgb(33, 9, 67)'
+                                    color:getCountinareaStylecolor2()
                                 }])
                     } 
                 },
@@ -180,17 +261,17 @@
                type: 'line',
                itemStyle: {
                    	    normal: {
-                            color: 'rgb(202, 67, 125)'
+                            color: getCountoutitemStylecolor()
                         }
                     },
                areaStyle: { 
                     normal: {
                         color : new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                                 offset: 0,
-                                color: 'rgb(152, 86, 124)'
+                                color: getCountoutareaStylecolor1()
                                 }, {
                                 offset: 1,
-                                    color: 'rgb(33, 9, 67)'
+                                    color: getCountoutareaStylecolor2()
                                 }])
                     } 
                 },
@@ -198,6 +279,15 @@
            }]
         });
 
+        for(var i = 0; i < ChartFivMinute.length; i++){
+            if(ChartEnterCount[i] != null){
+                $("#entercarcount").text(ChartEnterCount[i]);
+                $("#leavecarcount").text(ChartLeaveCount[i]);
+            }else{
+                return;
+            } 
+       }
+        
     }
 
 

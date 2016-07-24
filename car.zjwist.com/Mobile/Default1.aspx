@@ -3,20 +3,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=false">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <link id="cssid" href="css/Default1_N.css" type="text/css" rel="stylesheet">
     <script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.2.2/echarts.min.js"></script>
-    <script src="iscroll.js"></script>
+    <%--<script src="iscroll.js"></script>--%>
 </head>
 <body>
     <div class="linediv" id="wrapper">
         <div id="scroller">
-            <div id="pullDown" style="text-align: center;">
+            <%--<div id="pullDown" style="text-align: center;">
                 <div style="display: inline-block">
                     <span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>
                 </div>
-            </div>
+            </div>--%>
             <ul id="thelist">
                 <div class="csstitle">
                     <div class="csstitletext">
@@ -42,7 +42,7 @@
                     <div class="csscurrdatatext">
                         当前景区停留
                     </div>
-                    <div class="csscurrdatavalue">
+                    <div class="csscurrdatavalue" id="nowcount">
                         888
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                     <div class="csscurrdatatext">
                         当前饱和度
                     </div>
-                    <div class="csscurrdatavalue">
+                    <div class="csscurrdatavalue" id="nowlevel">
                         80%
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                             &nbsp;
                         </div>
                         <div class="svleftdiv">
-                            <div class="svlefttvalue">
+                            <div class="svlefttvalue" id="entercount">
                                 942</div>
                             <div class="svlefttext">
                                 今日进入车辆</div>
@@ -88,7 +88,7 @@
                             &nbsp;
                         </div>
                         <div class="svleftdiv">
-                            <div class="svlefttvalue">
+                            <div class="svlefttvalue" id="staynightcount">
                                 942</div>
                             <div class="svlefttext">
                                 昨日过夜车辆</div>
@@ -122,12 +122,12 @@
                 <div class="countchang">
                     <div class="countchangenter">
                         <span class="cartext">进入车辆</span>
-                        <div class="carentervalue">
+                        <div class="carentervalue" id="entercarcount">
                             467</div>
                     </div>
                     <div class="countchangleave">
                         <span class="cartext">离去车辆</span>
-                        <div class="carleavevalue">
+                        <div class="carleavevalue" id="leavecarcount">
                             467</div>
                     </div>
                 </div>
@@ -140,12 +140,12 @@
                     <div class="cartypebycar">
                         <br />
                         <span class="cartypetext">轿车</span><br />
-                        <span class="cartypevalue">593</span>
+                        <span class="cartypevalue" id="cartypebycar">593</span>
                     </div>
                     <div class="cartypebybus">
                         <br />
                         <span class="cartypetext">客车</span><br />
-                        <span class="cartypevalue">593</span>
+                        <span class="cartypevalue" id="cartypebybus">593</span>
                     </div>
                 </div>
                 <div class="clear">
@@ -174,10 +174,12 @@
         $(".cssmodel").on("click", function () {
             if (cssmodelonclick) {
                 $("#cssid").attr("href", "css/Default1_N.css");
+                GetData();
                 cssmodelonclick = false;
             }
             else {
                 $("#cssid").attr("href", "css/Default1_D.css");
+                GetData();
                 cssmodelonclick = true;
             }
         })
