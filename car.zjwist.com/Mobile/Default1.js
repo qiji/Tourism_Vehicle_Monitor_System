@@ -1,7 +1,7 @@
 ﻿
 //车辆总数颜色控制
 function getCurritemStylecolor(){
-    if(cssmodelonclick == "1"){
+    if(cssmodelonclick == "0"){
         return 'rgb(84, 110, 255)'
     }else{
         return 'rgb(111, 255, 219)'
@@ -9,14 +9,14 @@ function getCurritemStylecolor(){
 }
 
 function getCurrareaStylecolor1(){
-    if(cssmodelonclick== "1"){
+    if(cssmodelonclick== "0"){
         return 'rgb(108, 128, 241)'
     }else{
         return 'rgb(91, 19, 207)'
     }
 }
 function getCurrareaStylecolor2(){
-    if(cssmodelonclick== "1"){
+    if(cssmodelonclick== "0"){
         return 'rgb(255, 255, 255)'
     }else{
         return 'rgb(33, 9, 67)'
@@ -26,7 +26,7 @@ function getCurrareaStylecolor2(){
 
 //进入车辆颜色
 function getCountinitemStylecolor(){
-    if(cssmodelonclick== "1"){
+    if(cssmodelonclick== "0"){
         return 'rgb(124, 144, 255)'
     }else{
         return 'rgb(111, 255, 219)'
@@ -34,7 +34,7 @@ function getCountinitemStylecolor(){
 }
 
 function getCountinareaStylecolor1(){
-    if(cssmodelonclick== "1"){
+    if(cssmodelonclick== "0"){
         return 'rgb(119, 94, 242)'
     }else{
         return 'rgb(91, 19, 207)'
@@ -43,7 +43,7 @@ function getCountinareaStylecolor1(){
 
 
 function getCountinareaStylecolor2(){
-    if(cssmodelonclick== "1"){
+    if(cssmodelonclick== "0"){
         return 'rgb(255, 255, 255)'
     }else{
         return 'rgb(49, 14, 72)'
@@ -53,7 +53,7 @@ function getCountinareaStylecolor2(){
 
 //离开车辆颜色控制
 function getCountoutitemStylecolor(){
-    if(cssmodelonclick== "1"){
+    if(cssmodelonclick== "0"){
         return 'rgb(216, 30, 191)'
     }else{
         return 'rgb(202, 67, 125)'
@@ -61,7 +61,7 @@ function getCountoutitemStylecolor(){
 }
 
 function getCountoutareaStylecolor1(){
-    if(cssmodelonclick== "1"){
+    if(cssmodelonclick== "0"){
         return 'rgb(244, 114, 212)'
     }else{
         return 'rgb(152, 86, 124)'
@@ -69,7 +69,7 @@ function getCountoutareaStylecolor1(){
 }
 
 function getCountoutareaStylecolor2(){
-    if(cssmodelonclick== "1"){
+    if(cssmodelonclick== "0"){
         return 'rgb(255, 255, 255)'
     }else{
         return 'rgb(49, 14, 72)'
@@ -78,13 +78,13 @@ function getCountoutareaStylecolor2(){
 
   function  getcityfromcolor()
     {
-        if (cssmodelonclick== "1")
+        if (cssmodelonclick== "0")
         {
-        return ["#6fffdc"];
+        return ["#B8C2FF"];
         }
         else
         {
-        return ["#B8C2FF"];
+        return ["#6fffdc"];
         }
     }
 
@@ -133,14 +133,6 @@ function getCountoutareaStylecolor2(){
                         fontSize:8
                    }
                 },
-//                title: {
-//                   left: 'left',
-//                   text: '今日车辆变化',
-//                   textStyle:{
-//                        color:'#ffffff'
-//                   }
-//                },
-                
                 xAxis: {
                    type: 'category',
                    boundaryGap: true,
@@ -471,8 +463,6 @@ function getCountoutareaStylecolor2(){
         ActSumChange();
     });
 
-
-
         //设置模式
         function SetModalType() {
             if (cssmodelonclick == "1") {
@@ -516,5 +506,20 @@ function getCountoutareaStylecolor2(){
             $("#divsumdata").show();
             $("#divactdata").hide();
              $("#titlesumdata").addClass("titletextselect");
+        }
+    }
+
+    function statcarsum(sumtype,divobj)
+    {
+        $(".sumtitletext").removeClass("titletextselect");
+        divobj.className += " titletextselect";
+        switch(sumtype)
+        {
+            case 1:
+            break;
+            case 2:
+            break;
+            case 3:
+            break;
         }
     }

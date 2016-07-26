@@ -236,12 +236,18 @@ ul
 
 
 /*标题*/
-.titlepostion
+.titlepostion,.titletypepostion
 {
     position: relative;
     height: 300px;
     width: 100%;
 }
+
+.titletypepostion
+{
+    height:160px;
+}
+    
 .titleimg
 {
     top: 20px;
@@ -274,7 +280,7 @@ ul
 
 .countchang
 {
-    height: 100px;
+    height: 80px;
     color: white;
     margin-top: 30px;
 }
@@ -326,27 +332,17 @@ ul
     color: #eb5872;
 }
 
-/*车辆类型*/
-.titletypepostion
-{
-    position: relative;
-    height: 160px;
-}
 
-.cartypetitleimg
+
+.cartypetitleimg span
 {
-    position: absolute;
-    left: 30px;
-    color: White;
-    font-size: 15px;
-    letter-spacing: 1px;
-    font-weight: bolder;
-}
+    margin-left:45px;
+    }
 
 .cartypebycar, .cartypebybus
 {
     position: absolute;
-    top: 10px;
+    top: 30px;
     height: 80px;
     line-height: 30px;
     width: 50%;
@@ -427,55 +423,56 @@ ul
     color: #6fffdc;
 }
 
-.sumdateselect
+.sumdateselect, .summonthselect
 {
     margin-top: 22px;
 }
 
-.sumdateimage
+.sumdatebegin, .sumdateend
 {
-    width: 10%;
+    width: 60%;
+    margin-left: 5%;
+    background: #290c4f url(../images/dateimg.png) no-repeat;
+    background-position: 20px center;
     float: left;
-    text-align:right;
+    text-align: right;
     height: 35px;
-    line-height:35px;
+    line-height: 35px;
+    border: 1px solid #59417b;
+    box-sizing: border-box;
+}
+
+.sumdateend
+{
+    margin-top: 10px;
 }
 
 .sumdateinput
 {
-    width: 27%;
-    float:left;
+    float: right;
     color: White;
     background-color: #290c4f;
-    border: solid #59417b;
-    border-width: 1px 1px 1px 0px;
+    border-width: 0px;
+    height: 33px;
+}
+
+.sumdateto, .sumdatebtn
+{
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 14px;
+    text-align: center;
+    color: White;
+    width: 25%;
+    background-color: #290c4f;
+    float: left;
     height: 35px;
+    line-height: 35px;
+    border: 1px solid #59417b;
     box-sizing: border-box;
 }
 
-.sumdateinput input button ,input[type="button"]
-{
-   display:none;
-}
-
-
-.sumdateto
-{
-    font-size:14px;
-    text-align:center;
-    color:White;
-    width: 10%;
-    float: left;
-    height: 35px;
-    line-height:35px;
-}
 .sumdatebtn
 {
-    font-size:14px;
-    width:16%;
-    text-align:center;
-    float: left;
-    color:White;
-    height: 35px;
-    line-height:35px;
+    margin-top: 10px;
 }

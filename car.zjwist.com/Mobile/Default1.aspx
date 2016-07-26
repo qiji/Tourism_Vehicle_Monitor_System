@@ -136,7 +136,7 @@
                     <div class="clear">
                     </div>
                     <div class="titletypepostion">
-                        <div class="cartypetitleimg">
+                        <div class="titleimg">
                             <span>今日车辆类型</span>
                         </div>
                         <div class="cartypebycar">
@@ -165,13 +165,13 @@
                 </div>
                 <div id="divsumdata">
                     <div class="sumtitle">
-                        <div class="sumtitletext titletextselect">
+                        <div class="sumtitletext titletextselect" onclick="statcarsum(1,this)">
                             来源统计
                         </div>
-                        <div class="sumtitletext sumtitletextcenter">
+                        <div class="sumtitletext sumtitletextcenter" onclick="statcarsum(2,this)">
                             流量统计
                         </div>
-                        <div class="sumtitletext">
+                        <div class="sumtitletext" onclick="statcarsum(3,this)">
                             车型统计
                         </div>
                     </div>
@@ -204,19 +204,64 @@
                         </div>
                     </div>
                     <div class="sumdateselect">
-                        <div class="sumdateimage">
-                            <img src="images/dateimg.png" />
+                        <div class="sumdatebegin">
+                            <input type="date" class="sumdateinput" format="yyyy-MM-dd" />
                         </div>
-                        <input type="date" class="sumdateinput" />
                         <div class="sumdateto">
                             至
                         </div>
-                        <div class="sumdateimage">
-                             <img src="images/dateimg.png" />
+                        <div class="sumdateend">
+                            <input type="date" class="sumdateinput" format="yyyy-MM-dd" />
                         </div>
-                        <input type="date" class="sumdateinput" />
                         <div class="sumdatebtn">
                             确定
+                        </div>
+                    </div>
+                    <div class="clear">
+                    </div>
+                    <div class="summonthselect">
+                        <div class="sumdatebegin">
+                            <input type="month" class="sumdateinput" format="yyyy-MM" />
+                        </div>
+                        <div class="sumdateto">
+                            对比
+                        </div>
+                        <div class="sumdateend">
+                            <input type="month" class="sumdateinput" format="yyyy-MM" />
+                        </div>
+                        <div class="sumdatebtn">
+                            确定
+                        </div>
+                    </div>
+                    <div class="clear">
+                    </div>
+                    <div class="titlepostion">
+                        <div class="titleimg">
+                            <span>车辆来源分析</span>
+                        </div>
+                        <div id="sumChartComeFrom" class="CurrChart">
+                        </div>
+                    </div>
+                    <div class="titlepostion">
+                        <div class="titleimg">
+                            <span>逗留时间分析(小时)</span>
+                        </div>
+                        <div id="sumChartStayTime" class="CurrChart">
+                        </div>
+                    </div>
+                    <div class="titlepostion">
+                        <div class="titleimg">
+                            <span>车辆变化情况</span>
+                        </div>
+                        <div id="sumChartCarChange" class="CurrChart">
+                        </div>
+                    </div>
+                    <div class="titlepostion">
+                        <div class="titleimg">
+                            <span>车辆类型</span>
+                        </div>
+
+                        <div id="sumChartCarType" class="CurrChart">
                         </div>
                     </div>
                 </div>
