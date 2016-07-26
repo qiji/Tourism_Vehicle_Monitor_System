@@ -34,15 +34,15 @@ ul
     height: 46px;
 }
 
-.csstitletext
+.titletext
 {
     background-color: #2f1671;
     float: left;
     width: 33.3%;
     border: 1px solid black;
-    color: white;
     letter-spacing: 5px;
     box-sizing: border-box;
+    color: White;
 }
 
 .csstitleimg
@@ -384,20 +384,98 @@ ul
 }
 
 
+.sumtitle
+{
+    height: 58px;
+    background-color: #290c4f;
+    border-bottom: 1px solid #59417b;
+}
 
-.provincein, .provinceout
+.sumtitletext, .sumdatetext, .sumareatext
 {
     float: left;
-    height: 50px;
-    color: White;
-    width: 50%;
-    font-size: 15px;
+    font-size: 13px;
     text-align: center;
-    line-height: 50px;
-    margin-top: 30px;
-}
-.provincein
-{
+    color: White;
     box-sizing: border-box;
+    margin-top: 16px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    height: 32px;
+    line-height: 32px;
+}
+.sumtitletext
+{
+    width: 33.3%;
+}
+
+.sumtitletextcenter
+{
+    border-left: 1px solid #59417b;
     border-right: 1px solid #59417b;
+}
+
+.sumdatetext, .sumareatext
+{
+    border-right: 1px solid #59417b;
+    width: 25%;
+}
+
+
+.titletextselect
+{
+    color: #6fffdc;
+}
+
+.sumdateselect
+{
+    margin-top: 22px;
+}
+
+.sumdateimage
+{
+    width: 10%;
+    float: left;
+    text-align:right;
+    height: 35px;
+    line-height:35px;
+}
+
+.sumdateinput
+{
+    width: 27%;
+    float:left;
+    color: White;
+    background-color: #290c4f;
+    border: solid #59417b;
+    border-width: 1px 1px 1px 0px;
+    height: 35px;
+    box-sizing: border-box;
+}
+
+.sumdateinput input button ,input[type="button"]
+{
+   display:none;
+}
+
+
+.sumdateto
+{
+    font-size:14px;
+    text-align:center;
+    color:White;
+    width: 10%;
+    float: left;
+    height: 35px;
+    line-height:35px;
+}
+.sumdatebtn
+{
+    font-size:14px;
+    width:16%;
+    text-align:center;
+    float: left;
+    color:White;
+    height: 35px;
+    line-height:35px;
 }

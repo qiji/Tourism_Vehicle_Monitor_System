@@ -1,7 +1,7 @@
 ﻿
 //车辆总数颜色控制
 function getCurritemStylecolor(){
-    if(cssmodelonclick){
+    if(cssmodelonclick == "1"){
         return 'rgb(84, 110, 255)'
     }else{
         return 'rgb(111, 255, 219)'
@@ -9,14 +9,14 @@ function getCurritemStylecolor(){
 }
 
 function getCurrareaStylecolor1(){
-    if(cssmodelonclick){
+    if(cssmodelonclick== "1"){
         return 'rgb(108, 128, 241)'
     }else{
         return 'rgb(91, 19, 207)'
     }
 }
 function getCurrareaStylecolor2(){
-    if(cssmodelonclick){
+    if(cssmodelonclick== "1"){
         return 'rgb(255, 255, 255)'
     }else{
         return 'rgb(33, 9, 67)'
@@ -26,7 +26,7 @@ function getCurrareaStylecolor2(){
 
 //进入车辆颜色
 function getCountinitemStylecolor(){
-    if(cssmodelonclick){
+    if(cssmodelonclick== "1"){
         return 'rgb(124, 144, 255)'
     }else{
         return 'rgb(111, 255, 219)'
@@ -34,7 +34,7 @@ function getCountinitemStylecolor(){
 }
 
 function getCountinareaStylecolor1(){
-    if(cssmodelonclick){
+    if(cssmodelonclick== "1"){
         return 'rgb(119, 94, 242)'
     }else{
         return 'rgb(91, 19, 207)'
@@ -43,7 +43,7 @@ function getCountinareaStylecolor1(){
 
 
 function getCountinareaStylecolor2(){
-    if(cssmodelonclick){
+    if(cssmodelonclick== "1"){
         return 'rgb(255, 255, 255)'
     }else{
         return 'rgb(49, 14, 72)'
@@ -53,7 +53,7 @@ function getCountinareaStylecolor2(){
 
 //离开车辆颜色控制
 function getCountoutitemStylecolor(){
-    if(cssmodelonclick){
+    if(cssmodelonclick== "1"){
         return 'rgb(216, 30, 191)'
     }else{
         return 'rgb(202, 67, 125)'
@@ -61,7 +61,7 @@ function getCountoutitemStylecolor(){
 }
 
 function getCountoutareaStylecolor1(){
-    if(cssmodelonclick){
+    if(cssmodelonclick== "1"){
         return 'rgb(244, 114, 212)'
     }else{
         return 'rgb(152, 86, 124)'
@@ -69,12 +69,24 @@ function getCountoutareaStylecolor1(){
 }
 
 function getCountoutareaStylecolor2(){
-    if(cssmodelonclick){
+    if(cssmodelonclick== "1"){
         return 'rgb(255, 255, 255)'
     }else{
         return 'rgb(49, 14, 72)'
     }
 }
+
+  function  getcityfromcolor()
+    {
+        if (cssmodelonclick== "1")
+        {
+        return ["#6fffdc"];
+        }
+        else
+        {
+        return ["#B8C2FF"];
+        }
+    }
 
   function GetData() {
         $.getJSON("ajax/WelComeMobile.ashx",
@@ -85,14 +97,25 @@ function getCountoutareaStylecolor2(){
             function (e) {
                 $("#nowcount").text(e.CurrCount);
                 $("#nowlevel").text(e.Level);
+                $(".cssbarflat").width(e.Level);
                 $("#entercount").text(e.EnterCount);
                 $("#staynightcount").text(e.StayNightCount);
                 CharCurr(e.ChartFivMinute, e.ChartCurrCount);
                 CarCountChange(e.ChartFivMinute, e.ChartEnterCount, e.ChartLeaveCount);
                 CharCityFrom(e.ChartCityName, e.ChartCityCount);
-                $("#cartypebycar").text(e.ChartTypeCount[1]);
-                $("#cartypebybus").text(e.ChartTypeCount[0]);
 
+                for(var i = 0; i<e.ChartTypeName.length;i++) {
+                    switch(e.ChartTypeName[i])
+                    {
+                        case "客车":
+                             $("#cartypebybus").text(e.ChartTypeCount[i]);
+                        break;
+                        case "轿车":
+                            $("#cartypebycar").text(e.ChartTypeCount[i]);
+                        break;
+                    }
+    
+                }
             });
     }
 
@@ -182,13 +205,6 @@ function getCountoutareaStylecolor2(){
         var lineChart = echarts.init(document.getElementById('divCarCountChange'));
 
         lineChart.setOption({
-//            title: {
-//                left: 'left',
-//                text: '今日进出车辆',
-//                textStyle: {
-//                    color: '#ffffff'
-//                }
-//            },
             tooltip: {
                 trigger: 'axis',
                 formatter: '{b0}<br /><span style="color:#47fad0">∨</span>{c0}<br /><span style="color:red">∧</span>{c1}',
@@ -289,21 +305,13 @@ function getCountoutareaStylecolor2(){
        }
         
     }
-
-
+  
     //今日车辆来源柱形图
     function CharCityFrom(ChartCityName, ChartCityCount){
          var pieChart = echarts.init(document.getElementById('divCharCityFrom'));
 
          pieChart.setOption({
-//            title:{
-//                text:'今日车辆来源',
-//                left: 'left',
-//                textStyle: {
-//                    color: '#ffffff'
-//                }
-//            },
-            color: ['#6fffdc'],
+            color: getcityfromcolor(),
             tooltip : {
                 trigger: 'axis',
                 formatter: '{b0}<br />{c0}',
@@ -374,7 +382,7 @@ function getCountoutareaStylecolor2(){
         setTimeout(function () {
             var el;
             el = document.getElementById('thelist');
-            myScroll.refresh();
+            
             GetData();
         }, 1000);
     }
@@ -385,7 +393,8 @@ function getCountoutareaStylecolor2(){
         pullDownOffset = pullDownEl.offsetHeight;
 
         myScroll = new iScroll('wrapper', {
-            useTransition: true,
+            lockDirection:false,
+            useTransition: false,
             topOffset: pullDownOffset,
             onRefresh: function () {
                 if (pullDownEl.className.match('loading')) {
@@ -415,6 +424,97 @@ function getCountoutareaStylecolor2(){
 
         setTimeout(function () { document.getElementById('wrapper').style.left = '0'; }, 800);
     }
-    document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
+    //document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
 
-    GetData();
+    var cssmodelonclick = "1";
+    var showactdata = true;
+
+    $(".domodelchange").on("click", function () {
+        if (cssmodelonclick == "1")
+        {
+            cssmodelonclick = "0"
+        }
+        else
+        {
+            cssmodelonclick = "1";
+        }
+
+        SetModalType();
+    });
+
+    $("#titleactdata").on("click",function(){
+        if (showactdata)
+        {
+            return;
+        }
+        else
+        {
+            showactdata = true;
+          
+        }
+        ActSumChange();
+        GetData();
+    });
+
+     $("#titlesumdata").on("click",function(){
+        if (!showactdata)
+        {
+            return;
+        }
+        else
+        {
+            showactdata = false;
+            
+          
+           
+        }
+        ActSumChange();
+    });
+
+
+
+        //设置模式
+        function SetModalType() {
+            if (cssmodelonclick == "1") {
+                $("#cssid").attr("href", "css/Default1_N.css");
+                $(".cssmodel").html("夜间<br/>模式");
+                SetCookie("CarShowModal", "1");
+            }
+            else {
+                $("#cssid").attr("href", "css/Default1_D.css");
+                $(".cssmodel").html("日间<br/>模式");
+                SetCookie("CarShowModal", "0");
+            }
+            GetData();
+        }
+
+    function Init(){
+        cssmodelonclick = GetCookie("CarShowModal");
+        if (cssmodelonclick == null)
+        {
+            cssmodelonclick = "1";
+        }
+
+        ActSumChange();
+        SetModalType();
+    }
+
+    Init();
+    
+    function ActSumChange()
+    {
+        $(".titletext").removeClass("titletextselect");
+        if(showactdata)
+        {
+            $("#divsumdata").hide();
+            $("#divactdata").show();
+
+            $("#titleactdata").addClass("titletextselect");
+        }
+        else
+        { 
+            $("#divsumdata").show();
+            $("#divactdata").hide();
+             $("#titlesumdata").addClass("titletextselect");
+        }
+    }

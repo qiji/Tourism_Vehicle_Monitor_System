@@ -36,15 +36,24 @@ ul
     height: 46px;
 }
 
-.csstitletext
+.titletextselect,.titletext
 {
     background-color: #ffffff;
     float: left;
     width: 33.3%;
     border: 1px solid #d1d1d1;
-    color: #546eff;
     letter-spacing: 5px;
     box-sizing: border-box;
+}
+
+.titletextselect
+{
+    color: #546eff;
+}
+
+.titletext
+{
+    color:#B8C2FF;
 }
 
 .csstitleimg
