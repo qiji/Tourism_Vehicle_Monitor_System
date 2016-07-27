@@ -175,59 +175,47 @@
                             车型统计
                         </div>
                     </div>
-                    <div class="sumtitle">
-                        <div class="sumdatetext titletextselect">
+                    <div id="divsumformatdate" class="sumtitle">
+                        <div class="sumdatetext titletextselect" onclick="statcarformatdate(1,this)">
                             今日
                         </div>
-                        <div class="sumdatetext">
+                        <div class="sumdatetext" onclick="statcarformatdate(2,this)">
                             本周
                         </div>
-                        <div class="sumdatetext">
+                        <div class="sumdatetext" onclick="statcarformatdate(3,this)">
                             本月
                         </div>
-                        <div class="sumdatetext">
+                        <div class="sumdatetext" onclick="statcarformatdate(4,this)">
                             本年
                         </div>
                     </div>
-                    <div class="sumtitle">
-                        <div class="sumareatext titletextselect">
+                    <div id="divsumarea" class="sumtitle">
+                        <div class="sumareatext titletextselect" onclick="statcarareatype(1,this)">
                             按省份
                         </div>
-                        <div class="sumareatext">
+                        <div class="sumareatext" onclick="statcarareatype(2,this)">
                             按城市
                         </div>
-                        <div class="sumareatext">
+                        <div class="sumareatext" onclick="statcarareatype(3,this)">
                             省内城市
                         </div>
-                        <div class="sumareatext">
+                        <div class="sumareatext" onclick="statcarareatype(4,this)">
                             省外城市
                         </div>
                     </div>
-                    <div class="sumdateselect">
+                    <div id="divsumdate" class="sumdateselect">
                         <div class="sumdatebegin">
-                            <input type="date" class="sumdateinput" format="yyyy-MM-dd" />
+                            <span id="datebeginshow" class="sumdatespanshow">2016-05-01</span>
+                            <input id="dateBegin" class="sumdateinput" type="date" onclick="datechanged(this)"
+                                onblur="datechanged(this')" onchange="datechanged(this)" onmouseout="datechanged(this)" />
                         </div>
                         <div class="sumdateto">
                             至
                         </div>
-                        <div class="sumdateend">
-                            <input type="date" class="sumdateinput" format="yyyy-MM-dd" />
-                        </div>
-                        <div class="sumdatebtn">
-                            确定
-                        </div>
-                    </div>
-                    <div class="clear">
-                    </div>
-                    <div class="summonthselect">
                         <div class="sumdatebegin">
-                            <input type="month" class="sumdateinput" format="yyyy-MM" />
-                        </div>
-                        <div class="sumdateto">
-                            对比
-                        </div>
-                        <div class="sumdateend">
-                            <input type="month" class="sumdateinput" format="yyyy-MM" />
+                            <span id="dateendshow" class="sumdatespanshow">2016-05-01</span>
+                            <input id="dateEnd" class="sumdateinput" type="date" onclick="datechanged(this)"
+                                onblur="datechanged(this)" onchange="datechanged(this)" onmouseout="datechanged(this)" />
                         </div>
                         <div class="sumdatebtn">
                             确定
@@ -235,32 +223,53 @@
                     </div>
                     <div class="clear">
                     </div>
-                    <div class="titlepostion">
-                        <div class="titleimg">
-                            <span>车辆来源分析</span>
+                    <div id="divsummonth" class="summonthselect">
+                        <div class="summonthbegin">
+                            <span id="monthbeginshow" class="summonthspanshow">2016-05</span>
+                            <input id="monthbegin" class="sumdateinput" type="month" onclick="datechanged(this)"
+                                onblur="datechanged(this)" onchange="datechanged(this)" onmouseout="datechanged(this)" />
                         </div>
-                        <div id="sumChartComeFrom" class="CurrChart">
+                        <div class="summonthbtn">
+                            确定
+                        </div>
+                        <div id="divmonthend" class="summonthbegin summonthbtnend">
+                            <span id="monthendshow" class="summonthspanshow">2016-05</span>
+                            <input id="monthend" class="sumdateinput" type="month" onclick="datechanged(this)"
+                                onblur="datechanged(this)" onchange="datechanged(this)" onmouseout="datechanged(this)" />
+                        </div>
+                        <div id="divmonthbalance" class="summonthbtn summonthbtnend">
+                            取消对比
                         </div>
                     </div>
-                    <div class="titlepostion">
-                        <div class="titleimg">
-                            <span>逗留时间分析(小时)</span>
+                    <div class="clear">
+                    </div>
+                    <div id="divsumcomefrom">
+                        <div class="titlepostion">
+                            <div class="titleimg">
+                                <span>车辆来源分析</span>
+                            </div>
+                            <div id="sumChartComeFrom" class="CurrChart">
+                            </div>
                         </div>
-                        <div id="sumChartStayTime" class="CurrChart">
+                        <div class="titlepostion">
+                            <div class="titleimg">
+                                <span>逗留时间分析(小时)</span>
+                            </div>
+                            <div id="sumChartStayTime" class="CurrChart">
+                            </div>
                         </div>
                     </div>
-                    <div class="titlepostion">
+                    <div id="divsumcarchange" class="titlepostion">
                         <div class="titleimg">
                             <span>车辆变化情况</span>
                         </div>
                         <div id="sumChartCarChange" class="CurrChart">
                         </div>
                     </div>
-                    <div class="titlepostion">
+                    <div id="divsumcartype" class="titlepostion">
                         <div class="titleimg">
                             <span>车辆类型</span>
                         </div>
-
                         <div id="sumChartCarType" class="CurrChart">
                         </div>
                     </div>
@@ -268,6 +277,13 @@
             </ul>
         </div>
     </div>
+    <script>
+        function datechanged(dateobj)
+        {
+            dateobj.parentElement.getElementsByTagName('span')[0].innerHTML = dateobj.value;
+        }
+    </script>
+    <script src="jsdate.js" type="text/javascript"></script>
     <script src="Default1.js" type="text/javascript"></script>
 </body>
 </html>

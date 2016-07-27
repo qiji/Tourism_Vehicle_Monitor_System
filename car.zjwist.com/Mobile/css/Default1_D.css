@@ -20,8 +20,6 @@ ul
 {
     overflow: hidden;
     left: 0px;
-    width: 100%;
-    height: auto;
 }
 
 .clear
@@ -36,7 +34,7 @@ ul
     height: 46px;
 }
 
-.titletextselect,.titletext
+.titletext
 {
     background-color: #ffffff;
     float: left;
@@ -44,16 +42,7 @@ ul
     border: 1px solid #d1d1d1;
     letter-spacing: 5px;
     box-sizing: border-box;
-}
-
-.titletextselect
-{
-    color: #546eff;
-}
-
-.titletext
-{
-    color:#B8C2FF;
+    color:#b8c2ff
 }
 
 .csstitleimg
@@ -249,12 +238,17 @@ ul
 
 
 /*标题*/
-.titlepostion
+.titlepostion,.titletypepostion
 {
     position: relative;
     height: 300px;
     width: 100%;
 }
+.titletypepostion
+{
+    height: 160px;
+    }
+
 .titleimg
 {
     top: 20px;
@@ -340,38 +334,21 @@ ul
     color: #eb07b2;
 }
 
-/*车辆类型*/
-.titletypepostion
-{
-    position: relative;
-    height: 160px;
-}
-
 .cartypetitleimg
 {
-    position: absolute;
-    color: #536fff;
-    font-size: 15px;
-    letter-spacing: 1px;
-    font-weight: bolder;
-    background-position: 20px top;
-    background-repeat: no-repeat;
-    background-image:url(../images/d_title.png);
+    margin-left:30px
 }
 
-.cartypetitleimg span
-{
-   padding-left:45px;
-}
+
 
 .cartypebycar, .cartypebybus
 {
     position: absolute;
-    top: 10px;
+    top: 30px;
     height: 80px;
     line-height: 30px;
     width: 50%;
-    color:#878586;
+    
     text-align: center;
     box-sizing: border-box;
     border-right: 1px solid #59417b;
@@ -405,21 +382,100 @@ ul
     left: 50%;
 }
 
+.sumtitle
+{
+    height: 58px;
+    background-color: rgb(184,194,255);
+    border-bottom: 1px solid #ffffff;
+}
 
-
-.provincein, .provinceout
+.sumtitletext, .sumdatetext, .sumareatext
 {
     float: left;
-    height: 50px;
-    color: #5a73ff;
-    width: 50%;
-    font-size: 15px;
+    font-size: 13px;
     text-align: center;
-    line-height: 50px;
-    margin-top: 30px;
-}
-.provincein
-{
+    color: White;
     box-sizing: border-box;
-    border-right: 1px solid #59417b;
+    margin-top: 16px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    height: 32px;
+    line-height: 32px;
+}
+.sumtitletext
+{
+    width: 33.3%;
+}
+
+.sumtitletextcenter
+{
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+}
+
+.sumdatetext, .sumareatext
+{
+    border-right: 1px solid #ffffff;
+    width: 25%;
+}
+
+
+
+
+.sumdateselect, .summonthselect
+{
+    margin-top: 22px;
+}
+
+.sumdatebegin, .sumdateend
+{
+    width: 60%;
+    margin-left: 5%;
+    background: rgb(184,194,255)  url(../images/d_dateimg.png) no-repeat;
+    background-position: 20px center;
+    float: left;
+    text-align: right;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid #ffffff;
+    box-sizing: border-box;
+}
+
+.sumdateend
+{
+    margin-top: 10px;
+}
+
+.sumdateinput
+{
+    float: right;
+    color: White;
+    background-color: rgb(184,194,255);
+    border-width: 0px;
+    height: 33px;
+}
+
+.sumdateto, .sumdatebtn
+{
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 14px;
+    text-align: center;
+    color: White;
+    width: 25%;
+    background-color: rgb(184,194,255);
+    float: left;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid #ffffff;
+    box-sizing: border-box;
+}
+
+.sumdatebtn
+{
+    margin-top: 10px;
+}
+.titletextselect
+{
+    color: #546eff;
 }

@@ -236,7 +236,7 @@ ul
 
 
 /*标题*/
-.titlepostion,.titletypepostion
+.titlepostion, .titletypepostion
 {
     position: relative;
     height: 300px;
@@ -245,9 +245,9 @@ ul
 
 .titletypepostion
 {
-    height:160px;
+    height: 160px;
 }
-    
+
 .titleimg
 {
     top: 20px;
@@ -336,8 +336,8 @@ ul
 
 .cartypetitleimg span
 {
-    margin-left:45px;
-    }
+    margin-left: 45px;
+}
 
 .cartypebycar, .cartypebybus
 {
@@ -428,42 +428,63 @@ ul
     margin-top: 22px;
 }
 
-.sumdatebegin, .sumdateend
+.sumdatebegin, .summonthbegin
 {
-    width: 60%;
-    margin-left: 5%;
+    position: relative;
+    width: 33%;
+    margin-left: 3%;
     background: #290c4f url(../images/dateimg.png) no-repeat;
-    background-position: 20px center;
+    background-position: 5px center;
     float: left;
     text-align: right;
     height: 35px;
     line-height: 35px;
     border: 1px solid #59417b;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
-.sumdateend
+.sumdatespanshow, .summonthspanshow
 {
-    margin-top: 10px;
+    position: absolute;
+    background: #290c4f;
+    color: White;
+    left: 30%;
+    font-size: 12px;
+    width: 70%;
+    text-align: center;
 }
 
 .sumdateinput
 {
-    float: right;
+    position: absolute;
     color: White;
-    background-color: #290c4f;
+    background-color: blue;
     border-width: 0px;
     height: 33px;
+    left: 30%;
+    opacity: 0;
+    width: 70%;
 }
 
-.sumdateto, .sumdatebtn
+.sumdateto
 {
-    margin-left: 5%;
-    margin-right: 5%;
-    font-size: 14px;
+    margin-left: 2%;
+    float: left;
+    color: white;
+    height: 35px;
+    width: 5%;
+    line-height: 35px;
+}
+
+.sumdatebtn, .summonthbtn
+{
+    margin-left: 3%;
+    margin-right: 3%;
+    font-size: 16px;
     text-align: center;
     color: White;
-    width: 25%;
+    width: 15%;
     background-color: #290c4f;
     float: left;
     height: 35px;
@@ -472,7 +493,28 @@ ul
     box-sizing: border-box;
 }
 
-.sumdatebtn
+.summonthbegin
+{
+    margin-left: 5%;
+    width: 55%;
+    background-position: 20px center;
+}
+
+.summonthspanshow
+{
+    font-size: 14px;
+    letter-spacing: 4px;
+}
+
+.summonthbtn
+{
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 14px;
+    width: 30%;
+}
+
+.summonthbtnend
 {
     margin-top: 10px;
 }

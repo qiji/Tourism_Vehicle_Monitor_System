@@ -1,4 +1,8 @@
 ﻿
+var cssmodelonclick = "1";
+var showactdata = true;
+var sumstate = [1,1,1];
+
 //车辆总数颜色控制
 function getCurritemStylecolor(){
     if(cssmodelonclick == "0"){
@@ -418,8 +422,7 @@ function getCountoutareaStylecolor2(){
     }
     //document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
 
-    var cssmodelonclick = "1";
-    var showactdata = true;
+   
 
     $(".domodelchange").on("click", function () {
         if (cssmodelonclick == "1")
@@ -485,12 +488,45 @@ function getCountoutareaStylecolor2(){
             cssmodelonclick = "1";
         }
 
+        $("#monthbegin").val(getMonthBegin());
+
         ActSumChange();
         SetModalType();
+
+        $("#dateBegin").val(getTodayBegin());
+        $("#dateEnd").val(getTodayEnd());
+
+        $("#datebeginshow").html(getTodayBegin());
+        $("#dateendshow").html(getTodayEnd());
+
+         $("#monthbegin").val(getmonthBegin());
+         $("#monthend").val(getmonthBegin());
+
+          $("#monthbeginshow").html($("#monthbegin").val());
+         $("#monthendshow").html($("#monthend").val());
+
+         $("#divmonthend").hide();
+         $("#divmonthbalance").html("对比");
+         $("#divmonthbalance").css("width","90%");
     }
 
     Init();
     
+    $("#divmonthbalance").on("click",function(){
+        if ($("#divmonthend").is(":hidden"))
+        {
+            $("#divmonthend").show();
+            $("#divmonthbalance").html("取消对比");
+            $("#divmonthbalance").css("width","30%");
+        }
+        else
+        {
+            $("#divmonthend").hide();
+            $("#divmonthbalance").html("对比");
+            $("#divmonthbalance").css("width","90%");
+        }
+    });
+
     function ActSumChange()
     {
         $(".titletext").removeClass("titletextselect");
@@ -505,21 +541,106 @@ function getCountoutareaStylecolor2(){
         { 
             $("#divsumdata").show();
             $("#divactdata").hide();
-             $("#titlesumdata").addClass("titletextselect");
+            $("#titlesumdata").addClass("titletextselect");
         }
+        showsumstate();
     }
+
+   
 
     function statcarsum(sumtype,divobj)
     {
         $(".sumtitletext").removeClass("titletextselect");
         divobj.className += " titletextselect";
-        switch(sumtype)
+
+        sumstate[0] = sumtype;
+        showsumstate();
+        //不需要立即查询
+    }
+
+    function statcarformatdate(datetype,divobj)
+    {
+        $(".sumdatetext").removeClass("titletextselect");
+        divobj.className += " titletextselect";
+
+        sumstate[1] = datetype;
+
+         switch(sumstate[1])
+            {
+                case 1:
+                    $("#dateBegin").val(getTodayBegin());
+                    $("#dateEnd").val(getTodayEnd());
+                    $("#datebeginshow").html(getTodayBegin());
+                    $("#dateendshow").html(getTodayEnd());
+                break;
+                case 2:
+                    $("#dateBegin").val(getWeekBegin());
+                    $("#dateEnd").val(getWeekEnd());
+                     $("#datebeginshow").html(getWeekBegin());
+                    $("#dateendshow").html(getWeekEnd());
+                break;
+                case 3:
+                    $("#dateBegin").val(getMonthBegin());
+                    $("#dateEnd").val(getMonthEnd());
+                    $("#datebeginshow").html(getMonthBegin());
+                    $("#dateendshow").html(getMonthEnd());
+                break;
+                case 4:
+                   $("#dateBegin").val(getYearBegin());
+                   $("#dateEnd").val(getYearEnd()); 
+                    $("#datebeginshow").html(getYearBegin());
+                    $("#dateendshow").html(getYearEnd());
+                break;
+            }
+        showsumstate();
+        //需要立即查询
+        DoStat();
+    }
+
+    function statcarareatype(areatype,divobj)
+    {
+        $(".sumareatext").removeClass("titletextselect");
+        divobj.className += " titletextselect";
+
+        sumstate[2] = areatype;
+        showsumstate();
+        //需要立即查询
+        DoStat();
+    }
+    
+    function showsumstate()
+    {
+        $("#divsumformatdate").hide();
+        $("#divsumarea").hide();
+        $("#divsumdate").hide();
+        $("#divsummonth").hide();
+
+        $("#divsumcomefrom").hide();
+        $("#divsumcarchange").hide();
+        $("#divsumcartype").hide();
+        
+        switch(sumstate[0])
         {
             case 1:
+                $("#divsumformatdate").show();
+                $("#divsumarea").show();
+                $("#divsumdate").show();
+                $("#divsumcomefrom").show();
             break;
             case 2:
+                $("#divsummonth").show();
+                $("#divsumcarchange").show();
             break;
             case 3:
+                $("#divsumformatdate").show();
+                $("#divsumdate").show();
+                $("#divsumcartype").show();
             break;
         }
     }
+    
+    function DoStat()
+    {
+        
+    }
+
