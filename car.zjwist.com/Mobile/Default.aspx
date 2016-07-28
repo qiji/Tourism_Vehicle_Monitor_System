@@ -101,7 +101,7 @@
                 }
                 else {
                     if (data == "0") {
-                        window.location.href = "index.aspx";
+                        window.location.href = "oldindex.aspx";
                     }
                     else if (data == "1") {
                         window.location.href = "county.aspx";

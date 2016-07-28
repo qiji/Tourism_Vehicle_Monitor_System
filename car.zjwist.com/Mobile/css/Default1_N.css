@@ -16,11 +16,6 @@ ul
     list-style: none;
 }
 
-.linediv
-{
-    width: 100%;
-    height: auto;
-}
 
 .clear
 {
@@ -248,7 +243,7 @@ ul
     height: 160px;
 }
 
-.titleimg
+.titleimg, .titleimgtype
 {
     top: 20px;
     position: absolute;
@@ -267,6 +262,17 @@ ul
     letter-spacing: 1px;
     font-weight: bolder;
 }
+
+.titleimgtypespan
+{
+    color: White;
+    font-size: 15px;
+    font-style: normal;
+    padding-left: 45px;
+    letter-spacing: 1px;
+    font-weight: bolder;
+}
+
 .CurrChart, .CountChangChart, .CityFromChart
 {
     position: absolute;
@@ -276,6 +282,11 @@ ul
     line-height: 300px;
     width: 98%;
     margin: auto;
+}
+
+.sumPieCarType
+{
+    top: 160px;
 }
 
 .countchang
@@ -291,7 +302,6 @@ ul
     width: 50%;
     height: 55px;
     box-sizing: border-box;
-    border-right: 1px solid #59417b;
     text-align: right;
     background-position: 25px top;
     background-repeat: no-repeat;
@@ -300,6 +310,7 @@ ul
 .countchangenter
 {
     background-image: url(../images/carenter.png);
+    border-right: 1px solid #59417b;
 }
 .countchangleave
 {
@@ -339,45 +350,6 @@ ul
     margin-left: 45px;
 }
 
-.cartypebycar, .cartypebybus
-{
-    position: absolute;
-    top: 30px;
-    height: 80px;
-    line-height: 30px;
-    width: 50%;
-    text-align: center;
-    box-sizing: border-box;
-    border-right: 1px solid #59417b;
-    margin-top: 30px;
-    background-repeat: no-repeat;
-    background-position: center top;
-}
-
-.cartypebycar
-{
-    background-image: url(../images/cartype.png);
-}
-
-
-.cartypebybus
-{
-    background-image: url(../images/bustype.png);
-}
-
-.cartypetext
-{
-    color: White;
-}
-.cartypevalue
-{
-    color: #74ffde;
-}
-
-.cartypebybus
-{
-    left: 50%;
-}
 
 
 .sumtitle
@@ -387,7 +359,7 @@ ul
     border-bottom: 1px solid #59417b;
 }
 
-.sumtitletext, .sumdatetext, .sumareatext
+.sumtitletext, .sumdatetext, .sumareatext, .sumdatetypetext
 {
     float: left;
     font-size: 13px;
@@ -411,12 +383,16 @@ ul
     border-right: 1px solid #59417b;
 }
 
-.sumdatetext, .sumareatext
+.sumdatetext, .sumareatext, .sumdatetypetext
 {
     border-right: 1px solid #59417b;
     width: 25%;
 }
 
+.sumdatetextright, .sumareatextright
+{
+    border-right: 0;
+}
 
 .titletextselect
 {
@@ -517,4 +493,40 @@ ul
 .summonthbtnend
 {
     margin-top: 10px;
+}
+
+.cartypebycar, .cartypebybus
+{
+    position: absolute;
+    top: 30px;
+    height: 80px;
+    line-height: 30px;
+    width: 50%;
+    text-align: center;
+    box-sizing: border-box;
+    margin-top: 30px;
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+
+.cartypebycar
+{
+    background-image: url(../images/cartype.png);
+    border-right: 1px solid #59417b;
+}
+
+
+.cartypebybus
+{
+    background-image: url(../images/bustype.png);
+    left: 50%;
+}
+
+.cartypetext
+{
+    color: White;
+}
+.cartypevalue
+{
+    color: #74ffde;
 }

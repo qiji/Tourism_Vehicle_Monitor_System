@@ -33,7 +33,7 @@ setTimeout("GetData()", 5 * 60 * 1000);
 function GetData() {
     $.getJSON("ajax/WelComeMobile.ashx",
             {
-                UnitID: unitid,
+                UnitID: 3,
                 r: Math.random()
             },
             function (e) {
