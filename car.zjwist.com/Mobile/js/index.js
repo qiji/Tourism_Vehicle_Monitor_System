@@ -14,6 +14,7 @@ function GetData() {
             r: Math.random()
         },
         function (e) {
+            document.title= e.UnitName + "旅游车辆监测统计分析系统";
             $("#nowcount").text(e.CurrCount);
             $("#nowlevel").text(e.Level);
             $(".cssbarflat").width(e.Level);

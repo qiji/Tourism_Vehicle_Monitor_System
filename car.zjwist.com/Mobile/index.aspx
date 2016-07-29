@@ -317,6 +317,7 @@
                 </div>
 
     <script>
+      
         function datechanged(dateobj) {
             dateobj.parentElement.getElementsByTagName('span')[0].innerHTML = dateobj.value;
         }
