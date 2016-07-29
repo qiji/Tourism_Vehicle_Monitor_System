@@ -11,14 +11,22 @@ public partial class Mobile_index : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+
         if (!string.IsNullOrEmpty(Request["unitid"]))
         {
             unitid = Request["unitid"];
         }
         else
         {
-            unitid = new AdminCookie(AdminCookie.CookierUser).GetCookiesValues().UnitID.ToString();
+            UserCookieInfo uc = new AdminCookie(AdminCookie.CookierUser).GetCookiesValues();
+            if (uc == null)
+            {
+                Response.Redirect("Default.aspx");
+            }
+            else
+            {
+                unitid = new AdminCookie(AdminCookie.CookierUser).GetCookiesValues().UnitID.ToString();
+            }
         }
     }
 }

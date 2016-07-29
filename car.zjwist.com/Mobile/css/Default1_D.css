@@ -16,16 +16,11 @@ ul
     list-style: none;
 }
 
-.linediv
-{
-    width: 100%;
-    height: auto;
-}
-
 .clear
 {
     clear: both;
 }
+
 .csstitle
 {
     text-align: center;
@@ -243,6 +238,7 @@ ul
     height: 300px;
     width: 100%;
 }
+
 .titletypepostion
 {
     height: 160px;
@@ -293,6 +289,7 @@ ul
 {
     top: 160px;
 }
+
 .countchang
 {
     height: 80px;
@@ -399,7 +396,6 @@ ul
 {
     color: #546eff;
 }
-
 
 .sumdateselect, .summonthselect
 {

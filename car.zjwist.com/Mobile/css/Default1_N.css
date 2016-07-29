@@ -16,11 +16,11 @@ ul
     list-style: none;
 }
 
-
 .clear
 {
     clear: both;
 }
+
 .csstitle
 {
     text-align: center;
@@ -200,6 +200,7 @@ ul
     font-size: 13px;
     letter-spacing: 1px;
     text-align: right;
+    color:White;
 }
 
 .svleftflag, .svrightflag
@@ -322,6 +323,7 @@ ul
     font-size: 15px;
     letter-spacing: 3px;
     text-align: center;
+    color:White;
 }
 .carentervalue, .carleavevalue
 {
@@ -343,14 +345,10 @@ ul
     color: #eb5872;
 }
 
-
-
 .cartypetitleimg span
 {
     margin-left: 45px;
 }
-
-
 
 .sumtitle
 {
