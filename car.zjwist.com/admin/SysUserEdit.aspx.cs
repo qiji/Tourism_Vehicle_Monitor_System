@@ -18,7 +18,7 @@ public partial class admin_SysUserEdit : System.Web.UI.Page
 
         if (string.IsNullOrEmpty(Request["UnitID"]))
         {
-            UserCookieInfo uc = new AdminCookie(AdminCookie.CookierUser).GetCookiesValues();
+            UserCookieInfo uc =  CookierManage.CookierAPI<UserCookieInfo>.GetCookierObject(UserCookieInfo.UserCookierName);
             unitid = uc.UnitID.ToString();
             aBack.HRef = "SysUser.aspx";
         }

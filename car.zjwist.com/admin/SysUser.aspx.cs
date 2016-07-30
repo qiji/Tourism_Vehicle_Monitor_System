@@ -15,7 +15,7 @@ public partial class admin_SysUser : System.Web.UI.Page
     {
         if (string.IsNullOrEmpty(Request["UnitID"]))
         {
-            UserCookieInfo uc = new AdminCookie(AdminCookie.CookierUser).GetCookiesValues();
+            UserCookieInfo uc =  CookierManage.CookierAPI<UserCookieInfo>.GetCookierObject(UserCookieInfo.UserCookierName);
             unitid = uc.UnitID.ToString();
             aBack.Visible = false;
         }

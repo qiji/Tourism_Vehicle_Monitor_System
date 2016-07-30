@@ -10,6 +10,6 @@ public partial class Mobile_county : System.Web.UI.Page
     public string unitid;
     protected void Page_Load(object sender, EventArgs e)
     {
-        unitid = new AdminCookie(AdminCookie.CookierUser).GetCookiesValues().UnitID.ToString();
+        unitid =  CookierManage.CookierAPI<UserCookieInfo>.GetCookierObject(UserCookieInfo.UserCookierName).UnitID.ToString();
     }
 }

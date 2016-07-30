@@ -29,7 +29,8 @@ public class UserLogin : IHttpHandler
                 Convert.ToInt32(dt.Rows[0]["UnitType"]),
                 dt.Rows[0]["UnitName"].ToString());
 
-            new AdminCookie(AdminCookie.CookierUser).WriteCookies(uc);
+            CookierManage.CookierAPI<UserCookieInfo>.WriteCookierObject(uc);
+
             if (uc.UnitID != 0)
             {
                 switch ((CarEnum.UnitType)uc.UnitType)

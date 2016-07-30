@@ -9,7 +9,13 @@ public partial class admin_admin : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        UserCookieInfo uc = new AdminCookie(AdminCookie.CookierUser).GetCookiesValues();
-        lbTrueName.Text = uc.TrueName;
+        if (!IsPostBack)
+        {
+            UserCookieInfo uc = CookierManage.CookierAPI<UserCookieInfo>.GetCookierObject(UserCookieInfo.UserCookierName);
+            imgunitlogo.Src = uc.UnitLogo;
+            spanusername.InnerText = uc.TrueName;
+            devicecount.InnerText = "监控点" + uc.MonitorCount + "个";
+            divTopDate.InnerText = DateTime.Now.ToString("yyyy-MM-dd");
+        }
     }
 }

@@ -19,7 +19,7 @@ public class LoginFromWX : IHttpHandler
             
         DataTable dt = MySQL.ExecProc("usp_Sys_UserInfo_LoginByWX", new string[] { context.Request["UnitID"] }, out sqlexec, out sqlresult).Tables[0];
 
-        new AdminCookie(AdminCookie.CookierUser).WriteCookies(new UserCookieInfo(dt.Rows[0]["UserName"].ToString(),
+        CookierManage.CookierAPI<UserCookieInfo>.WriteCookierObject(new UserCookieInfo(dt.Rows[0]["UserName"].ToString(),
               dt.Rows[0]["TrueName"].ToString(),
               Convert.ToInt32(dt.Rows[0]["UnitID"]),
               Convert.ToInt32(dt.Rows[0]["UnitType"]),

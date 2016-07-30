@@ -17,10 +17,12 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnLogin_Click(object sender, EventArgs e)
     {
-        DataTable dt = MySQL.ExecProc("usp_Sys_UserInfo_Login",
+        DataSet ds = MySQL.ExecProc("usp_Sys_UserInfo_Login",
                         new string[] { tbusername.Value, tbpwd.Value },
                         out sqlexec,
-                        out sqlresult).Tables[0];
+                        out sqlresult);
+
+        DataTable dt = ds.Tables[0];
 
         if (dt.Rows.Count == 0)
         {
@@ -35,7 +37,14 @@ public partial class _Default : System.Web.UI.Page
                 Convert.ToInt32(dt.Rows[0]["UnitType"]),
                 dt.Rows[0]["UnitName"].ToString());
 
-            new AdminCookie(AdminCookie.CookierUser).WriteCookies(uc);
+            uc.UnitLogo = string.IsNullOrEmpty(dt.Rows[0]["UnitLogo"].ToString())
+                ? Request.Url.Host + "/Images/zllogo.png"
+                : dt.Rows[0]["UnitLogo"].ToString();
+
+            uc.MonitorCount = ds.Tables[1].Rows[0]["DeviceCount"].ToString();
+
+            CookierManage.CookierAPI<UserCookieInfo>.WriteCookierObject(uc);
+
             if (uc.UnitID == 0)
             {
                 Response.Redirect("admin/SysUnitInfo.aspx");

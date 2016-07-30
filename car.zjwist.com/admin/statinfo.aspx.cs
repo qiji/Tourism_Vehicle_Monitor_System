@@ -15,7 +15,7 @@ public partial class admin_statinfo : System.Web.UI.Page
         }
         else
         {
-            UserCookieInfo uc = new AdminCookie(AdminCookie.CookierUser).GetCookiesValues();
+            UserCookieInfo uc =  CookierManage.CookierAPI<UserCookieInfo>.GetCookierObject(UserCookieInfo.UserCookierName);
             switch ((CarEnum.UnitType)uc.UnitType)
             {
                 case CarEnum.UnitType.景区:

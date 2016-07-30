@@ -20,7 +20,7 @@ public partial class car_oldindex : System.Web.UI.Page
         }
         else
         {
-            unitid = new AdminCookie(AdminCookie.CookierUser).GetCookiesValues().UnitID.ToString();
+            unitid =  CookierManage.CookierAPI<UserCookieInfo>.GetCookierObject(UserCookieInfo.UserCookierName).UnitID.ToString();
         }
     }
 }

@@ -22,7 +22,7 @@ public partial class admin_statCountyCF : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        unitid = new AdminCookie(AdminCookie.CookierUser).GetCookiesValues().UnitID.ToString();
+        unitid =  CookierManage.CookierAPI<UserCookieInfo>.GetCookierObject(UserCookieInfo.UserCookierName).UnitID.ToString();
 
         statdateselect1.onQuery += new admin_statdateselect.QueryDelegate(statdateselect1_onQuery);
         if (!IsPostBack)

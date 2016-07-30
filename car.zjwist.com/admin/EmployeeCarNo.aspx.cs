@@ -13,7 +13,7 @@ public partial class admin_EmployeeCarNo : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        unitid = new AdminCookie(AdminCookie.CookierUser).GetCookiesValues().UnitID.ToString();
+        unitid =  CookierManage.CookierAPI<UserCookieInfo>.GetCookierObject(UserCookieInfo.UserCookierName).UnitID.ToString();
         if (!IsPostBack)
         {
             DataTable dt = MySQL.ExecProc("usp_Car_EmployeeNo_GetByUnitID", new string[] { unitid }, out sqlexec, out sqlresult).Tables[0];

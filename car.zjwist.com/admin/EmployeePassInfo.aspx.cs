@@ -16,7 +16,7 @@ public partial class admin_EmployeePassInfo : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         carno = Request["carno"];
-        unitid = new AdminCookie(AdminCookie.CookierUser).GetCookiesValues().UnitID.ToString();
+        unitid =  CookierManage.CookierAPI<UserCookieInfo>.GetCookierObject(UserCookieInfo.UserCookierName).UnitID.ToString();
         if (!IsPostBack)
         {
             lbCarNo.Text = carno;

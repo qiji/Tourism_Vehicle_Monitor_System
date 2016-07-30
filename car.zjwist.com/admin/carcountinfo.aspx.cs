@@ -11,7 +11,7 @@ public partial class admin_carcountinfo : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        UnitID = new AdminCookie(AdminCookie.CookierUser).GetCookiesValues().UnitID.ToString();
+        UnitID =  CookierManage.CookierAPI<UserCookieInfo>.GetCookierObject(UserCookieInfo.UserCookierName).UnitID.ToString();
         statdateselect1.onQuery += new admin_statdateselect.QueryDelegate(statdateselect1_onQuery);
     }
 

@@ -13,17 +13,18 @@ public partial class admin_left : System.Web.UI.UserControl
         {
             //带参数过来的！
             divManage.Visible = false;
-            divScenic.Visible = false;
+            divAdmin.Visible = true;
             aWelCome.HRef = "WelCome.aspx?ScenicID=" + Request["ScenicID"];
             aStatInfo.HRef = "StatInfo.aspx?ScenicID=" + Request["ScenicID"];
-            
+
         }
         else
         {
-            UserCookieInfo uc = new AdminCookie(AdminCookie.CookierUser).GetCookiesValues();
+
+            UserCookieInfo uc = CookierManage.CookierAPI<UserCookieInfo>.GetCookierObject(UserCookieInfo.UserCookierName);
             if (uc.UnitID == 0)
             {
-                divadmin.Visible = false;
+                divAdmin.Visible = false;
             }
             else
             {

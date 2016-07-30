@@ -18,14 +18,14 @@ public partial class Mobile_index : System.Web.UI.Page
         }
         else
         {
-            UserCookieInfo uc = new AdminCookie(AdminCookie.CookierUser).GetCookiesValues();
+            UserCookieInfo uc =  CookierManage.CookierAPI<UserCookieInfo>.GetCookierObject(UserCookieInfo.UserCookierName);
             if (uc == null)
             {
                 Response.Redirect("Default.aspx");
             }
             else
             {
-                unitid = new AdminCookie(AdminCookie.CookierUser).GetCookiesValues().UnitID.ToString();
+                unitid =  CookierManage.CookierAPI<UserCookieInfo>.GetCookierObject(UserCookieInfo.UserCookierName).UnitID.ToString();
             }
         }
     }

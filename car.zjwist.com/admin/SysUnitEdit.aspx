@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/admin.master" AutoEventWireup="true"
     CodeFile="SysUnitEdit.aspx.cs" Inherits="admin_SysUnitEdit" %>
 
+<%@ Register Src="../uc/UpLoadFile.ascx" TagName="UpLoadFile" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <link href="../css/Edit.css" rel="Stylesheet" type="text/css" />
     <div class="mainNav">
@@ -74,8 +75,13 @@
         <div class="blkl_left">
             <div class="blkl_01">
                 景区车辆数据归零时间点</div>
-            <div class="blkl_02">
+            <div class="blkl_02" style="width: 29%; float: left">
                 <asp:TextBox ID="tbCarClearTime" runat="server"></asp:TextBox>
+            </div>
+            <div class="blkl_01">
+                单位Logo</div>
+            <div class="blkl_02" style="width: 29%">
+                <uc1:UpLoadFile ID="UpLoadFile1" runat="server" ShowImage="false" IsSaveToOSS="true" />
             </div>
         </div>
         <div class="clear">
@@ -89,7 +95,6 @@
             <div class="blkl_02">
                 <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" />
                 <asp:Button ID="btnDelete" runat="server" Text="删除" OnClick="btnDelete_Click" />
-                
             </div>
         </div>
         <div class="clear">

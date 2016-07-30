@@ -13,7 +13,7 @@ public partial class admin_pwd : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        uc = new AdminCookie(AdminCookie.CookierUser).GetCookiesValues();
+        uc =  CookierManage.CookierAPI<UserCookieInfo>.GetCookierObject(UserCookieInfo.UserCookierName);
     }
 
     protected void btnSave_Click(object sender, EventArgs e)

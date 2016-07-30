@@ -50,6 +50,7 @@ public partial class admin_SysUnitEdit : System.Web.UI.Page
                 tbLnt.Text = dt.Rows[0]["Lnt"].ToString();
                 tbCarMaxCount.Text = dt.Rows[0]["CarMaxCount"].ToString();
                 tbCarClearTime.Text = dt.Rows[0]["CarClearTime"].ToString();
+                UpLoadFile1.FileName = dt.Rows[0]["UnitLogo"].ToString();
             }
         }
     }
@@ -74,7 +75,8 @@ public partial class admin_SysUnitEdit : System.Web.UI.Page
         tbLnt.Text,
         tbPassTime.Text,
         tbCarMaxCount.Text,
-        tbCarClearTime.Text
+        tbCarClearTime.Text,
+        UpLoadFile1.FileName
         }, out sqlexec, out sqlresult);
         if (sqlexec)
         {

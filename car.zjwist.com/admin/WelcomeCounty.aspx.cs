@@ -13,7 +13,7 @@ public partial class admin_WelcomeCounty : System.Web.UI.Page
     {
         if (string.IsNullOrEmpty(Request["CountyID"]))
         {
-            unitid = new AdminCookie(AdminCookie.CookierUser).GetCookiesValues().UnitID.ToString();
+            unitid =  CookierManage.CookierAPI<UserCookieInfo>.GetCookierObject(UserCookieInfo.UserCookierName).UnitID.ToString();
         }
         else
         {
