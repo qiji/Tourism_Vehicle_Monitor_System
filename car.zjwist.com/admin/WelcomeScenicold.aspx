@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
    
     <script src=" https://cdnjs.cloudflare.com/ajax/libs/echarts/3.2.2/echarts.common.min.js"></script>
-    <script src="http://cdn.tourzj.com/js/china.js" type="text/javascript"></script>
+    <%--<script src="http://cdn.tourzj.com/js/china.js" type="text/javascript"></script>--%>
     <script src="../js/screenfull.js" type="text/javascript"></script>
     <script>
         SetSideMenu("Welcome");

@@ -276,6 +276,7 @@ body
     width: 100%;
     height: 40px;
     line-height: 40px;
+    z-index:99;
 }
 
 .charttopleft
@@ -309,13 +310,14 @@ body
 {
     height:100%;
     width:100%;
-    padding-top:50px;
+    z-index:90;
 }
 
 .chartcenterdiv
 {
     position: absolute;
-    height: 70%;
+    height: 100%;
+    width:100%;
 }
 
 .centertop1, .centertop2, .centertop3

@@ -24,7 +24,7 @@ public class WelcomeScenic : IHttpHandler
         wsd.Level = (wsd.CurrCount * 1.0 / Convert.ToInt32(ds.Tables[0].Rows[0]["CarMaxCount"]) * 100).ToString("0.0") + "%";
         wsd.StayNightCount = ds.Tables[7].Rows[0]["StayNightCount"].ToString();
         wsd.EnterCount = ds.Tables[3].Rows[0]["EnterCount"].ToString();
-        //wsd.LeaveCount = ds.Tables[3].Rows[0]["LeaveCount"].ToString();
+        wsd.LeaveCount = ds.Tables[3].Rows[0]["LeaveCount"].ToString();
 
         int entercount, leavecount;
         entercount = 0;
@@ -148,10 +148,10 @@ public class WelcomeScenic : IHttpHandler
         /// 本日进入车辆总数
         /// </summary>
         public string EnterCount { get; set; }
-        ///// <summary>
-        ///// 本日离开车辆总数
-        ///// </summary>
-        //public string LeaveCount { get; set; }
+        /// <summary>
+        /// 本日离开车辆总数
+        /// </summary>
+        public string LeaveCount { get; set; }
         /// <summary>
         /// 5分钟的时间刻度！
         /// </summary>

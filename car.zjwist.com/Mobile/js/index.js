@@ -24,6 +24,7 @@ function GetData() {
             CarCountChange(e.ChartFivMinute, e.ChartEnterCount, e.ChartLeaveCount);
             CharCityFrom(e.ChartCityName, e.ChartCityCount);
 
+
             for(var i = 0; i<e.ChartTypeName.length;i++) {
                 switch(e.ChartTypeName[i])
                 {

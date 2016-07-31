@@ -61,12 +61,12 @@
         var timestr = "";
         if (myDate.getHours() < 12) {
             timestr = "上午"
-            if (myDate.getHours < 10) {
+            if (myDate.getHours() < 10) {
                 timestr += " 0";
             }
         }
         else
-            if (myDate.getHours < 18) {
+            if (myDate.getHours() < 18) {
                 timestr = "下午"
 
             }
@@ -76,12 +76,12 @@
 
         timestr += " " + myDate.getHours() + ":";
 
-        if (myDate.getMinutes < 10) {
+        if (myDate.getMinutes() < 10) {
             timestr += "0"
         }
 
         timestr += myDate.getMinutes() + ":";
-        if (myDate.getSeconds < 10) {
+        if (myDate.getSeconds() < 10) {
             timestr += "0"
         }
         timestr += myDate.getSeconds();

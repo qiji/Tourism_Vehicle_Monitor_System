@@ -1,302 +1,317 @@
-﻿var ChartsCurrInfo;
-var ChartsCurrCount;
-var ChartsCarType;
-var ChartsMap;
-
-var CarData;
+﻿var CarData;
+var divChart = [1,2,3,4];
 
 
-var ChartArray = [1, 2, 3, 4];
 
-function ChartsInit() {
-    InitChart();
-    InitCurrInfo();
-    InitCurrCount();
-    InitCarType();
-    InitMap();
-    //初始化完成，载入数据！
-    GetData();
+function ChartChange(ChangeID) {    
+    var TempChart = divChart[ChangeID];
+    divChart[ChangeID] = divChart[3];
+    divChart[3] = TempChart;
+    
+    SetChart(ChangeID);
+    SetChart(3);
+       
 }
 
-function InitChart() {
-    for (var i = 0; i < ChartArray.length; i++) {
-        switch (ChartArray[i]) {
-            case 1:
-                ChartsCurrInfo = echarts.init(document.getElementById("divChart" + (i + 1)));
-                break;
-            case 2:
-                ChartsCurrCount = echarts.init(document.getElementById("divChart" + (i + 1)));
-                break;
-            case 3:
-                ChartsCarType = echarts.init(document.getElementById("divChart" + (i + 1)));
-                break;
-            case 4:
-                ChartsMap = echarts.init(document.getElementById("divChart" + (i + 1)));
-                break;
-        }
+function SetChart(divid)
+{
+    switch(divChart[divid])
+    {
+        case 1:
+           CurrInfoData();
+        break;
+        case 2:
+            CurrCountData();
+        break;
+        case 3:
+            CharCityFrom();
+        break;
+        case 4:
+            ChartShowMap();
+        break;
     }
 }
 
-function ChartChange(ChangeID) {
-    //alert(ChangeID);
-    //return;
-    var TempChart = ChartArray[ChangeID];
-    ChartArray[ChangeID] = ChartArray[3];
-    ChartArray[3] = TempChart;
 
-    InitChart();
-
-    InitCurrInfo();
-    InitCurrCount();
-    InitCarType();
-    InitMap();
-    //重新刷新数据
-    SetCurrInfoData();
-    SetCurrCountData();
-    SetCarTypeData();
-    SetMapData();
+function GetChartdiv(divvalue)
+{
+    for (var i = 0; i < divChart.length; i++) {
+        if (divChart[i] == divvalue)    
+          return i+1;
+    }   
+    
 }
 
-function InitCurrInfo() {
-    //初始化
-    ChartsCurrInfo.setOption({
-        color: ['#000000'],
-        title: {
-            text: '今日车辆变化情况',
-            textStyle: {
-                fontSize: 14
-            },
-            x: "center",
-            y: "top"
-        },
+//今日车辆变化
+function CurrInfoData(){
+    var divorder = GetChartdiv(1);
+    $(".charttitle"+divorder).html("今日车辆变化");
+    var CurrInfoData = echarts.init(document.getElementById("divchart" + divorder));
+
+
+
+    CurrInfoData.setOption({
         tooltip: {
-            trigger: 'axis'
-        },
-        backgroundColor: '#FF',
-
-        grid: {
-            top: 30,
-            left: '3%',
-            right: '4%',
-            bottom: 10,
-            containLabel: true
-        },
-        xAxis: [{
-            type: 'category',
-            boundaryGap: false,
-            splitLine: {
-                show: false
-            },
-            data: []
-        }],
-        yAxis: [{
-            splitLine: {
-                show: false
-            },
-            type: 'value'
-        }],
-        series: [{
-            //smooth:true,
-            name: '车辆数量',
-            type: 'line',
-            data: []
-        }]
-    });
-}
-
-function InitCurrCount() {
-    // ChartsCurrCount = echarts.init(document.getElementById(ChartArray[1]));
-    ChartsCurrCount.setOption({
-        color: ['#000000', "#FFFF00"],
-        title: {
-            text: '今日进出车辆',
-            textStyle: {
-                fontSize: 14
-            },
-            x: "center",
-            y: "top"
-        },
-        backgroundColor: '#FF',
-        tooltip: {
-            trigger: 'axis'
-        },
-        legend: {
-            top: "middle",
-            left: "right",
-            orient: "vertical",
-            data: ['进', '出']
-        },
-        grid: {
-            top: 30,
-            left: '3%',
-            right: '4%',
-            bottom: 10,
-            containLabel: true
-        },
-        xAxis: [{
-            type: 'category',
-            boundaryGap: false,
-            splitLine: {
-                show: false
-            },
-            data: []
-        }],
-        yAxis: [{
-            splitLine: {
-                show: false
-            },
-            type: 'value'
-        }],
-        series:
-                    [{
-                        name: '进',
-                        type: 'line',
-                        data: []
-                    },
-                    {
-                        name: '出',
-                        type: 'line',
-                        data: []
-                    }]
-    });
-}
-
-function InitCarType() {
-    //车辆类型
-    //ChartsCarType = echarts.init(document.getElementById(ChartArray[2]));
-    ChartsCarType.setOption({
-        title: {
-            text: '今日车辆类型',
-            textStyle: {
-                fontSize: 14
-            },
-            x: "center",
-            y: "top"
-        },
-
-        backgroundColor: '#FF',
-        tooltip: {
-            trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
-        },
-        series: [
-                    {
-                        name: '车辆类型',
-                        type: 'pie',
-                        radius: '60%',
-                        center: ['50%', '50%'],
-                        data: []
-                    }
-                ]
-    });
-}
-
-function InitMap() {
-    // ChartsMap = echarts.init(document.getElementById(ChartArray[3]));
-    ChartsMap.setOption({
-        title: {
-            text: '车辆来源地',
-            left: 'center'
-        },
-        backgroundColor: '#FF',
-        tooltip: {
-            trigger: 'item',
-            formatter: function (param) {
-                return '车辆数量：'+param.value[2];
+            trigger: 'axis',
+            formatter: '{b0}<br />数量:{c0}',
+            borderWidth:1,
+            borderColor: '#000000',
+            textStyle:{
+                fontWeight:'100',
+                fontSize:13
             }
         },
-
-        geo: {
-            map: 'china',
-            label: {
-                emphasis: {
-                    show: true
-                },
-                normal: {
-                    show: true
+         grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: true,
+            data: CarData.ChartFivMinute,
+            splitLine:{
+                show:true,
+                lineStyle:{
+                    color:'rgb(96,68,136)'
                 }
             },
-            center: [114.87, 30.44],
-            zoom: 5,
-            roam: true,
+            axisLabel:{
+                show:true,
+                textStyle:{
+                    color:'rgb(102,94,118)'
+                }
+            }
+        },
+        yAxis: {
+            type: 'value',
+            data: CarData.ChartCurrCount,
+            splitLine:false,
+            axisLabel:{
+                show:true,
+                textStyle:{
+                    color:'rgb(102,94,118)'
+                }
+            }
+        },
+        series: [
+        {
+            type:'line',
+            smooth:true,
+            sampling: 'average',
             itemStyle: {
                 normal: {
-                    areaColor: '#323c48',
-                    borderColor: '#404a59'
-                },
-                emphasis: {
-                    areaColor: '#323c48',
-                    borderColor: '#404a59'
+                    color:'rgb(111, 255, 219)'
                 }
-            }
-        },
-        series: []
-    });
-}
-
-
-
-function SetCurrInfoData() {
-    ChartsCurrInfo.setOption({
-        xAxis: {
-            type: 'category',
-            boundaryGap: false,
-            data: CarData.ChartFivMinute
-        },
-        series: [{
-            //smooth: true,
-            name: '车辆数量',
-            type: 'line',
-            data: CarData.ChartCurrCount
+            },
+            areaStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color:'rgb(91, 19, 207)'
+                        }, {
+                        offset: 1,
+                            color: 'rgb(33, 9, 67)'
+                        }])
+                    }
+                },
+            data:CarData.ChartCurrCount,
         }]
     });
 }
 
-function SetCurrCountData() {
-    ChartsCurrCount.setOption({
-        xAxis: {
+
+//今日进出车辆
+function CurrCountData(){
+    var divorder = GetChartdiv(2);
+    $(".charttitle"+divorder).html("今日进出车辆");
+    var CurrCountData = echarts.init(document.getElementById("divchart" + divorder));
+
+        function gettooltipstring(params)
+        {
+            if (params[0].value==null)
+            {
+                return params[0].name+'<br /><span style="color:#47fad0">∨</span> <br /><span style="color:red">∧</span>';
+            }
+            else
+            {
+                return params[0].name+'<br /><span style="color:#47fad0">∨</span>'+params[0].value+'<br /><span style="color:red">∧</span>'+params[1].value;
+            }
+        }
+
+    CurrCountData.setOption({
+        tooltip: {
+            trigger: 'axis',
+            formatter: function(params){
+                return  gettooltipstring(params);
+            },
+            borderWidth: 1,
+            borderColor: '#ffffff',
+            textStyle: {
+                fontWeight: '100',
+                fontSize: 13
+            }
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: [
+        {
             type: 'category',
             boundaryGap: false,
-            data: CarData.ChartFivMinute
-        },
+            data: CarData.ChartFivMinute,
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: 'rgb(89,65,123)'
+                }
+            },
+            axisLabel: {
+                show: true,
+                textStyle: {
+                    color: 'rgb(102,94,118)'
+                }
+            }
+        }],
+        yAxis: [
+        {
+            type: 'value',
+            splitLine: false,
+            axisLabel: {
+                show: true,
+                textStyle: {
+                    color: 'rgb(102,94,118)'
+                }
+            }
+        }],
         series: [
-                    {
-                        name: '进',
-                        type: 'line',
-                        data: CarData.ChartEnterCount
-                    },
-                    {
-                        name: '出',
-                        type: 'line',
-                        data: CarData.ChartLeaveCount
+        {
+            name: '进入',
+            type: 'line',
+            itemStyle: {
+                   	normal: {
+                        color: 'rgb(111, 255, 219)'
                     }
-                    ]
+                },
+            areaStyle: { 
+                normal: {
+                    color : new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgb(91, 19, 207)'
+                            }, {
+                            offset: 1,
+                                color:'rgb(49, 14, 72)'
+                            }])
+                } 
+            },
+            data: CarData.ChartEnterCount
+        },
+        {
+            name: '离开',
+            type: 'line',
+            itemStyle: {
+                   	normal: {
+                        color: 'rgb(202, 67, 125)'
+                    }
+                },
+            areaStyle: { 
+                normal: {
+                    color : new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgb(152, 86, 124)'
+                            }, {
+                            offset: 1,
+                                color: 'rgb(49, 14, 72)'
+                            }])
+                } 
+            },
+            data: CarData.ChartLeaveCount
+        }]
+    });
+
+}
+
+//今日车辆来源柱形图
+function CharCityFrom(){
+    var divorder = GetChartdiv(3);
+    $(".charttitle"+divorder).html("今日车辆来源");
+    var CharCityFrom = echarts.init(document.getElementById("divchart" + divorder));
+
+    
+    CharCityFrom.setOption({
+        color: ["#6fffdc"],
+        tooltip: {
+            trigger: 'axis',
+            formatter: '{b0}<br />{c0}',
+            borderWidth: 2,
+            borderColor: '#ffffff',
+            textStyle: {
+                fontWeight: '100',
+                fontSize: 8
+            },
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            }
+        },
+        
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis : [
+        {
+            type : 'category',
+            data : CarData.ChartCityName,
+            axisTick: {
+                alignWithLabel: true
+            },
+            splitLine: false,
+            axisLabel: {
+                show: true,
+                textStyle: {
+                    color: 'rgb(102,94,118)'
+                }
+            }
+        }],
+        yAxis : [
+        {
+            type : 'value',
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: 'rgb(89,65,123)'
+                }
+            },
+            axisLabel: {
+                show: true,
+                textStyle: {
+                    color: 'rgb(102,94,118)'
+                }
+            }
+        }],
+        series : [
+        {
+            name:'来源地',
+            type:'bar',
+            barWidth: '60%',
+            data:CarData.ChartCityCount
+        }]
     });
 }
 
-function SetCarTypeData() {
+var ChartsMap;
 
-    var CarTypedata = [];
-    for (var i = 0; i < CarData.ChartTypeName.length; i++) {
-        CarTypedata.push({ value: CarData.ChartTypeCount[i], name: CarData.ChartTypeName[i] });
-    }
+function ChartShowMap() {
 
-    //设置图形中的数据！
-    ChartsCarType.setOption({
-        series: [
-                    {
-                        name: '车辆类型',
-                        type: 'pie',
-                        radius: '60%',
-                        center: ['50%', '50%'],
-                        data: CarTypedata
-                    }]
-    });
-}
-
-
-
-function SetMapData() {
+    var divorder = GetChartdiv(4);
+    $(".charttitle"+divorder).html("旅游车辆迁徙图");
+    ChartsMap = echarts.init(document.getElementById("divchart" + divorder));
 
     var MapData = $.parseJSON(CarData.MapData);
 
@@ -350,7 +365,6 @@ function SetMapData() {
         }
     }
 
-   // var mapcolor = ['#a6c84c', '#ffa022', '#46bee9'];
     var mapseries = [];
 
     mapseries.push(
@@ -366,7 +380,7 @@ function SetMapData() {
 				    },
 				    lineStyle: {
 				        normal: {
-				            color: '#ffa022',
+				            color: 'rgb(111, 255, 219)',
 				            width: 2,
 				            opacity: 0.5,
 				            curveness: 0.2
@@ -432,59 +446,86 @@ function SetMapData() {
 				}
 				);
 
+    
+   ChartsMap.setOption({
+        title: {
+            text: '车辆来源地',
+            left: 'center'
+        },
+        backgroundColor: '#FF',
+        tooltip: {
+            trigger: 'item',
+            formatter: function (param) {
+                return '车辆数量：'+param.value[2];
+            }
+        },
 
-    ChartsMap.setOption({
-        series: mapseries
+        geo: {
+            map: 'china',
+            label: {
+                emphasis: {
+                    show: true
+                },
+                normal: {
+                    show: true
+                }
+            },
+           
+            center:[centerlat,centerlnt],
+            zoom: unitzoom,
+            roam: true,
+            itemStyle: {
+                normal: {
+                    areaColor: '#323c48',
+                    borderColor: '#404a59'
+                },
+                emphasis: {
+                    areaColor: '#323c48',
+                    borderColor: '#404a59'
+                }
+            }
+        },
+        series: mapseries,
     });
-
 }
 
+
 function GetData() {
-
-
     $.getJSON("WelcomeScenic.ashx", {
-        unitid: scenicid
+        unitid: unitid,
+        r:Math.random()
     }, function (data) {
         CarData = data;
-        $(".ssjct_tl").html(CarData.UnitName + "旅游车辆监测统计分析系统");
-        $(".ssjct_jk").html("共" + CarData.DeviceCount + "个监控点");
-        $(".sp_red_big").html(CarData.CurrCount);
-        $(".spLevel").html(CarData.Level);
-        $(".spStayNight").html(CarData.StayNightCount);
-        $(".spCarEnter").html(CarData.EnterCount);
-        $(".spCarLeave").html(CarData.LeaveCount);
 
-        var comefromhtml = "";
+        $("#nowcount").text(CarData.CurrCount);
+        $("#nowlevel").text(CarData.Level);
+        $(".scalebarflat").width(CarData.Level);
+        $("#entercount").text(CarData.EnterCount);
+        $("#staynightcount").text(CarData.StayNightCount);
+        $("#carennercount").text(CarData.EnterCount);
+        $("#carleavecount").text(CarData.LeaveCount);
 
-        for (var i = 0; i < CarData.ChartCityName.length; i++) {
-            if (i < 9) {
-                comefromhtml += "<div class='ssjcr_li'><div class='cityname'>"
-                + CarData.ChartCityName[i] + "</div><div class='citycardata'>"
-                + CarData.ChartCityCount[i] + "</div></div>";
+        for(var i = 0; i<CarData.ChartTypeName.length;i++) {
+            switch(CarData.ChartTypeName[i])
+            {
+                case "客车":
+                    $("#typebybus").text(CarData.ChartTypeCount[i]);
+                break;
+                case "轿车":
+                    $("#typebycar").text(CarData.ChartTypeCount[i]);
+                break;
             }
         }
 
-        $(".ssjcr_list").html(comefromhtml);
-
-        //今日车辆变化情况
-        SetCurrInfoData();
-        //今日进出车辆
-        SetCurrCountData();
-        //车辆类型处理
-        SetCarTypeData();
-        //画地图
-        SetMapData();
+        CurrInfoData();
+        CurrCountData();
+        CharCityFrom();
+        ChartShowMap();
     });
     //5分钟以后刷新一次
     setTimeout("GetData()", 5 * 60 * 1000);
 }
 
 
-
-function TimeShow() {
-    $(".ssjct_time").html(new Date().toLocaleString());
-    setTimeout("TimeShow()", 1000);
-}
-
-TimeShow();
+GetData();
 

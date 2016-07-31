@@ -2,10 +2,14 @@
     CodeFile="WelcomeScenic.aspx.cs" Inherits="admin_WelcomeScenic" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <script src=" https://cdnjs.cloudflare.com/ajax/libs/echarts/3.2.2/echarts.common.min.js"></script>
+    <script src="http://cdn.bootcss.com/echarts/3.2.2/echarts.min.js"></script>
+    <script src="http://echarts.baidu.com/asset/map/js/china.js"></script>
+    
+
     <script src="../js/screenfull.js" type="text/javascript"></script>
     <script>
         SetMenuSelect("liactdata");
+        $("#divbody").height(document.documentElement.clientHeight);
     </script>
     <div class="actdata">
         <div class="centertop">
@@ -17,7 +21,7 @@
                         </div>
                     </div>
                     <div class="ct1topright">
-                        <div class="currdatavalue">
+                        <div class="currdatavalue" id="nowcount">
                             888
                         </div>
                     </div>
@@ -29,7 +33,7 @@
                         </div>
                     </div>
                     <div class="ct1topright">
-                        <div class="currdatavalue">
+                        <div class="currdatavalue" id="nowlevel">
                             888
                         </div>
                     </div>
@@ -46,7 +50,7 @@
                     <div class="ct2leftimg">
                         &nbsp;</div>
                     <div class="ct2text">
-                        <span class="ct2value">999</span>
+                        <span class="ct2value" id="entercount">999</span>
                         <br />
                         <span class="ct2title">今日进入车辆</span>
                     </div>
@@ -57,7 +61,7 @@
                     <div class="ct2rightimg">
                         &nbsp;</div>
                     <div class="ct2text">
-                        <span class="ct2value">999</span>
+                        <span class="ct2value" id="staynightcount">999</span>
                         <br />
                         <span class="ct2title">昨日过夜车辆</span>
                     </div>
@@ -74,7 +78,7 @@
                     <div class="ct3title">
                         进入车辆
                     </div>
-                    <div class="ct3valuetop">
+                    <div class="ct3valuetop" id="carennercount">
                         333
                     </div>
                 </div>
@@ -84,7 +88,7 @@
                     <div class="ct3title">
                         离开车辆
                     </div>
-                    <div class="ct3valuebottom">
+                    <div class="ct3valuebottom" id="carleavecount">
                         333
                     </div>
                 </div>
@@ -101,7 +105,7 @@
                         </div>
                     </div>
                     <div class="ct4table">
-                        <div class="ct4value">
+                        <div class="ct4value" id="typebycar">
                             1200
                         </div>
                     </div>
@@ -115,7 +119,7 @@
                         </div>
                     </div>
                     <div class="ct4table">
-                        <div class="ct4value">
+                        <div class="ct4value" id="typebybus">
                             1200
                         </div>
                     </div>
@@ -126,24 +130,24 @@
         </div>
         <div class="bodycenter">
             <div class="charttop">
-                <div class="charttopleft">
+                <div class="charttopleft charttitle4">
                     旅游车辆迁徙图</div>
                 <div class="changescreenmode">
                 </div>
             </div>
-            <div class="chartcenterdiv" style="padding-top: 50px">
+            <div class="chartcenterdiv" id="divchart4">
                 中间
             </div>
         </div>
         <div class="bodyright">
             <div class="bodyrighttop">
                 <div class="charttop">
-                    <div class="charttopleft">
+                    <div class="charttopleft charttitle1">
                         今日车辆变化</div>
-                    <div class="charttopright">
+                    <div class="charttopright" onclick="ChartChange(0)">
                     </div>
                 </div>
-                <div class="chartdiv"  id="CurrInfoData">
+                <div class="chartdiv" id="divchart1">
                     右1
                 </div>
             </div>
@@ -151,12 +155,12 @@
             </div>
             <div class="bodyrightcenter">
                 <div class="charttop">
-                    <div class="charttopleft">
+                    <div class="charttopleft charttitle2">
                         今日进出车辆</div>
-                    <div class="charttopright">
+                    <div class="charttopright" onclick="ChartChange(1)">
                     </div>
                 </div>
-                <div class="chartdiv" id="CurrCountData">
+                <div class="chartdiv" id="divchart2">
                     右2
                 </div>
             </div>
@@ -164,12 +168,12 @@
             </div>
             <div class="bodyrightbottom">
                 <div class="charttop">
-                    <div class="charttopleft">
+                    <div class="charttopleft charttitle3">
                         今日车辆来源</div>
-                    <div class="charttopright">
+                    <div class="charttopright" onclick="ChartChange(2)">
                     </div>
                 </div>
-                <div class="chartdiv"  id="CharCityFrom">
+                <div class="chartdiv" id="divchart3">
                     右3
                 </div>
             </div>
@@ -179,6 +183,10 @@
     <script>
 
         var unitid = "<%=unitid %>";
+        var centerlat = "<%=centerlat %>";
+        var centerlnt = "<%=centerlnt %>";
+        var unitzoom = "<%=unitzoom %>";
+
         var IsFullScreen = 0;
         $(".changescreenmode").on("click", function () {
 
