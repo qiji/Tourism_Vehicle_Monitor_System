@@ -1,71 +1,37 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Mobile_Default" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>旅游车辆监测统计分析系统</title>
-    <link href="css/jcwap.css" rel="stylesheet" type="text/css">
-    <link type="text/css" href="http://weui.github.io/weui/weui.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+  
     <script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        (function () {
-            var phoneWidth = parseInt($(window).width()),
-				phoneScale = phoneWidth / 640,
-				ua = navigator.userAgent;
-
-            if (/Android (\d+\.\d+)/.test(ua)) {
-                var version = parseFloat(RegExp.$1);
-                // andriod 2.3
-                if (version > 2.3) {
-                    document.write('<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">');
-                    $(window).bind('resize load', function () {
-                        $("body").css("zoom", $(window).width() / 640);
-                        $("body").css("display", "block");
-                    });
-                    // andriod 2.3以上
-                } else {
-                    document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
-                }
-                // 其他系统
-            } else {
-                document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
-            }
-        })();
-    </script>
+    <link type="text/css" href="http://weui.github.io/weui/weui.css" rel="stylesheet" />
+    <link href="css/newlogin.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<!--头部-->
-   <div class="logintl">
-      旅游车辆监测统计分析系统
-   </div>
-   <div class="clear"></div>
-<!--主体-->
-<div id="logincontent">
-    <div class="logblock">
-      <div class="logcname">用户名</div>
-      <div class="logcinput">
-        <form name="form1" method="post" action="">
-           <label for="textfield"></label>
-           <input class="textfield" type="text" id="tbusername"/>
-         </form>
-       </div>
-       <div class="clear"></div>
+    <div class="logintop">
+        旅游车辆监测统计分析系统
     </div>
-    <div class="blankline"></div>
-    <div class="logblock">
-      <div class="logcname">密&nbsp;&nbsp;&nbsp;码</div>
-      <div class="logcinput">
-        <form name="form1" method="post" action="">
-           <label for="textfield"></label>
-           <input class="textfield" type="password" id="tbpwd"/>
-         </form>
-       </div>
-       <div class="clear"></div>
+    <div class="logincontent">
+        <div class="logintable">
+            <div class="logininput">
+                账号:
+                <input  type="text" id="tbusername" />
+            </div>
+        </div>
+        <div class="logintable">
+            <div class="logininput">
+                密码:
+                <input type="password" id="tbpwd" />
+            </div>
+        </div>
+        <div class="loginbutton ">
+            <input id="btnLogin" type="button" value=" 登录" class="btnlogin" onclick="userlogin()" />
+        </div>
     </div>
-    <a class="bulogin" href="#" onclick="userlogin()">登&nbsp;&nbsp; 录</a>
-</div>
-<div class="weui_dialog_alert" id="divalert" style="display: none">
+    <div class="weui_dialog_alert" id="divalert" style="display: none">
         <div class="weui_mask">
         </div>
         <div class="weui_dialog">
@@ -112,6 +78,6 @@
     }
 
     function clsalert() {
-         $("#divalert").hide();
+        $("#divalert").hide();
     }
 </script>
