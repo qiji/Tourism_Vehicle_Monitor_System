@@ -2,9 +2,10 @@
 var ChartsCurrCount;
 var ChartsCarType;
 var ChartsMap;
-
+var TimeOutObject;
 var CarData;
-
+//var ChartArray = [ChartsCurrInfo, ChartsCurrCount, ChartsCarType, ChartsMap];
+//var ChartArray = ["divChart1", "divChart2", "divChart3", "divChart4"];
 
 var ChartArray = [1, 2, 3, 4];
 

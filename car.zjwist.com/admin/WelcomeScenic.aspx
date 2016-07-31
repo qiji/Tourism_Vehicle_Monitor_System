@@ -3,7 +3,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script src=" https://cdnjs.cloudflare.com/ajax/libs/echarts/3.2.2/echarts.common.min.js"></script>
-   
     <script src="../js/screenfull.js" type="text/javascript"></script>
     <script>
         SetMenuSelect("liactdata");
@@ -129,10 +128,10 @@
             <div class="charttop">
                 <div class="charttopleft">
                     旅游车辆迁徙图</div>
-                <div class="charttopright">
+                <div class="changescreenmode">
                 </div>
             </div>
-            <div class="chartcenterdiv">
+            <div class="chartcenterdiv" style="padding-top: 50px">
                 中间
             </div>
         </div>
@@ -144,7 +143,8 @@
                     <div class="charttopright">
                     </div>
                 </div>
-                <div class="chartdiv">
+                <div class="chartdiv"  id="CurrInfoData">
+                    右1
                 </div>
             </div>
             <div class="blankheight1">
@@ -156,7 +156,8 @@
                     <div class="charttopright">
                     </div>
                 </div>
-                <div class="chartdiv">
+                <div class="chartdiv" id="CurrCountData">
+                    右2
                 </div>
             </div>
             <div class="blankheight1">
@@ -168,9 +169,43 @@
                     <div class="charttopright">
                     </div>
                 </div>
-                <div class="chartdiv">
+                <div class="chartdiv"  id="CharCityFrom">
+                    右3
                 </div>
             </div>
         </div>
     </div>
+    <script src="../js/screenfull.js" type="text/javascript"></script>
+    <script>
+
+        var unitid = "<%=unitid %>";
+        var IsFullScreen = 0;
+        $(".changescreenmode").on("click", function () {
+
+            IsFullScreen = 1 - IsFullScreen;
+            ShowInfo();
+
+        });
+
+        function ShowInfo() {
+            var elem = document.getElementsByClassName('form1')[0];
+
+            if (IsFullScreen == 1) {
+                $(".leftmenu").hide();
+                $(".rightbody").css("width", "100%");
+                screenfull.request(elem);
+                $("#divbody").height($("#divbody").height() + 100);
+                $(".changescreenmode").css("background-image", "url(../images/screenrestore.png)");
+            }
+            else {
+                screenfull.exit();
+                $(".leftmenu").show();
+                $(".rightbody").css("width", "87.5%");
+                $("#divbody").height($("#divbody").height() - 100);
+                $(".changescreenmode").css("background-image", "url(../images/screenfull.png)");
+            }
+        };
+        
+    </script>
+    <script src="welcomeScenic.js" type="text/javascript"></script>
 </asp:Content>

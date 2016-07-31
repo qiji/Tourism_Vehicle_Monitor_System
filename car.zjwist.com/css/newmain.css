@@ -162,12 +162,6 @@ body
 {
     background-image: url(../images/msyspwd.png);
 }
-.actdata
-{
-    background: #000000;
-    width: 100%;
-    height: 100%;
-}
 
 .bodytop
 {
@@ -221,6 +215,21 @@ body
     background-image: url(../images/topmoncount.png);
 }
 
+
+.actdata
+{
+    background: #000000;
+    width: 100%;
+    height: 95%;
+}
+
+.centertop
+{
+    height: 13%;
+    background-color: rgb(29,6,62);
+    margin: 0 2%;
+}
+
 .blankheight1
 {
     height: 2%;
@@ -228,20 +237,13 @@ body
 }
 
 
-.centertop
-{
-    height: 120px;
-    background-color: rgb(29,6,62);
-    margin: 0 2%;
-}
-
 .bodycenter
 {
     float: left;
     width: 66%;
     position: relative;
     margin: 0 0 0 2%;
-    height: 74%;
+    height: 83%;
     background-color: rgb(29,6,62);
     border-radius: 5px;
 }
@@ -251,7 +253,7 @@ body
 {
     float: left;
     margin: 0 2% 0 2%;
-    height: 74%;
+    height: 83%;
     width: 28%;
 }
 
@@ -287,19 +289,27 @@ body
     padding-left: 35px;
 }
 
-.charttopright
+.charttopright,.changescreenmode
 {
     float: right;
-    width: 20px;
+    width: 40px;
     background-image: url(../images/charttrans.png);
     background-repeat: no-repeat;
-    background-position: 10px center;
-    padding-right: 30px;
+    background-position: center center;
+   
     height: 40px;
+}
+
+.changescreenmode
+{
+     background-image: url(../images/screenfull.png);
 }
 
 .chartdiv
 {
+    height:100%;
+    width:100%;
+    padding-top:50px;
 }
 
 .chartcenterdiv

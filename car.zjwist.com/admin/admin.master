@@ -21,7 +21,7 @@
             </div>
             <uc1:left ID="left1" runat="server" />
         </div>
-        <div class="rightbody">
+        <div id="rightbody" class="rightbody">
             <div class="bodytop">
                 <div class="toptitle">
                     <asp:Label ID="lbunitname" runat="server" Text=""></asp:Label>
@@ -43,7 +43,6 @@
     </div>
     </form>
 </body>
-
 <script>
     $(window).on("load", function () {
         //设置div 的高度
@@ -59,7 +58,35 @@
     //执行获取时间的定时器脚本！
     function TimeShow() {
         var myDate = new Date();
-        $(".toptime").html(myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds());
+        var timestr = "";
+        if (myDate.getHours() < 12) {
+            timestr = "上午"
+            if (myDate.getHours < 10) {
+                timestr += " 0";
+            }
+        }
+        else
+            if (myDate.getHours < 18) {
+                timestr = "下午"
+
+            }
+            else {
+                timestr = "晚上";
+            }
+
+        timestr += " " + myDate.getHours() + ":";
+
+        if (myDate.getMinutes < 10) {
+            timestr += "0"
+        }
+
+        timestr += myDate.getMinutes() + ":";
+        if (myDate.getSeconds < 10) {
+            timestr += "0"
+        }
+        timestr += myDate.getSeconds();
+
+        $(".toptime").html(timestr);
         setTimeout("TimeShow()", 1000);
     }
 
