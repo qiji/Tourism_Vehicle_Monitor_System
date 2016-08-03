@@ -68,34 +68,29 @@ public class WelComeMobile : IHttpHandler
             wsd.ChartTypeCount.Add(Convert.ToInt32(dr["TypeCount"]));
         }
         int i = 1;
-        int qt = 0;
+        
         foreach (DataRow dr in ds.Tables[6].Rows)
         {
-            if (ds.Tables[6].Rows.Count > 10)
+            if (dr["CityName"].ToString()!="丽水市")
             {
-                if (i <= 9)
+                if (ds.Tables[6].Rows.Count > 10)
+                {
+                    if (i <= 10)
+                    {
+                        wsd.ChartCityName.Add(dr["CityName"].ToString());
+                        wsd.ChartCityCount.Add(Convert.ToInt32(dr["MCount"]));
+                    }
+                    
+                    i++;
+                }
+                else
                 {
                     wsd.ChartCityName.Add(dr["CityName"].ToString());
                     wsd.ChartCityCount.Add(Convert.ToInt32(dr["MCount"]));
                 }
-                else
-                {
-                    qt += Convert.ToInt32(dr["MCount"]);
-                }
-                i++;
-            }
-            else
-            {
-                wsd.ChartCityName.Add(dr["CityName"].ToString());
-                wsd.ChartCityCount.Add(Convert.ToInt32(dr["MCount"]));
             }
         }
-        if (qt != 0)
-        {
-            wsd.ChartCityName.Add("其他");
-            wsd.ChartCityCount.Add(qt);
-        }
-
+        
         context.Response.Write(Newtonsoft.Json.JsonConvert.SerializeObject(wsd));
     }
 

@@ -80,7 +80,7 @@ function CurrInfoData(){
             axisLabel:{
                 show:true,
                 textStyle:{
-                    color:'rgb(102,94,118)'
+                    color:'#fff'
                 }
             }
         },
@@ -91,7 +91,7 @@ function CurrInfoData(){
             axisLabel:{
                 show:true,
                 textStyle:{
-                    color:'rgb(102,94,118)'
+                    color:'#fff'
                 }
             }
         },
@@ -173,7 +173,7 @@ function CurrCountData(){
             axisLabel: {
                 show: true,
                 textStyle: {
-                    color: 'rgb(102,94,118)'
+                    color: '#fff'
                 }
             }
         }],
@@ -184,7 +184,7 @@ function CurrCountData(){
             axisLabel: {
                 show: true,
                 textStyle: {
-                    color: 'rgb(102,94,118)'
+                    color:  '#fff'
                 }
             }
         }],
@@ -275,7 +275,7 @@ function CharCityFrom(){
             axisLabel: {
                 show: true,
                 textStyle: {
-                    color: 'rgb(102,94,118)'
+                    color: '#fff'
                 }
             }
         }],
@@ -291,7 +291,7 @@ function CharCityFrom(){
             axisLabel: {
                 show: true,
                 textStyle: {
-                    color: 'rgb(102,94,118)'
+                    color: '#fff'
                 }
             }
         }],
@@ -312,6 +312,25 @@ function ChartShowMap() {
     var divorder = GetChartdiv(4);
     $(".charttitle"+divorder).html("旅游车辆迁徙图");
     ChartsMap = echarts.init(document.getElementById("divchart" + divorder));
+
+    function getcenter(){
+        if(divorder==4){
+            return [centerlat,centerlnt];
+        }
+        else{
+            return [rightlat,rightlnt];
+        }
+    }
+
+    function getzoom(){
+        if(divorder==4){
+            return unitzoom;
+        }
+        else{
+            return rightunitzoom;
+        }
+    }
+
 
     var MapData = $.parseJSON(CarData.MapData);
 
@@ -471,8 +490,8 @@ function ChartShowMap() {
                 }
             },
            
-            center:[centerlat,centerlnt],
-            zoom: unitzoom,
+            center:getcenter(),
+            zoom: getzoom(),
             roam: true,
             itemStyle: {
                 normal: {

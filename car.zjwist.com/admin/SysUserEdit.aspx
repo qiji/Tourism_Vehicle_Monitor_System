@@ -2,7 +2,7 @@
     CodeFile="SysUserEdit.aspx.cs" Inherits="admin_SysUserEdit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <link href="../css/Edit.css" rel="Stylesheet" type="text/css" />
+
     <div class="mainNav">
         用户编辑
     </div>

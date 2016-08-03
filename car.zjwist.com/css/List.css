@@ -8,6 +8,7 @@
     padding-bottom: 3px;
     height: auto;
     overflow: auto;
+    color:Black;
 }
 .cilineforgridview table td a
 {
@@ -46,4 +47,5 @@
     border-width: 0 1px 1px 0;
     border-color: #C2D3ED;
     border-style: solid;
+    color:Black;
 }

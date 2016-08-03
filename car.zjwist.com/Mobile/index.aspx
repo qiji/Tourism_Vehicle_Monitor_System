@@ -325,7 +325,7 @@
     <script>
         var unitid = "<%=unitid %>";
     </script>
-    <script src="js/jsdate.js" type="text/javascript"></script>
+    <script src="../js/jsdate.js" type="text/javascript"></script>
     <script src="js/JSEcharts.js" type="text/javascript"></script>
     <script src="js/index.js" type="text/javascript"></script>
 </body>

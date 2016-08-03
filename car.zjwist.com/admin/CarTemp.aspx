@@ -3,6 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <link rel="stylesheet" type="text/css" href="http://cdn.tourzj.com/css/weui.min.css">
+    
     <div class="mainNav">
         待处理的车辆信息
     </div>
@@ -33,7 +34,7 @@
             <asp:TextBox runat="server" ID="tbDeviceName" placeholder="过滤的设备号"></asp:TextBox>
         </div>
     </div>
-    <div class="ciline" id="divCountInfo">
+    <div class="ciline CountInfoTable" id="divCountInfo">
         <div class="cill">
             <asp:LinkButton ID="lbRefresh" runat="server" OnClick="lbRefresh_Click">刷新</asp:LinkButton>
         </div>
@@ -103,11 +104,7 @@
         </div>
     </div>
     <script>
-        $(window).on("load", function () {
-            //设置div 的高度
-            $("#divCountInfo").height($(".content").height() - 90);
-        });
-
+        
 
         function ShowCarImage(imgurl) {
             $("#imgShow")[0].src = imgurl;

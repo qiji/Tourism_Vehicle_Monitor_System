@@ -75,18 +75,19 @@ public class WelcomeScenic : IHttpHandler
 
         foreach (DataRow dr in ds.Tables[6].Rows)
         {
-            
-            if (Convert.ToInt32(dr["MCount"]) > 5)
+            if (dr["CityName"].ToString() != "丽水市")
             {
-                wsd.ChartCityName.Add(dr["CityName"].ToString());
-                wsd.ChartCityCount.Add(Convert.ToInt32(dr["MCount"]));
+                if (Convert.ToInt32(dr["MCount"]) > 5)
+                {
+                    wsd.ChartCityName.Add(dr["CityName"].ToString());
+                    wsd.ChartCityCount.Add(Convert.ToInt32(dr["MCount"]));
+                }
+                else
+                {
+                    wsd.ChartCityNameLess.Add(dr["CityName"].ToString());
+                    wsd.ChartCityCountLess.Add(Convert.ToInt32(dr["MCount"]));
+                }
             }
-            else
-            {
-                wsd.ChartCityNameLess.Add(dr["CityName"].ToString());
-                wsd.ChartCityCountLess.Add(Convert.ToInt32(dr["MCount"]));
-            }
-            
             wsd.MapData += "\"" + dr["CityName"].ToString() + "\":[" + dr["lon"].ToString() + "," + dr["lat"].ToString() + "],";
         }
 

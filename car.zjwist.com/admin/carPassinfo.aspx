@@ -94,11 +94,7 @@
         </div>
     </div>
     <script>
-        $(window).on("load", function () {
-            //设置div 的高度
-            $("#divCountInfo").height($(".content").height() - 165);
-        });
-
+        
 
         function ShowCarImage(imgurl) {
             $("#imgShow")[0].src = imgurl;

@@ -113,10 +113,7 @@
         </div>
     </div>
     <script>
-        $(window).on("load", function () {
-            //设置div 的高度
-            $("#divCountInfo").height($(".content").height() - 165);
-        });
+       
         function EmployeeCarAdd(carno, a) {
             if (confirm("要设置为内部车辆吗？")) {
                 $.get("../ajax/EmployeeCarNoSave.ashx", {

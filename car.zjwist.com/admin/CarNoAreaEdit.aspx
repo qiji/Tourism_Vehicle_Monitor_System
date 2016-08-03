@@ -2,7 +2,7 @@
     CodeFile="CarNoAreaEdit.aspx.cs" Inherits="admin_CarNoAreaEdit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <link href="../css/Edit.css" rel="Stylesheet" type="text/css" />
+
     <div class="mainNav">
         车牌归属编辑
     </div>

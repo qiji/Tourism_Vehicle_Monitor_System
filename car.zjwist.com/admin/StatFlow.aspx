@@ -3,223 +3,303 @@
 
 <%@ Register Src="StatMenu.ascx" TagName="StatMenu" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <uc1:StatMenu ID="StatMenu1" runat="server" />
-    <div class="con_tables">
-        <div class="ct_block">
-            <div class="slt">
-                <div class="slt_time">
-                    <div class="slt_tl">
-                        <asp:DropDownList runat="server" ID="ddlYear">
-                        </asp:DropDownList>
-                        年
-                    </div>
-                    <div class="sltt_quick" runat="server" id="divMonth">
-                        <div class="slttq" runat="server" id="div1">
-                            <asp:LinkButton ID="btn1Month" runat="server" OnClick="btn1Month_Click">1月</asp:LinkButton>
-                        </div>
-                        <div class="slttq" runat="server" id="div2">
-                            <asp:LinkButton ID="btn2Month" runat="server" OnClick="btn2Month_Click">2月</asp:LinkButton>
-                        </div>
-                        <div class="slttq" runat="server" id="div3">
-                            <asp:LinkButton ID="btn3Month" runat="server" OnClick="btn3Month_Click">3月</asp:LinkButton>
-                        </div>
-                        <div class="slttq" runat="server" id="div4">
-                            <asp:LinkButton ID="btn4Month" runat="server" OnClick="btn4Month_Click">4月</asp:LinkButton>
-                        </div>
-                        <div class="slttq" runat="server" id="div5">
-                            <asp:LinkButton ID="btn5Month" runat="server" OnClick="btn5Month_Click">5月</asp:LinkButton>
-                        </div>
-                        <div class="slttq" runat="server" id="div6">
-                            <asp:LinkButton ID="btn6Month" runat="server" OnClick="btn6Month_Click">6月</asp:LinkButton>
-                        </div>
-                        <div class="slttq" runat="server" id="div7">
-                            <asp:LinkButton ID="btn7Month" runat="server" OnClick="btn7Month_Click">7月</asp:LinkButton>
-                        </div>
-                        <div class="slttq" runat="server" id="div8">
-                            <asp:LinkButton ID="btn8Month" runat="server" OnClick="btn8Month_Click">8月</asp:LinkButton>
-                        </div>
-                        <div class="slttq" runat="server" id="div9">
-                            <asp:LinkButton ID="btn9Month" runat="server" OnClick="btn9Month_Click">9月</asp:LinkButton>
-                        </div>
-                        <div class="slttq" runat="server" id="div10">
-                            <asp:LinkButton ID="btn10Month" runat="server" OnClick="btn10Month_Click">10月</asp:LinkButton>
-                        </div>
-                        <div class="slttq" runat="server" id="div11">
-                            <asp:LinkButton ID="btn11Month" runat="server" OnClick="btn11Month_Click">11月</asp:LinkButton>
-                        </div>
-                        <div class="slttq" runat="server" id="div12">
-                            <asp:LinkButton ID="btn12Month" runat="server" OnClick="btn12Month_Click">12月</asp:LinkButton>
-                        </div>
-                        <div class="slttq" onclick="ShowCompare()">
-                            对比
-                        </div>
-                    </div>
-                </div>
-                <div class="clear">
+    <div class="actdata">
+        <uc1:StatMenu ID="StatMenu1" runat="server" />
+        <div class="StatMonth">
+            <div class="statyear">
+                <div class="statyeartable">
+                    <asp:DropDownList runat="server" ID="ddlYear" CssClass="cssYear">
+                    </asp:DropDownList>
+                    年
                 </div>
             </div>
-            <div class="slt divCompare" style="display: none">
-                <div class="slt_time">
-                    <div class="slt_tl">
-                        <asp:DropDownList runat="server" ID="ddlCompareYear">
-                        </asp:DropDownList>
-                        年
-                    </div>
-                    <div class="sltt_quick">
-                        <div class="slttq classcomparemonth">
-                            <a href="javascript:;" onclick="CompareClick(1,this)">1月</a>
-                        </div>
-                        <div class="slttq classcomparemonth">
-                            <a href="javascript:;" onclick="CompareClick(2,this)">2月</a>
-                        </div>
-                        <div class="slttq classcomparemonth">
-                            <a href="javascript:;" onclick="CompareClick(3,this)">3月</a>
-                        </div>
-                        <div class="slttq classcomparemonth">
-                            <a href="javascript:;" onclick="CompareClick(4,this)">4月</a>
-                        </div>
-                        <div class="slttq classcomparemonth">
-                            <a href="javascript:;" onclick="CompareClick(5,this)">5月</a>
-                        </div>
-                        <div class="slttq classcomparemonth">
-                            <a href="javascript:;" onclick="CompareClick(6,this)">6月</a>
-                        </div>
-                        <div class="slttq classcomparemonth">
-                            <a href="javascript:;" onclick="CompareClick(7,this)">7月</a>
-                        </div>
-                        <div class="slttq classcomparemonth">
-                            <a href="javascript:;" onclick="CompareClick(8,this)">8月</a>
-                        </div>
-                        <div class="slttq classcomparemonth">
-                            <a href="javascript:;" onclick="CompareClick(9,this)">9月</a>
-                        </div>
-                        <div class="slttq classcomparemonth">
-                            <a href="javascript:;" onclick="CompareClick(10,this)">10月</a>
-                        </div>
-                        <div class="slttq classcomparemonth">
-                            <a href="javascript:;" onclick="CompareClick(11,this)">11月</a>
-                        </div>
-                        <div class="slttq classcomparemonth">
-                            <a href="javascript:;" onclick="CompareClick(12,this)">12月</a>
-                        </div>
-                        <div class="slttq" id="div26" onclick="CompareShow()">
-                            比较
-                        </div>
-                    </div>
-                </div>
-                <div class="clear">
+            <div class="statyearmonthtable smbegintable">
+                <%--<div class="statyearmonth statyearmonthselect">
+                    一月
+                </div>--%>
+            </div>
+            <div class="statmonthbalancebtntable">
+                <div class="statmonthbalancebtn">
+                    <%--对比--%>
                 </div>
             </div>
         </div>
-        <div class="ct_block" id="divFlowBlock">
-            <div class="ctb_07" id="divFlow" style="width: 100%; height: 100%">
+        <div class="smb_1">
+            <div class="statmonthbalance">
+                <div class="statyear">
+                    <div class="statyeartable">
+                        <asp:DropDownList runat="server" ID="ddlYearbalance" CssClass="cssYearBalance">
+                        </asp:DropDownList>
+                        年
+                    </div>
+                </div>
+                <div class="statyearmonthtable smendtable">
+                </div>
             </div>
-            <div class="clear">
+        </div>
+        <div class="statdivcharttitletable">
+            <div class="statdivcharttitle">
+                车辆来源分析
             </div>
+        </div>
+        <div class="statflowchart" id="sumChartCarChange">
         </div>
     </div>
-    <script src="http://cdn.tourzj.com/js/echarts.min.js" type="text/javascript"></script>
     <script>
-        var ChartFlow;
-        $(window).on("load", function () {
-            $("#divFlowBlock").height($(".content").height() - 275);
-            ChartFlow = echarts.init(document.getElementById('divFlow'));
-            ChartInit();
-        });
-        function ChartInit() {
-           
-            ChartFlow.setOption({
-                title: {
-                    text:"<%=ChartTitle %>"
-                },
-                tooltip: {
-                    trigger: 'axis'
-                },
-                backgroundColor: '#FF',
-                legend: {
-                    data: ['车辆数量']
-                },
-                grid: {
-                    left: '3%',
-                    right: '4%',
-                    bottom: '3%',
-                    containLabel: true
-                },
-                xAxis: [{
-                    type: 'category',
-                    boundaryGap: false,
-                    splitLine: {
-                        show: false
-                    },
-                    data: [<%= ChartDate %>]
-                }],
-                yAxis: [{
-                    splitLine: {
-                        show: false
-                    },
-                    type: 'value'
-                }],
-                series: [{
-                    name: '车辆数量',
-                    type: 'line',
-                    data: [<%= ChartData %>]
-                }]
-            });
-        }
+        $("#divbody").height(document.documentElement.clientHeight);
+    
+        var monthbegin = nowMonth;
+        var monthend = nowMonth;
 
-        function ShowCompare(){
-            //
-            if ($(".divCompare").is(":hidden"))
+
+        function sumChartCarChange(SDate, FCount, CompareFCount) {
+
+            lineChart = echarts.init(document.getElementById('sumChartCarChange'));
+
+            if (CompareFCount.length != 0) { //需要对比
+                lineChart.setOption({
+                    tooltip: {
+                        trigger: 'axis',
+                        formatter: '{b0}日<br /><span style="color:rgb(111, 255, 219)">' + monthbegin + '月</span>:&nbsp{c0}<br /><span style="color:rgb(202, 67, 125)">' + monthend + '月</span>:&nbsp{c1}',
+                        borderWidth: 1,
+                        borderColor: '#ffffff',
+                        textStyle: {
+                            fontWeight: '100',
+                            fontSize: 13
+                        }
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    xAxis: [
             {
-                $(".divCompare").show();
-            }
-            else
+                type: 'category',
+                boundaryGap: false,
+                data: SDate,
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: 'rgb(89,65,123)'
+                    }
+                },
+                axisLabel: {
+                    show: true,
+                    textStyle: {
+                        color: '#fff'
+                    }
+                }
+            }],
+                    yAxis: [
             {
-             $(".divCompare").hide();
-            }
-        }
-
-        var CompareMonth = null;
-
-        function CompareClick(month,amonth){
-            CompareMonth = month;
-            //样式设置
-            $(".classcomparemonth").removeClass("slt_on");
-            amonth.parentNode.className = "slttq classcomparemonth slt_on";
-        }
-
-        function CompareShow(){
-            //显示数据！
-            if (CompareMonth == null){
-                alert("请选择需要比较的月份")
-            }
-            else{
-            $.getJSON("statflowcompare.ashx",{
-                Year:$("[id$='ddlCompareYear']").val(),
-                Month:CompareMonth,
-                unitid:<%= unitid %>,
-                r:Math.random()
-            },function(e){
-                 ChartFlow.setOption({
-                    legend: {
-                        data: ['车辆数量','对比']
-                    },
+                type: 'value',
+                splitLine: false,
+                axisLabel: {
+                    show: true,
+                    textStyle: {
+                        color: '#fff'
+                    }
+                }
+            }],
                     series: [
-                    {
-                        name: '车辆数量',
-                        type: 'line',
-                        data: [<%= ChartData %>]
-                    },
-                    {
-                        name: '对比',
-                        type: 'line',
-                        data: e.ChartData
-                    },
-                    ]
+            {
+                type: 'line',
+                itemStyle: {
+                    normal: {
+                        color: 'rgb(111, 255, 219)'
+                    }
+                },
+                areaStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgb(91, 19, 207)'
+                        }, {
+                            offset: 1,
+                            color: 'rgb(49, 14, 72)'
+                        }])
+                    }
+                },
+                data: FCount
+            },
+            {
+                type: 'line',
+                itemStyle: {
+                    normal: {
+                        color: 'rgb(202, 67, 125)'
+                    }
+                },
+                areaStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgb(152, 86, 124)'
+                        }, {
+                            offset: 1,
+                            color: 'rgb(49, 14, 72)'
+                        }])
+                    }
+                },
+                data: CompareFCount
+            }]
                 });
-
-            });
-          }
+            } else {
+                lineChart.setOption({
+                    tooltip: {
+                        trigger: 'axis',
+                        formatter: '{b0}日<br /><span style="color:rgb(111, 255, 219)">' + monthbegin + '月</span>:&nbsp{c0}',
+                        borderWidth: 1,
+                        borderColor: '#ffffff',
+                        textStyle: {
+                            fontWeight: '100',
+                            fontSize: 13
+                        }
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    xAxis: [
+            {
+                type: 'category',
+                boundaryGap: false,
+                data: SDate,
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: 'rgb(89,65,123)'
+                    }
+                },
+                axisLabel: {
+                    show: true,
+                    textStyle: {
+                        color: '#fff'
+                    }
+                }
+            }],
+                    yAxis: [
+            {
+                type: 'value',
+                splitLine: false,
+                axisLabel: {
+                    show: true,
+                    textStyle: {
+                        color: '#fff'
+                    }
+                }
+            }],
+                    series: [
+            {
+                name: '数量',
+                type: 'line',
+                itemStyle: {
+                    normal: {
+                        color: 'rgb(111, 255, 219)'
+                    }
+                },
+                areaStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgb(91, 19, 207)'
+                        }, {
+                            offset: 1,
+                            color: 'rgb(49, 14, 72)'
+                        }])
+                    }
+                },
+                data: FCount
+            }]
+                });
+            }
         }
+
+
+        function getData() {
+
+            var monthendstr = "";
+            if ($(".statmonthbalance").is(":visible")) {
+                monthendstr = $(".cssYearBalance").find("option:selected").val() + "-" + monthend;
+            }
+
+            $.getJSON("../ajax/StatGetCarFlowInfo.ashx",
+                {
+                    MonthBegin: $(".cssYear").find("option:selected").val() + "-" + monthbegin,
+                    MonthEnd: monthendstr,
+                    UnitID: "<%=unitid %>",
+                    r: Math.random()
+                },
+                function (e) {
+                    sumChartCarChange(e.SDate, e.FCount, e.CompareFCount);
+
+                });
+        }
+
+        function monthbeginonclick(Month, divobj) {
+
+            $(".statyearmonthbegin").removeClass("statformatdateselect");
+            divobj.className += " statformatdateselect";
+            monthbegin = Month;
+            getData();
+        }
+
+        function monthendonclick(Month, divobj) {
+
+            $(".statyearmonthend").removeClass("monthendselect");
+            divobj.className += " monthendselect";
+            monthend = Month;
+            getData();
+        }
+
+        
+
+        function SetMonthDiv() {
+            $(".statmonthbalancebtn").html("对比");
+
+            var monthbeginhtml = "";
+            var monthendhtml = "";
+            var j;
+            for (var i = 0; i < 12; i++) {
+                if (i < 9) {
+                    j = i + 1;
+                    j = "0" + j;
+                }
+                else {
+                    j = i + 1;
+                }
+
+                if (j==monthbegin)
+                {
+                    monthbeginhtml += "<div class='statyearmonthbegin statformatdateselect' onclick='monthbeginonclick("+j+",this)'>" + j + "月 </div>";
+                    monthendhtml += "<div class='statyearmonthend statformatdateselect' onclick='monthendonclick("+j+",this)'>" + j + "月 </div>";
+                }
+                else
+                {
+                    monthbeginhtml += "<div class='statyearmonthbegin' onclick='monthbeginonclick("+j+",this)'>" + j + "月 </div>";
+                    monthendhtml += "<div class='statyearmonthend'onclick='monthendonclick("+j+",this)'>" + j + "月 </div>";
+                }
+
+            }
+            $(".smbegintable").html(monthbeginhtml);
+            $(".smendtable").html(monthendhtml);
+            getData();
+        }
+        SetMonthDiv();
+
+
+        $(".statmonthbalancebtn").on("click", function () {
+            if ($(".statmonthbalance").is(":hidden")) {
+                $(".statmonthbalance").show();
+                $(".statmonthbalancebtn").html("取消对比");
+            }
+            else {
+                $(".statmonthbalance").hide();
+                $(".statmonthbalancebtn").html("对比");
+            }
+        });
     </script>
 </asp:Content>

@@ -2,7 +2,7 @@
     CodeFile="pwd.aspx.cs" Inherits="admin_pwd" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
- <link href="../css/Edit.css" rel="Stylesheet" type="text/css" />
+
     <div class="mainNav">
         修改密码</div>
     <div class="block_list">

@@ -76,7 +76,13 @@ public partial class admin_SysUnitEdit : System.Web.UI.Page
         tbPassTime.Text,
         tbCarMaxCount.Text,
         tbCarClearTime.Text,
-        UpLoadFile1.FileName
+        UpLoadFile1.FileName,
+        tbcenterlat.Text,
+        tbcenterlnt.Text,
+        tbcenterzoom.Text,
+        tbleftlat.Text,
+        tbleftlnt.Text,
+        tbleftzoom.Text
         }, out sqlexec, out sqlresult);
         if (sqlexec)
         {

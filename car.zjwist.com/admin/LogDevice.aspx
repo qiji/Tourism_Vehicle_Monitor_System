@@ -2,6 +2,8 @@
     CodeFile="LogDevice.aspx.cs" Inherits="admin_LogDevice" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    
+    <link href="../css/List.css" rel="stylesheet" type="text/css" />
     <div class="mainNav">
         设备日志
     </div>

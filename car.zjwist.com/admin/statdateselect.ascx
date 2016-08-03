@@ -1,6 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="statdateselect.ascx.cs"
     Inherits="admin_statdateselect" %>
 <script src="../js/datePicker/WdatePicker.js" type="text/javascript"></script>
+
+
 <div class="slt">
     <div class="slt_time">
         <div class="slt_tl">

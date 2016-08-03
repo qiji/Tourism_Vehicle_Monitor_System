@@ -187,6 +187,10 @@
         var centerlnt = "<%=centerlnt %>";
         var unitzoom = "<%=unitzoom %>";
 
+        var rightlat = "<%=rightlat %>";
+        var rightlnt = "<%=rightlnt %>";
+        var rightunitzoom = "<%=rightunitzoom %>";
+
         var IsFullScreen = 0;
         $(".changescreenmode").on("click", function () {
 

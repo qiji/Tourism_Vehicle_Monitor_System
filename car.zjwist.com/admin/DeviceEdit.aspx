@@ -2,7 +2,7 @@
     CodeFile="DeviceEdit.aspx.cs" Inherits="admin_DeviceEdit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <link href="../css/Edit.css" rel="Stylesheet" type="text/css" />
+    
     <div class="mainNav">
         设备编辑 -
         <asp:Label ID="lbUnitName" runat="server" Text="Label"></asp:Label>

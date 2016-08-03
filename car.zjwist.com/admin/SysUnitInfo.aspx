@@ -2,7 +2,7 @@
     CodeFile="SysUnitInfo.aspx.cs" Inherits="admin_SysUnitInfo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <link href="../css/treegrid.css" rel="stylesheet" type="text/css" />
+    
     <div class="mainNav">
         单位管理&nbsp;&nbsp;&nbsp;<a href="SysUnitEdit.aspx?pid=0">新增</a>&nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton
             ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">导出设备信息</asp:LinkButton>

@@ -1,12 +1,12 @@
 ﻿.mainNav
 {
     width: 95%;
-   
     padding-left: 10px;
     line-height: 25px;
     margin-bottom: 5px;
     height: 25px;
     border-radius: 0.4em;
+    color:Black;
 }
 
 .ciline
@@ -18,6 +18,7 @@
     padding-bottom: 3px;
     height: auto;
     overflow: auto;
+    
 }
 
 .cill
@@ -28,6 +29,7 @@
     text-align: right;
     padding-right: 5px;
     font-weight: bold;
+    color:Black;
 }
 
 .cilr
@@ -37,7 +39,10 @@
     text-align: left;
     padding-left: 5px;
     padding-right: 2px;
+    color:Black;
 }
+
+
 
 .ctextboxdate
 {
@@ -90,7 +95,7 @@ table.hovertable td
 .tableactive
 {
     background-color: #49A9AC;
-    color: #FFFFFF;
+    color: black;
 }
 
 .cilllong
@@ -106,10 +111,10 @@ table.hovertable td
 .statmenuliselect
 {
     background-color: #49A9AC;
-    color: White;
+    color: black;
 }
 
 .statmenuliselect a
 {
-    color: White;
+    color: black;
 }

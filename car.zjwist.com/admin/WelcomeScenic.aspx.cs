@@ -13,6 +13,10 @@ public partial class admin_WelcomeScenic : System.Web.UI.Page
     public string centerlnt = "";
     public string unitzoom = "";
 
+    public string rightlat = "";
+    public string rightlnt = "";
+    public string rightunitzoom = "";
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (string.IsNullOrEmpty(Request["ScenicID"]))
@@ -31,6 +35,11 @@ public partial class admin_WelcomeScenic : System.Web.UI.Page
         centerlat = dt.Rows[0]["centerlat"].ToString();
         centerlnt = dt.Rows[0]["centerlnt"].ToString();
         unitzoom = dt.Rows[0]["zoom"].ToString();
+
+        rightlat = dt.Rows[0]["rightlat"].ToString();
+        rightlnt = dt.Rows[0]["rightlnt"].ToString();
+        rightunitzoom = dt.Rows[0]["rightzoom"].ToString();
+
 
     }
 }

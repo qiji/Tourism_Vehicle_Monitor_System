@@ -84,6 +84,16 @@ function getcityfromcolor() {
     }
 }
 
+//返回坐标线字体颜色
+function gettextstylecolor(){
+    if (cssmodelonclick == "0") {
+        return '#536fff';
+    }
+    else {
+        return '#fff';
+    }
+}
+
 
 
 //实时统计今日车辆变化折线图
@@ -128,7 +138,7 @@ function CharCurr(CharCurrTime, CharCurrCount) {
             axisLabel:{
                 show:true,
                 textStyle:{
-                    color:'rgb(102,94,118)'
+                    color:gettextstylecolor()
                 }
             }
         },
@@ -139,7 +149,7 @@ function CharCurr(CharCurrTime, CharCurrCount) {
             axisLabel:{
                 show:true,
                 textStyle:{
-                    color:'rgb(102,94,118)'
+                    color:gettextstylecolor()
                 }
             }
         },
@@ -220,7 +230,7 @@ function CarCountChange(ChartFivMinute, ChartEnterCount, ChartLeaveCount) {
             axisLabel: {
                 show: true,
                 textStyle: {
-                    color: 'rgb(102,94,118)'
+                    color: gettextstylecolor()
                 }
             }
         }],
@@ -231,7 +241,7 @@ function CarCountChange(ChartFivMinute, ChartEnterCount, ChartLeaveCount) {
             axisLabel: {
                 show: true,
                 textStyle: {
-                    color: 'rgb(102,94,118)'
+                    color: gettextstylecolor()
                 }
             }
         }],
@@ -326,7 +336,7 @@ function CharCityFrom(ChartCityName, ChartCityCount){
             axisLabel: {
                 show: true,
                 textStyle: {
-                    color: 'rgb(102,94,118)'
+                    color: gettextstylecolor()
                 }
             }
         }],
@@ -342,7 +352,7 @@ function CharCityFrom(ChartCityName, ChartCityCount){
             axisLabel: {
                 show: true,
                 textStyle: {
-                    color: 'rgb(102,94,118)'
+                    color: gettextstylecolor()
                 }
             }
         }],
@@ -394,7 +404,7 @@ function CharCityFrom(ChartCityName, ChartCityCount){
                 axisLabel: {
                     show: true,
                     textStyle: {
-                        color: 'rgb(102,94,118)'
+                        color: gettextstylecolor()
                     }
                 }
             }],
@@ -410,7 +420,7 @@ function CharCityFrom(ChartCityName, ChartCityCount){
                 axisLabel: {
                     show: true,
                     textStyle: {
-                        color: 'rgb(102,94,118)'
+                        color:gettextstylecolor()
                     }
                 }
             }],
@@ -460,7 +470,7 @@ function sumChartStayTime(STCityName,StayTime){
             axisLabel: {
                 show: true,
                 textStyle: {
-                    color: 'rgb(102,94,118)'
+                    color: gettextstylecolor()
                 }
             }
         }],
@@ -476,7 +486,7 @@ function sumChartStayTime(STCityName,StayTime){
             axisLabel: {
                 show: true,
                 textStyle: {
-                    color: 'rgb(102,94,118)'
+                    color: gettextstylecolor()
                 }
             }
         }],
@@ -528,7 +538,7 @@ function sumChartCarChange(SDate,FCount,CompareFCount,MonthBegin,MonthEnd){
                 axisLabel: {
                     show: true,
                     textStyle: {
-                        color: 'rgb(102,94,118)'
+                        color: gettextstylecolor()
                     }
                 }
             }],
@@ -539,7 +549,7 @@ function sumChartCarChange(SDate,FCount,CompareFCount,MonthBegin,MonthEnd){
                 axisLabel: {
                     show: true,
                     textStyle: {
-                        color: 'rgb(102,94,118)'
+                        color: gettextstylecolor()
                     }
                 }
             }],
@@ -617,7 +627,7 @@ function sumChartCarChange(SDate,FCount,CompareFCount,MonthBegin,MonthEnd){
                 axisLabel: {
                     show: true,
                     textStyle: {
-                        color: 'rgb(102,94,118)'
+                        color: gettextstylecolor()
                     }
                 }
             }],
@@ -628,7 +638,7 @@ function sumChartCarChange(SDate,FCount,CompareFCount,MonthBegin,MonthEnd){
                 axisLabel: {
                     show: true,
                     textStyle: {
-                        color: 'rgb(102,94,118)'
+                        color: gettextstylecolor()
                     }
                 }
             }],

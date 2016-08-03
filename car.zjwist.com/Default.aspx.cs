@@ -38,7 +38,7 @@ public partial class _Default : System.Web.UI.Page
                 dt.Rows[0]["UnitName"].ToString());
 
             uc.UnitLogo = string.IsNullOrEmpty(dt.Rows[0]["UnitLogo"].ToString())
-                ? Request.Url.Host + "/Images/zllogo.png"
+                ? "http://" + Request.Url.Host + "/Images/zllogobigimg.png"
                 : dt.Rows[0]["UnitLogo"].ToString();
 
             uc.MonitorCount = ds.Tables[1].Rows[0]["DeviceCount"].ToString();
@@ -51,7 +51,7 @@ public partial class _Default : System.Web.UI.Page
             }
             else
             {
-                Response.Redirect("admin/WelCome.aspx");
+                Response.Redirect("admin/WelcomeScenic.aspx");
             }
         }
     }

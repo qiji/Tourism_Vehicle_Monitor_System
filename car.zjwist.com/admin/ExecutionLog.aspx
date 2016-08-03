@@ -4,6 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <link rel="stylesheet" type="text/css" href="http://cdn.tourzj.com/css/weui.min.css">
     <script src="../js/datePicker/WdatePicker.js" type="text/javascript"></script>
+    
     <div class="mainNav">
         执行日志
     </div>
@@ -55,10 +56,5 @@
             </div>
         </div>
     </div>
-    <script>
-        $(window).on("load", function () {
-            //设置div 的高度
-            $("#divCountInfo").height($(".content").height() - 90);
-        });
-    </script>
+    
 </asp:Content>
