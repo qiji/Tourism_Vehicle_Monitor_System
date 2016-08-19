@@ -96,19 +96,20 @@ function gettextstylecolor(){
 
 
 
-//实时统计今日车辆变化折线图
-function CharCurr(CharCurrTime, CharCurrCount) {
-    var ChartComeCount = echarts.init(document.getElementById('CharCurr'));
+//实时统计今日进入车辆折线图
+function CarEnterCount(ChartFivMinute,ChartEnterCount,MaxELCount) {
+    var ChartComeCount = echarts.init(document.getElementById('divCarCountEnter'));
+
 
     function gettooltipstring(params)
     {
         if (params[0].value==null)
         {
-            return params[0].name+'<br />数量:';
+            return params[0].name+'<br /><span style="color:rgb(111, 255, 219)">进入:</span>';
         }
         else
         {
-            return params[0].name+'<br />数量:'+params[0].value;
+            return params[0].name+'<br /><span style="color:rgb(111, 255, 219)">进入:</span>'+params[0].value;
         }
     }
             
@@ -125,10 +126,16 @@ function CharCurr(CharCurrTime, CharCurrCount) {
                 fontSize:13
             }
         },
+        grid: {
+            left: '1%',
+            right: '6%',
+            bottom: '3%',
+            containLabel: true
+        },
         xAxis: {
             type: 'category',
             boundaryGap: true,
-            data: CharCurrTime,
+            data: ChartFivMinute,
             splitLine:{
                 show:true,
                 lineStyle:{
@@ -144,8 +151,8 @@ function CharCurr(CharCurrTime, CharCurrCount) {
         },
         yAxis: {
             type: 'value',
-            data: CharCurrCount,
             splitLine:false,
+            max:MaxELCount,
             axisLabel:{
                 show:true,
                 textStyle:{
@@ -164,6 +171,11 @@ function CharCurr(CharCurrTime, CharCurrCount) {
                     color:getCurritemStylecolor()
                 }
             },
+            lineStyle:{
+                normal:{
+                    width:1
+                }
+            },
             areaStyle: {
                     normal: {
                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -175,26 +187,26 @@ function CharCurr(CharCurrTime, CharCurrCount) {
                         }])
                     }
                 },
-            data:CharCurrCount,
+            data:ChartEnterCount,
         }]
     });
 };
 
 
-//实时统计今日进出车辆折线图
-function CarCountChange(ChartFivMinute, ChartEnterCount, ChartLeaveCount) {
+//实时统计今日离开车辆折线图
+function CarLeaveCount(ChartFivMinute,ChartLeaveCount,MaxELCount) {
         
-    var lineChart = echarts.init(document.getElementById('divCarCountChange'));
+    var lineChart = echarts.init(document.getElementById('divCarCountLeave'));
 
         function gettooltipstring(params)
         {
             if (params[0].value==null)
             {
-                return params[0].name+'<br /><span style="color:#47fad0">∨</span> <br /><span style="color:red">∧</span>';
+                return params[0].name+'<br /><span style="color:red">离开:</span>';
             }
             else
             {
-                return params[0].name+'<br /><span style="color:#47fad0">∨</span>'+params[0].value+'<br /><span style="color:red">∧</span>'+params[1].value;
+                return params[0].name+'<br /><span style="color:red">离开:</span>'+params[0].value;
             }
         }
     lineChart.setOption({
@@ -211,8 +223,8 @@ function CarCountChange(ChartFivMinute, ChartEnterCount, ChartLeaveCount) {
             }
         },
         grid: {
-            left: '3%',
-            right: '4%',
+            left: '1%',
+            right: '6%',
             bottom: '3%',
             containLabel: true
         },
@@ -238,6 +250,7 @@ function CarCountChange(ChartFivMinute, ChartEnterCount, ChartLeaveCount) {
         {
             type: 'value',
             splitLine: false,
+            max:MaxELCount,
             axisLabel: {
                 show: true,
                 textStyle: {
@@ -246,35 +259,21 @@ function CarCountChange(ChartFivMinute, ChartEnterCount, ChartLeaveCount) {
             }
         }],
         series: [
-        {
-            name: '进入',
-            type: 'line',
-            itemStyle: {
-                   	normal: {
-                        color: getCountinitemStylecolor()
-                    }
-                },
-            areaStyle: { 
-                normal: {
-                    color : new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                            offset: 0,
-                            color: getCountinareaStylecolor1()
-                            }, {
-                            offset: 1,
-                                color:getCountinareaStylecolor2()
-                            }])
-                } 
-            },
-            data: ChartEnterCount
-        },
+        
         {
             name: '离开',
+            smooth:true,
             type: 'line',
             itemStyle: {
                    	normal: {
                         color: getCountoutitemStylecolor()
                     }
                 },
+            lineStyle:{
+                normal:{
+                    width:1
+                }
+            },
             areaStyle: { 
                 normal: {
                     color : new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -289,21 +288,111 @@ function CarCountChange(ChartFivMinute, ChartEnterCount, ChartLeaveCount) {
             data: ChartLeaveCount
         }]
     });
-
-    for(var i = 0; i < ChartFivMinute.length; i++){
-        if(ChartEnterCount[i] != null){
-            $("#entercarcount").text(ChartEnterCount[i]);
-            $("#leavecarcount").text(ChartLeaveCount[i]);
-        }else{
-            return;
-        } 
-    }       
+       
 }
+
+//实时车辆变化图
+function CarCountChange(ChartFivMinute,CurrCarCount) {
+    var ChartCurrChange = echarts.init(document.getElementById('divCarCountChange'));
+
+
+    function gettooltipstring(params)
+    {
+        if (params[0].value==null)
+        {
+            return params[0].name+'<br />数量:';
+        }
+        else
+        {
+            return params[0].name+'<br />数量:'+params[0].value;
+        }
+    }
+            
+    ChartCurrChange.setOption({
+        tooltip: {
+            trigger: 'axis',
+            formatter: function(params){
+                return  gettooltipstring(params);
+            },
+            borderWidth:1,
+            borderColor: '#ffffff',
+            textStyle:{
+                fontWeight:'100',
+                fontSize:13
+            }
+        },
+        grid: {
+            left: '1%',
+            right: '6%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: true,
+            data: ChartFivMinute,
+            splitLine:{
+                show:true,
+                lineStyle:{
+                    color:'rgb(96,68,136)'
+                }
+            },
+            axisLabel:{
+                show:true,
+                textStyle:{
+                    color:gettextstylecolor()
+                }
+            }
+        },
+        yAxis: {
+            type: 'value',
+            splitLine:false,
+            axisLabel:{
+                show:true,
+                textStyle:{
+                    color:gettextstylecolor()
+                }
+            }
+        },
+        series: [
+        {
+            //name:'数量',
+            type:'line',
+            smooth:true,
+            sampling: 'average',
+            itemStyle: {
+                normal: {
+                    color:getCurritemStylecolor()
+                }
+            },
+            lineStyle:{
+                normal:{
+                    width:1
+                }
+            },
+            areaStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color:getCurrareaStylecolor1()
+                        }, {
+                        offset: 1,
+                            color: getCurrareaStylecolor2()
+                        }])
+                    }
+                },
+            data:CurrCarCount,
+        }]
+    });
+};
+
 
 //实时统计今日车辆来源柱形图
 function CharCityFrom(ChartCityName, ChartCityCount){
         var pieChart = echarts.init(document.getElementById('divCharCityFrom'));
-
+        var cityname = [];
+        ChartCityName.reverse();
+        ChartCityCount.reverse();
         pieChart.setOption({
         color: getcityfromcolor(),
         tooltip : {
@@ -320,27 +409,12 @@ function CharCityFrom(ChartCityName, ChartCityCount){
             }
         },
         grid: {
-            left: '3%',
-            right: '4%',
+            left: '1%',
+            right: '6%',
             bottom: '3%',
             containLabel: true
         },
         xAxis : [
-        {
-            type : 'category',
-            data : ChartCityName,
-            axisTick: {
-                alignWithLabel: true
-            },
-            splitLine: false,
-            axisLabel: {
-                show: true,
-                textStyle: {
-                    color: gettextstylecolor()
-                }
-            }
-        }],
-        yAxis : [
         {
             type : 'value',
             splitLine: {
@@ -356,21 +430,39 @@ function CharCityFrom(ChartCityName, ChartCityCount){
                 }
             }
         }],
+        yAxis : [
+        {
+            type : 'category',
+            data : ChartCityName,
+            
+            axisTick: {
+                alignWithLabel: true
+            },
+            splitLine: false,
+            axisLabel: {
+                show: true,
+//                rotate: 90,
+                textStyle: {
+                    color: gettextstylecolor()
+                }
+            }
+        }],
         series : [
         {
             name:'来源地',
             type:'bar',
-            barWidth: '60%',
+            barWidth: '40%',
             data:ChartCityCount
         }]
         });
 }
 
-
-
 //统计数据下的车辆来源分析
     function sumCarComeFrom(ChartCityName, ChartCityCount){
        sumColumnChart   = echarts.init(document.getElementById('sumChartComeFrom'));
+
+        ChartCityName.reverse();
+        ChartCityCount.reverse();
 
          sumColumnChart.setOption({
             color: getcityfromcolor(),
@@ -388,27 +480,12 @@ function CharCityFrom(ChartCityName, ChartCityCount){
                 }
             },
             grid: {
-                left: '3%',
-                right: '4%',
+                left: '1%',
+                right: '6%',
                 bottom: '3%',
                 containLabel: true
             },
             xAxis : [
-            {
-                type : 'category',
-                data : ChartCityName,
-                axisTick: {
-                    alignWithLabel: true
-                },
-                splitLine: false,
-                axisLabel: {
-                    show: true,
-                    textStyle: {
-                        color: gettextstylecolor()
-                    }
-                }
-            }],
-            yAxis : [
             {
                 type : 'value',
                 splitLine: {
@@ -424,11 +501,27 @@ function CharCityFrom(ChartCityName, ChartCityCount){
                     }
                 }
             }],
+            yAxis : [
+            {
+            type : 'category',
+                data : ChartCityName,
+                axisTick: {
+                    alignWithLabel: true
+                },
+                splitLine: false,
+                axisLabel: {
+                    show: true,
+                    textStyle: {
+                        color: gettextstylecolor()
+                    }
+                }
+                
+            }],
             series : [
             {
                 name:'来源地',
                 type:'bar',
-                barWidth: '60%',
+                barWidth: '40%',
                 data:ChartCityCount
             }]
          });
@@ -437,6 +530,16 @@ function CharCityFrom(ChartCityName, ChartCityCount){
 //统计数据下逗留时长分析
 function sumChartStayTime(STCityName,StayTime){
     var pieChart = echarts.init(document.getElementById('sumChartStayTime'));
+
+    for(var i= 0;i<10;i++){
+        while(StayTime[i]==null){
+            StayTime.push("0");
+            STCityName.push(" ");
+        }
+    }
+
+    STCityName.reverse();
+    StayTime.reverse();
 
     pieChart.setOption({
         color: getcityfromcolor(),
@@ -454,27 +557,12 @@ function sumChartStayTime(STCityName,StayTime){
             }
         },
         grid: {
-            left: '3%',
-            right: '4%',
+            left: '1%',
+            right: '6%',
             bottom: '3%',
             containLabel: true
         },
         xAxis : [
-        {
-            type : 'category',
-            data : STCityName,
-            axisTick: {
-                alignWithLabel: true
-            },
-            splitLine: false,
-            axisLabel: {
-                show: true,
-                textStyle: {
-                    color: gettextstylecolor()
-                }
-            }
-        }],
-        yAxis : [
         {
             type : 'value',
             splitLine: {
@@ -490,11 +578,26 @@ function sumChartStayTime(STCityName,StayTime){
                 }
             }
         }],
+        yAxis : [
+        {
+            type : 'category',
+            data : STCityName,
+            axisTick: {
+                alignWithLabel: true
+            },
+            splitLine: false,
+            axisLabel: {
+                show: true,
+                textStyle: {
+                    color: gettextstylecolor()
+                }
+            }
+        }],
         series : [
         {
             name:'来源地',
             type:'bar',
-            barWidth: '60%',
+            barWidth: '40%',
             data:StayTime
         }]
         });

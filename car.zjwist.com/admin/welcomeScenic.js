@@ -241,6 +241,12 @@ function CharCityFrom(){
     $(".charttitle"+divorder).html("今日车辆来源");
     var CharCityFrom = echarts.init(document.getElementById("divchart" + divorder));
 
+    for (var i = 0; i < 10; i++) {
+        while (CarData.ChartCityName[i] == null) {
+            CarData.ChartCityName.push(" ");
+            CarData.ChartCityCount.push("0");
+        }
+    }
     
     CharCityFrom.setOption({
         color: ["#6fffdc"],
@@ -299,7 +305,7 @@ function CharCityFrom(){
         {
             name:'来源地',
             type:'bar',
-            barWidth: '60%',
+            barWidth: '40%',
             data:CarData.ChartCityCount
         }]
     });
@@ -536,10 +542,11 @@ function GetData() {
             }
         }
 
+        ChartShowMap();
         CurrInfoData();
         CurrCountData();
         CharCityFrom();
-        ChartShowMap();
+        
     });
     //5分钟以后刷新一次
     setTimeout("GetData()", 5 * 60 * 1000);

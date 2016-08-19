@@ -75,7 +75,7 @@ public class WelcomeScenic : IHttpHandler
 
         foreach (DataRow dr in ds.Tables[6].Rows)
         {
-            if (dr["CityName"].ToString() != "丽水市")
+            if (dr["CityName"].ToString() != "丽水")
             {
                 if (Convert.ToInt32(dr["MCount"]) > 5)
                 {

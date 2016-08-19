@@ -73,3 +73,19 @@ function getYearEnd() {
     var monthEndDate = new Date(nowYear + 1,  0, 1);
     return formatDate(monthEndDate);
 }
+
+
+
+//获得当天 + 1
+function getTodayAfter(d) {
+    var dd = new Date(d);
+    dd.setDate(dd.getDate() + 1); //获取AddDayCount天后的日期
+    return formatDate(dd);
+}
+
+//获得当天 - 1
+function getTodayBefore(d) {
+    var dd = new Date(d);
+    dd.setDate(dd.getDate() - 1); //获取AddDayCount天后的日期
+    return formatDate(dd);
+}

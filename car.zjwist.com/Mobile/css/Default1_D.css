@@ -47,6 +47,7 @@ ul
     background-repeat: no-repeat;
     width: 50%;
     float: left;
+    background-size:25px;
 }
 
 .cssmodel
@@ -79,11 +80,12 @@ ul
 
 .csscurrdataimg1
 {
-    background-image: url('../images/d_staynow.png');
+    background-image: url('../images/N_staynow.png');
 }
 .csscurrdataimg2
 {
     background-image: url('../images/d_scale.png');
+    background-size:40px ;
 }
 
 .csscurrdatatext
@@ -91,8 +93,7 @@ ul
     width: 35%;
     margin-left: 10px;
     float: left;
-    font-size: 12px;
-    font-weight: bolder;
+    font-size: 13px;
     margin-top: 15px;
     letter-spacing: 1px;
 }
@@ -138,7 +139,7 @@ ul
 {
     height: 70px;
     color: white;
-    margin-top: 15px;
+    margin-top: 25px;
 }
 
 .csssvleft
@@ -169,11 +170,13 @@ ul
 .svleftimg
 {
     background-image: url(../images/d_svday.png);
+    background-size:25px;
 }
 
 .svrightimg
 {
     background-image: url(../images/d_svnight.png);
+    background-size:20px;
 }
 
 .svleftdiv
@@ -188,8 +191,7 @@ ul
 {
     width: 100%;
     float: right;
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 25px;
     color: #546eff;
     line-height: 30px;
 }
@@ -203,6 +205,13 @@ ul
     color: #878586;
 }
 
+.csssvright
+{
+    float: right;
+    width: 50%;
+}
+
+
 .svleftflag, .svrightflag
 {
     background-repeat: no-repeat;
@@ -212,36 +221,29 @@ ul
     float: right;
 }
 
-.svleftflag
-{
-    background-position: left bottom;
-    background-image: url(../images/d_svdayflag.png);
-}
-
-.csssvright
-{
-    float: right;
-    width: 50%;
-}
-
-.svrightflag
-{
-    background-position: left top;
-    background-image: url(../images/d_svnightflag.png);
-}
-
-
 /*标题*/
-.titlepostion, .titletypepostion
+.titlepostion, .titletypepostion, .titlesumpostion
 {
     position: relative;
-    height: 300px;
+    height: 313px;
     width: 100%;
+}
+.titlesumpostion
+{
+    height: 220px;
 }
 
 .titletypepostion
 {
-    height: 160px;
+    height: 167px;
+}
+
+.cartodaysummary
+{
+    position: absolute;
+    height: 300px;
+    width: 100%;
+    top: 50px;
 }
 
 .titleimg, .titleimgtype
@@ -274,11 +276,10 @@ ul
     font-weight: bolder;
 }
 
-.CurrChart, .CountChangChart, .CityFromChart
+.CurrChart, .CountChangeChart, .CityFromChart
 {
     position: absolute;
     left: 10px;
-    top: 10px;
     height: 300px;
     line-height: 300px;
     width: 98%;
@@ -352,7 +353,7 @@ ul
 
 .sumtitle
 {
-    height: 58px;
+    height: 40px;
     background-color: rgb(184,194,255);
     border-bottom: 1px solid #ffffff;
 }
@@ -364,12 +365,11 @@ ul
     text-align: center;
     color: White;
     box-sizing: border-box;
-    margin-top: 16px;
-    margin-bottom: 10px;
+    margin-top: 5px;
     letter-spacing: 1px;
-    height: 32px;
-    line-height: 32px;
+    line-height: 30px;
 }
+
 .sumtitletext
 {
     width: 33.3%;
@@ -402,44 +402,109 @@ ul
     margin-top: 22px;
 }
 
-.sumdatebegin, .summonthbegin
+
+.beforday,.endday
+{
+    width: 30%;
+    border: 1px solid #ffffff;
+    color: White;
+    text-align: center;
+    vertical-align: middle;
+    float: left;
+    line-height: 30px;
+    margin-top: 15px;
+    height:30px;
+    background-color:rgb(184,194,255);
+}
+
+.beforday
+{
+   margin-left:5%;
+    }
+
+.sumdatebegin, .summonthbegin,.datechoose
 {
     position: relative;
-    width: 33%;
-    margin-left: 3%;
-    background: rgb(184,194,255) url(../images/dateimg.png) no-repeat;
-    background-position: 5px center;
     float: left;
-    text-align: right;
+    overflow: hidden;
+    
+}
+
+.sumdatebegin, .summonthbegin
+{
     height: 35px;
     line-height: 35px;
+    width: 33%;
+    margin-left: 3%;
+    text-align: right;
+    background: rgb(184,194,255) url(../images/dateimg.png) no-repeat;
+    background-position: 5px center;
+    background-size:20px;
     border: 1px solid #ffffff;
-    box-sizing: border-box;
-    overflow: hidden;
+    box-sizing: border-box;  
 }
+
+.datechoose
+{
+    border-bottom:1px;
+    border-bottom-color:#ffffff;
+    border-bottom-style:solid;
+    border-top:1px;
+    border-top-color:#ffffff;
+    border-top-style:solid;
+    box-sizing: border-box;
+    position:relative;
+    background-color:rgb(184,194,255);
+    float:left;line-height:30px;margin-top:15px; width:30%;
+    text-align:center;
+}
+
+.sumdatespanshow, .summonthspanshow,.datechoosespan
+{
+    background: rgb(184,194,255);
+    color: White;
+    text-align: center;
+}
+
+.datechoosespan
+{
+    font-size: 16px;
+    width: 100%;
+    }
 
 .sumdatespanshow, .summonthspanshow
 {
     position: absolute;
-    background: rgb(184,194,255);
-    color: White;
     left: 30%;
     font-size: 12px;
     width: 70%;
-    text-align: center;
 }
 
-.sumdateinput
+.sumdateinput,.datechooseinput
 {
-    position:absolute;
     color: White;
     background-color: rgb(184,194,255);
     border-width: 0px;
+    opacity: 0;
+
+}
+.sumdateinput
+{
+    position: absolute;
     height: 33px;
     left: 30%;
-    opacity: 0;
     width: 70%;
 }
+
+.datechooseinput
+{
+    width: 100%;
+    vertical-align: middle;
+    line-height: 30px;
+    position: absolute;
+    left: 0px;
+}
+
 
 .sumdateto
 {
@@ -505,6 +570,7 @@ ul
     margin-top: 30px;
     background-repeat: no-repeat;
     background-position: center top;
+    background-size:40px;
 }
 
 .cartypebycar
@@ -523,6 +589,7 @@ ul
 .cartypetext
 {
     color: #797778;
+    font-size: 13px;
 }
 .cartypevalue
 {

@@ -3,8 +3,6 @@
 
 <%@ Register Src="../uc/UpLoadFile.ascx" TagName="UpLoadFile" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
-    
     <div class="mainNav">
         单位信息
     </div>
@@ -67,13 +65,24 @@
                 车辆承载量</div>
             <div class="blkl_02" style="width: 29%">
                 <asp:TextBox ID="tbCarMaxCount" runat="server"></asp:TextBox>
+                <asp:Button ID="btnGetMaxCarCount" runat="server" Text="自动获取" 
+                    onclick="btnGetMaxCarCount_Click" />
             </div>
         </div>
         <div class="clear">
         </div>
     </div>
-    
-
+    <div class="block_list">
+        <div class="blkl_left">
+            <div class="blkl_01">
+                系数</div>
+            <div class="blkl_02" style="width: 29%; float: left">
+                <asp:TextBox ID="tbcoefficient" runat="server"></asp:TextBox>
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
     <div class="block_list">
         <div class="blkl_left">
             <div class="blkl_01" style="width: 10%; float: left">
@@ -87,31 +96,30 @@
                 <asp:TextBox ID="tbcenterlnt" runat="server"></asp:TextBox>
             </div>
             <div class="blkl_01" style="width: 10%; float: left">
-                比例</div>
-            <div class="blkl_02" style="width: 20%; float:left">
+                地图缩放比例</div>
+            <div class="blkl_02" style="width: 20%; float: left">
                 <asp:TextBox ID="tbcenterzoom" runat="server"></asp:TextBox>
             </div>
         </div>
         <div class="clear">
         </div>
     </div>
-
     <div class="block_list">
         <div class="blkl_left">
             <div class="blkl_01" style="width: 10%; float: left">
-                左侧经度</div>
+                右侧经度</div>
             <div class="blkl_02" style="width: 20%; float: left">
-                <asp:TextBox ID="tbleftlat" runat="server"></asp:TextBox>
+                <asp:TextBox ID="tbrightlat" runat="server"></asp:TextBox>
             </div>
             <div class="blkl_01" style="width: 10%; float: left">
-                左侧纬度</div>
+                右侧纬度</div>
             <div class="blkl_02" style="width: 20%; float: left">
-                <asp:TextBox ID="tbleftlnt" runat="server"></asp:TextBox>
+                <asp:TextBox ID="tbrightlnt" runat="server"></asp:TextBox>
             </div>
             <div class="blkl_01" style="width: 10%; float: left">
-                比例</div>
-            <div class="blkl_02" style="width: 20%; float:left">
-                <asp:TextBox ID="tbleftzoom" runat="server"></asp:TextBox>
+                地图缩放比例</div>
+            <div class="blkl_02" style="width: 20%; float: left">
+                <asp:TextBox ID="tbrightzoom" runat="server"></asp:TextBox>
             </div>
         </div>
         <div class="clear">
@@ -133,7 +141,6 @@
         <div class="clear">
         </div>
     </div>
-
     <div class="block_list">
         <div class="blkl_left">
             <div class="blkl_01">

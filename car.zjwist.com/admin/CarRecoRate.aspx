@@ -3,7 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script src="../js/datePicker/WdatePicker.js" type="text/javascript"></script>
-    
+    <link href="../css/List.css" rel="stylesheet" type="text/css" />
     <div class="mainNav">
         车牌识别率
     </div>

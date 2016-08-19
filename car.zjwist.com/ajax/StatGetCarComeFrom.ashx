@@ -28,7 +28,7 @@ public class StatGetCarComeFrom : IHttpHandler {
         foreach (DataRow dr in ds.Tables[0].Rows)
         {
             csd.CityName.Add(dr["DestName"].ToString());
-            csd.ComeCount.Add(dr["ComeCount"].ToString());
+            csd.ComeCount.Add(dr["ComeCount"].ToString());   
         }
 
         ds.Tables[1].DefaultView.Sort = "StayTime desc";

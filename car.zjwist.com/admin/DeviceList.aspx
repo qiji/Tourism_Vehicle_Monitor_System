@@ -16,7 +16,7 @@
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White"
                 GridLines="Vertical" BorderColor="#C2D3ED" CellPadding="3" BorderStyle="Solid"
                 BorderWidth="1px" HeaderStyle-Height="25" EmptyDataText="没有相关数据" 
-                PageSize="20" onrowdatabound="GridView1_RowDataBound">
+                PageSize="20" onrowdatabound="GridView1_RowDataBound" Width="767px">
                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                 <RowStyle Height="25px" BorderColor="#C2D3ED" BorderStyle="Solid" BorderWidth="1px" />
                 <Columns>
@@ -24,7 +24,9 @@
                         DataTextField="DeviceName" HeaderText="设备名称" />
                   
                     <asp:BoundField DataField="DeviceInstall" HeaderText="安装地点" />
-                    <asp:BoundField DataField="IPAddress" HeaderText="IP地址" />
+                    <asp:HyperLinkField DataNavigateUrlFields="IPAddress" 
+                        DataNavigateUrlFormatString="Http://{0}/doc/page/login.asp" 
+                        DataTextField="IPAddress" HeaderText="IP地址" />
                     <asp:TemplateField HeaderText="算法">
                         <ItemTemplate>
                             <%# GetDeviceARC(Eval("DeviceARC"))%>

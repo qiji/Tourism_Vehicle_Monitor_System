@@ -8,9 +8,11 @@ using System.Web.UI.WebControls;
 public partial class Mobile_index : System.Web.UI.Page
 {
     public string unitid;
+    public string dateparam = "";
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        dateparam = string.IsNullOrEmpty(Request["d"]) ? DateTime.Now.ToString("yyyy-MM-dd") : Request["d"];
 
         if (!string.IsNullOrEmpty(Request["unitid"]))
         {
@@ -18,14 +20,14 @@ public partial class Mobile_index : System.Web.UI.Page
         }
         else
         {
-            UserCookieInfo uc =  CookierManage.CookierAPI<UserCookieInfo>.GetCookierObject(UserCookieInfo.UserCookierName);
+            UserCookieInfo uc = CookierManage.CookierAPI<UserCookieInfo>.GetCookierObject(UserCookieInfo.UserCookierName);
             if (uc == null)
             {
                 Response.Redirect("Default.aspx");
             }
             else
             {
-                unitid =  CookierManage.CookierAPI<UserCookieInfo>.GetCookierObject(UserCookieInfo.UserCookierName).UnitID.ToString();
+                unitid = CookierManage.CookierAPI<UserCookieInfo>.GetCookierObject(UserCookieInfo.UserCookierName).UnitID.ToString();
             }
         }
     }

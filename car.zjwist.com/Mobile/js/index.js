@@ -7,22 +7,50 @@ var sumlineChart;
 var sumpieChart;
 
 
+    $("#dayCurrBefor").on("click", function () {
+        var daynow = $("#datechooseinput").val();
+        var predate = getTodayBefore(daynow);
+        $("#datechooseinput").val(predate);
+        $("#datechoosespanshow").html(predate);
+        NextDateButtonSet();
+        GetData();
+    });
+
+    
+    $("#dayCurrEnd").on("click", function () {
+        var daynow = $("#datechooseinput").val();
+        $("#datechooseinput").val(getTodayAfter(daynow));
+        $("#datechoosespanshow").html(getTodayAfter(daynow));
+        NextDateButtonSet();
+        GetData();
+    });
+
+    
+
 function GetData() {
     $.getJSON("ajax/WelComeMobile.ashx",
         {
             UnitID: unitid,
+            beginday:$("#datechooseinput").val(),
             r: Math.random()
         },
         function (e) {
             document.title= e.UnitName + "旅游车辆监测统计分析系统";
-            $("#nowcount").text(e.CurrCount);
+            
+          
             $("#nowlevel").text(e.Level);
             $(".cssbarflat").width(e.Level);
+           
             $("#entercount").text(e.EnterCount);
             $("#staynightcount").text(e.StayNightCount);
-            CharCurr(e.ChartFivMinute, e.ChartCurrCount);
-            CarCountChange(e.ChartFivMinute, e.ChartEnterCount, e.ChartLeaveCount);
+
+            $("#entercarcount").text(e.EnterCount);
+            $("#leavecarcount").text(e.LeaveCount);
+
             CharCityFrom(e.ChartCityName, e.ChartCityCount);
+            CarEnterCount(e.ChartFivMinute, e.ChartEnterCount,e.MaxELCount);
+            CarLeaveCount(e.ChartFivMinute,e.ChartLeaveCount,e.MaxELCount);
+            CarCountChange(e.ChartFivMinute,e.ChartCurrCount);
 
 
             for(var i = 0; i<e.ChartTypeName.length;i++) {
@@ -142,8 +170,6 @@ function GetData() {
         $("#datetypeendshow").html(getTodayEnd());
 
 
-
-
          $("#monthbegin").val(getmonthBegin());
          $("#monthend").val(getmonthBegin());
 
@@ -155,11 +181,19 @@ function GetData() {
          $("#divmonthbalance").css("width","90%");
 
 
-           HideSumDiv();
+          HideSumDiv();
           $("#divsumformatdate").show();
           $("#divsumarea").show();
           $("#divsumdate").show();
           $("#divsumcomefrom").show();
+        
+        
+        $("#datechooseinput").attr("max",getTodayBegin());
+
+        $("#datechooseinput").val(dateparam);
+        $("#datechoosespanshow").html(dateparam);
+        NextDateButtonSet();
+    
 
         ActSumChange();
         SetModalType1();
@@ -354,7 +388,9 @@ function GetData() {
     //获取查询数据(来源统计，车型统计)
     function DoStat1()
     {
-        
+        var ProName = [];
+        var ProCount = [];
+
         $.getJSON("ajax/GetCarStatInfo.ashx",
                 {
                     type:1,
@@ -365,8 +401,9 @@ function GetData() {
                     r: Math.random()
                 },
                 function(e){
-                        sumCarComeFrom(e.CityName,e.ComeCount);
-                        sumChartStayTime(e.STCityName,e.StayTime);
+                    sumCarComeFrom(e.CityName,e.ComeCount);
+                    sumChartStayTime(e.STCityName,e.StayTime);
+                   
                 })
     }
 

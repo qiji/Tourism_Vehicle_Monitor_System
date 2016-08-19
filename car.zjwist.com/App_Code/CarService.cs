@@ -122,6 +122,8 @@ public class CarService : System.Web.Services.WebService
     [WebMethod]
     public DataSet CarLogByDay(int unitid, string logday)
     {
+        MySQL.ExecProc("usp_Car_RecoRate_Save", new string[] { }, out SQLExec, out SQLResult);
+
         return MySQL.ExecProc("usp_Car_LogByDay", new string[] { unitid.ToString(), logday }, out SQLExec, out SQLResult);
     }
 
@@ -131,9 +133,6 @@ public class CarService : System.Web.Services.WebService
     [WebMethod]
     public void CarImageDelete()
     {
-
-        MySQL.ExecProc("usp_Car_RecoRate_Save", new string[] { }, out SQLExec, out SQLResult);
-
         BFService.BigFileService bs = new BigFileService(CarEnum.BigServiceSysID);
 
         DataTable dt = MySQL.ExecProc("usp_Car_ImageCanDelete", new string[] { }, out SQLExec, out SQLResult).Tables[0];

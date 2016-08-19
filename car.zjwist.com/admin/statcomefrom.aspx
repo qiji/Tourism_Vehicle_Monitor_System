@@ -190,6 +190,13 @@
         function sumChartStayTime(STCityName, StayTime) {
             var pieChart = echarts.init(document.getElementById('sumChartStayTime'));
 
+            for (var i = 0; i < 20; i++) {
+                while (StayTime[i] == null) {
+                    StayTime.push("0");
+                    STCityName.push(" ");
+                }
+            }
+
             pieChart.setOption({
                 color: ["#6fffdc"],
                 tooltip: {
