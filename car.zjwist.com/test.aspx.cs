@@ -15,8 +15,7 @@ public partial class test : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        CarService car = new CarService();
-        car.Base64ImgTest(TextBox1.Text);
+      
     }
 
 }
