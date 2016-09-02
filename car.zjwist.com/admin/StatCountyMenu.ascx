@@ -14,7 +14,7 @@
         </ul>
     </div>
 </div>
-<script src="http://cdn.tourzj.com/js/jquery.table2excel.js" type="text/javascript"></script>
+<script src="http://qy.zjwist.com/js/jquery.table2excel.js" type="text/javascript"></script>
 <script>
     //导出到Excel
     function ExportToExcel(grid, file) {

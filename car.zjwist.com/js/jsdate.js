@@ -40,13 +40,24 @@ function getTodayEnd() {
 
 //获得本周的开始日期 
 function getWeekBegin() {
-    var weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1);
+    var weekStartDate;
+    if (nowDayOfWeek == 0) {
+        weekStartDate = new Date(nowYear, nowMonth, nowDay - 6);
+    } 
+    else {
+        weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1);
+    }
     return formatDate(weekStartDate);
 }
 
 //获得本周的停止日期 
 function getWeekEnd(type) {
-    var weekEndDate = new Date(nowYear, nowMonth, nowDay + (6 - nowDayOfWeek + 2));
+    var weekEndDate;
+    if (nowDayOfWeek == 0) {
+        weekEndDate = new Date(nowYear, nowMonth, nowDay);
+    }else{
+        weekEndDate = new Date(nowYear, nowMonth, nowDay + (6 - nowDayOfWeek + 2));
+    }
     return formatDate(weekEndDate);
 }
 

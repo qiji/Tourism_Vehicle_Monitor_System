@@ -7,7 +7,7 @@
     </ul>
 </div>
 <script src="http://cdn.bootcss.com/echarts/3.2.2/echarts.min.js"></script>
-<script src="http://cdn.tourzj.com/js/jquery.table2excel.js" type="text/javascript"></script>
+<script src="http://qy.zjwist.com/js/jquery.table2excel.js" type="text/javascript"></script>
 <script src="../js/jsdate.js" type="text/javascript"></script>
 <script>
 

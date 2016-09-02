@@ -2,7 +2,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <link rel="stylesheet" type="text/css" href="http://cdn.tourzj.com/css/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/0.4.3/weui.min.css">
     <script src="../js/datePicker/WdatePicker.js" type="text/javascript"></script>
     
     <div class="mainNav">

@@ -4,7 +4,7 @@
 <%@ Register Src="statdateselect.ascx" TagName="statdateselect" TagPrefix="uc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <link href="../css/List.css" rel="Stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="http://cdn.tourzj.com/css/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/0.4.3/weui.min.css">
     <div class="con_tables">
         <div class="ct_block">
             <uc2:statdateselect ID="statdateselect1" runat="server" ButtonVisible="false" />

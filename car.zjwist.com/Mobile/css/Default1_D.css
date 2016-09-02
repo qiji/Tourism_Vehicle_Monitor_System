@@ -403,24 +403,21 @@ ul
 }
 
 
-.beforday,.endday
+.endday
 {
-    width: 30%;
+    width: 20%;
     border: 1px solid #ffffff;
     color: White;
     text-align: center;
     vertical-align: middle;
-    float: left;
+    float: right;
     line-height: 30px;
     margin-top: 15px;
     height:30px;
+    margin-right:5%;
     background-color:rgb(184,194,255);
 }
 
-.beforday
-{
-   margin-left:5%;
-    }
 
 .sumdatebegin, .summonthbegin,.datechoose
 {
@@ -444,20 +441,23 @@ ul
     box-sizing: border-box;  
 }
 
+
+
 .datechoose
 {
-    border-bottom:1px;
-    border-bottom-color:#ffffff;
-    border-bottom-style:solid;
-    border-top:1px;
-    border-top-color:#ffffff;
-    border-top-style:solid;
+    border:1px solid #ffffff;
     box-sizing: border-box;
-    position:relative;
+    position: relative;
+    float:left;
+    line-height:30px;
+    margin-top:15px; 
+    margin-left:5%;
+    width:40%;
     background-color:rgb(184,194,255);
-    float:left;line-height:30px;margin-top:15px; width:30%;
     text-align:center;
 }
+
+
 
 .sumdatespanshow, .summonthspanshow,.datechoosespan
 {
@@ -594,4 +594,13 @@ ul
 .cartypevalue
 {
     color: #546eff;
+}
+.datetext
+{
+    color: #536fff;
+    float: left;
+    margin-left: 5%;
+    margin-top: 15px;
+    line-height: 30px;
+    font-size: 18px;
 }

@@ -75,7 +75,7 @@
             </div>
         </div>
     </div>
-    <script src="http://cdn.tourzj.com/js/echarts.min.js" type="text/javascript"></script>
+    <script src="http://cdn.bootcss.com/echarts/3.2.2/echarts.min.js" type="text/javascript"></script>
     <script>
 
         $(window).on("load", function () {

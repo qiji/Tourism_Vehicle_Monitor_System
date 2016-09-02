@@ -7,21 +7,21 @@ var sumlineChart;
 var sumpieChart;
 
 
-    $("#dayCurrBefor").on("click", function () {
-        var daynow = $("#datechooseinput").val();
-        var predate = getTodayBefore(daynow);
-        $("#datechooseinput").val(predate);
-        $("#datechoosespanshow").html(predate);
-        NextDateButtonSet();
-        GetData();
-    });
+//    $("#dayCurrBefor").on("click", function () {
+//        var daynow = $("#datechooseinput").val();
+//        var predate = getTodayBefore(daynow);
+//        $("#datechooseinput").val(predate);
+//        $("#datechoosespanshow").html(predate);
+//        NextDateButtonSet();
+//        GetData();
+//    });
 
     
     $("#dayCurrEnd").on("click", function () {
-        var daynow = $("#datechooseinput").val();
-        $("#datechooseinput").val(getTodayAfter(daynow));
-        $("#datechoosespanshow").html(getTodayAfter(daynow));
-        NextDateButtonSet();
+//        var daynow = $("#datechooseinput").val();
+//        $("#datechooseinput").val(getTodayAfter(daynow));
+//        $("#datechoosespanshow").html(getTodayAfter(daynow));
+//        NextDateButtonSet();
         GetData();
     });
 
@@ -37,22 +37,27 @@ function GetData() {
         function (e) {
             document.title= e.UnitName + "旅游车辆监测统计分析系统";
             
+            $("#saturation").hide();
+            if($("#datechoosespanshow").html()==getTodayBegin()){
+                $("#saturation").show();
+                $(".titlesumpostion").css("height", "220px");
+            }
+            else{
+                $(".titlesumpostion").css("height", "140px");
+            }
           
             $("#nowlevel").text(e.Level);
             $(".cssbarflat").width(e.Level);
            
-            $("#entercount").text(e.EnterCount);
-            $("#staynightcount").text(e.StayNightCount);
-
             $("#entercarcount").text(e.EnterCount);
             $("#leavecarcount").text(e.LeaveCount);
 
             CharCityFrom(e.ChartCityName, e.ChartCityCount);
             CarEnterCount(e.ChartFivMinute, e.ChartEnterCount,e.MaxELCount);
-            CarLeaveCount(e.ChartFivMinute,e.ChartLeaveCount,e.MaxELCount);
-            CarCountChange(e.ChartFivMinute,e.ChartCurrCount);
+//            CarLeaveCount(e.ChartFivMinute,e.ChartLeaveCount,e.MaxELCount);
+//            CarCountChange(e.ChartFivMinute,e.ChartCurrCount);
 
-
+            var entercount = 0;
             for(var i = 0; i<e.ChartTypeName.length;i++) {
                 switch(e.ChartTypeName[i])
                 {
@@ -63,8 +68,11 @@ function GetData() {
                         $("#cartypebycar").text(e.ChartTypeCount[i]);
                     break;
                 }
-    
+                entercount += e.ChartTypeCount[i];
             }
+
+            $("#entercount").text(entercount);
+            $("#staynightcount").text(e.StayNightCount);
         });
 }
 
@@ -177,7 +185,7 @@ function GetData() {
          $("#monthendshow").html($("#monthend").val());
 
          $("#divmonthend").hide();
-         $("#divmonthbalance").html("对比");
+         $("#divmonthbalance").html("对比&nbsp;+");
          $("#divmonthbalance").css("width","90%");
 
 
@@ -192,7 +200,7 @@ function GetData() {
 
         $("#datechooseinput").val(dateparam);
         $("#datechoosespanshow").html(dateparam);
-        NextDateButtonSet();
+//        NextDateButtonSet();
     
 
         ActSumChange();

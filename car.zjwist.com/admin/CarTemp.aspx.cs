@@ -71,7 +71,7 @@ public partial class admin_CarTemp : System.Web.UI.Page
             {
                 tctitle = new TableCell();
                 tctitle.Attributes["width"] = "16%";
-                tctitle.Text = "<img src='" + dr["carimg"].ToString() + "?width=160' onclick=\"ShowCarImage('" + dr["carimg"].ToString() + "')\"/><br/>"
+                tctitle.Text = "<img src='" + dr["carimg"].ToString() + "?width=160' onclick=\"ShowCarImage('" + dr["carimg"].ToString() + "')\" style='width:160px'/><br/>"
                     + Convert.ToDateTime(dr["PassTime"]).ToString("yyyy-MM-dd HH:mm:ss") + "<br/>" + dr["carno"].ToString() + "  " + GetCarType(dr["cartype"].ToString()) + "<br/>"
                     + GetCarDirection(dr["CarDirection"].ToString())+" "+ GetCarColor(dr["carcolor"].ToString()) + "  " + dr["DeviceName"].ToString();
 

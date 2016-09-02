@@ -9,6 +9,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Web.UI.WebControls;
 using System.Data;
 using BFService;
+using System.Drawing;
 
 /// <summary>
 ///CarService 的摘要说明
@@ -30,19 +31,51 @@ public class CarService : System.Web.Services.WebService
     }
 
     //自己车辆信息保存测试
-    [WebMethod]
-    public string TestSaveCarInfo(string DeviceName,
-        string CarNo,
-        string PassTime,
-        string NoColor,
-        string CarType,
-        string CarDirection,
-        string CarImg,
-        int Believe1,
-        int Believe2)
+    //[WebMethod]
+    //public string TestSaveCarInfo(string DeviceName,
+    //    string CarNo,
+    //    string PassTime,
+    //    string NoColor,
+    //    string CarType,
+    //    string CarDirection,
+    //    string CarImg,
+    //    int Believe1,
+    //    int Believe2)
+    //{
+    //    MySQL.ExecProc("usp_test_save", new string[] { "车牌号：" + CarNo + " 置信度：" + Believe1.ToString() + "|" + Believe2.ToString() }, out SQLExec, out SQLResult);
+    //    return "保存成功";
+    //}
+
+    private string Base64ImgSave(string base64img)
     {
-        MySQL.ExecProc("usp_test_save", new string[] { "车牌号：" + CarNo + " 置信度：" + Believe1.ToString() + "|" + Believe2.ToString() }, out SQLExec, out SQLResult);
-        return "保存成功";
+
+        string pathname = "carimg/" + DateTime.Now.ToString("yyyyMMdd") + "/";
+        string imgfn = "";
+        try
+        {
+            if (!System.IO.Directory.Exists(Server.MapPath(pathname)))
+            {
+                System.IO.Directory.CreateDirectory(Server.MapPath(pathname));
+            }
+
+            imgfn = Guid.NewGuid().ToString() + ".jpg";
+
+            byte[] arr = Convert.FromBase64String(base64img);
+            MemoryStream ms = new MemoryStream(arr);
+            Bitmap bmp = new Bitmap(ms);
+
+            bmp.Save(Server.MapPath(pathname + imgfn), System.Drawing.Imaging.ImageFormat.Jpeg);
+            ms.Close();
+            imgfn = "http://car.zjwist.com/" + pathname + imgfn;
+        }
+        catch (Exception ee)
+        {
+            imgfn = "";
+
+            //MySQL.ExecProc("usp_test_save", new string[] { ee.Message + "|" + ee.StackTrace }, out SQLExec, out SQLResult);
+        }
+
+        return imgfn;
     }
 
 
@@ -70,23 +103,26 @@ public class CarService : System.Web.Services.WebService
         #region 图片保存
         if (!string.IsNullOrEmpty(CarImg))
         {
-            BFResult br = new BFResult();
-            try
-            {
-                byte[] bytes = Convert.FromBase64String(CarImg);
-                BigFileService bs = new BigFileService(CarEnum.BigServiceSysID);
-                br = bs.UpLoadALL("0", carno + "_" + PassTime + ".jpg", "image/jpeg", bytes, "1024", "768");
-                if (br.code == 1)
-                {
-                    imgurl = "http://big.tourzj.com/bfinfo/GetFile/" + br.message;
-                }
-                //MemoryStream memStream = new MemoryStream(bytes);
-                //BinaryFormatter binFormatter = new BinaryFormatter();
-                //Image img = (Image)binFormatter.Deserialize(memStream);
-            }
-            catch
-            {
-            }
+            imgurl = Base64ImgSave(CarImg);
+            //图片服务器坏了！！！
+
+            //BFResult br = new BFResult();
+            //try
+            //{
+            //    byte[] bytes = Convert.FromBase64String(CarImg);
+            //    BigFileService bs = new BigFileService(CarEnum.BigServiceSysID);
+            //    br = bs.UpLoadALL("0", carno + "_" + PassTime + ".jpg", "image/jpeg", bytes, "1024", "768");
+            //    if (br.code == 1)
+            //    {
+            //        imgurl = "http://big.tourzj.com/bfinfo/GetFile/" + br.message;
+            //    }
+            //    //MemoryStream memStream = new MemoryStream(bytes);
+            //    //BinaryFormatter binFormatter = new BinaryFormatter();
+            //    //Image img = (Image)binFormatter.Deserialize(memStream);
+            //}
+            //catch
+            //{
+            //}
         }
         #endregion
 
@@ -141,9 +177,16 @@ public class CarService : System.Web.Services.WebService
         {
             try
             {
-                string bfid = dr["CarImg"].ToString().Substring(dr["CarImg"].ToString().LastIndexOf("/") + 1);
-                bs.Delete(bfid);
-                MySQL.ExecProc("usp_Car_ImageDelete", new string[] { dr["TableName"].ToString(), dr["ID"].ToString() }, out SQLExec, out SQLResult);
+                if (dr["img"].ToString().Contains("big.tourzj.com"))
+                {
+                    string bfid = dr["CarImg"].ToString().Substring(dr["CarImg"].ToString().LastIndexOf("/") + 1);
+                    bs.Delete(bfid);
+                    MySQL.ExecProc("usp_Car_ImageDelete", new string[] { dr["TableName"].ToString(), dr["ID"].ToString() }, out SQLExec, out SQLResult);
+                }
+                else
+                {
+                    //进行本地的图片删除
+                }
             }
             catch
             {

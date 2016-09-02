@@ -21,7 +21,18 @@ public class WelcomeScenic : IHttpHandler
         wsd.CityName = ds.Tables[0].Rows[0]["CityName"].ToString();
         wsd.DeviceCount = Convert.ToInt32(ds.Tables[1].Rows[0]["DeviceCount"]);
         wsd.CurrCount = Convert.ToInt32(ds.Tables[2].Rows[0]["CurrCount"]);
-        wsd.Level = (wsd.CurrCount * 1.0 / Convert.ToInt32(ds.Tables[0].Rows[0]["CarMaxCount"]) * 100).ToString("0.0") + "%";
+
+
+        double level = wsd.CurrCount * 100.0 / Convert.ToInt32(ds.Tables[0].Rows[0]["CarMaxCount"]);
+        if (level > 100)
+        {
+            wsd.Level = "100%";
+        }
+        else
+        {
+            wsd.Level = level.ToString("F1") + "%";
+        }   
+        
         wsd.StayNightCount = ds.Tables[7].Rows[0]["StayNightCount"].ToString();
         wsd.EnterCount = ds.Tables[3].Rows[0]["EnterCount"].ToString();
         wsd.LeaveCount = ds.Tables[3].Rows[0]["LeaveCount"].ToString();

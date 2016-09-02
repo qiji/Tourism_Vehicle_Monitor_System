@@ -120,7 +120,7 @@ public class WelComeMobile : IHttpHandler
             j++;
         }
 
-        //获取饱和度，如果选择的是当天，就用当前时间点进入总数-离开总数*系数来计算 
+        //获取饱和度，如果选择的是当天，就用当前时间点进入总数-离开总数*系数来计算 ,如果不是当前日期 就不做计算
         if (context.Request["beginday"].ToString() == DateTime.Now.ToString("yyyy-MM-dd"))
         {
             //离开总数*系数大于进入车辆
@@ -140,17 +140,7 @@ public class WelComeMobile : IHttpHandler
                 }
             }
         }
-        else
-        {
-            if (dateCount < carMaxCount)
-            {
-                wsd.Level = (dateCount * 100.0 / carMaxCount).ToString("F1") + "%";
-            }
-            else
-            {
-                wsd.Level = "100%";
-            }
-        }
+        
 
 
 

@@ -3,8 +3,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <link href="../css/stylejc2.css" rel="stylesheet" type="text/css" />
-    <script src="http://cdn.tourzj.com/js/echarts.min.js" type="text/javascript"></script>
-    <script src="http://cdn.tourzj.com/js/china.js" type="text/javascript"></script>
+    <script src="http://cdn.bootcss.com/echarts/3.2.2/echarts.min.js" type="text/javascript"></script>
+    <script src="http://echarts.baidu.com/asset/map/js/china.js" type="text/javascript"></script>
     <script src="../js/screenfull.js" type="text/javascript"></script>
     
     <script>

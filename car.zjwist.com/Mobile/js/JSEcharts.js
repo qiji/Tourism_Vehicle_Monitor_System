@@ -531,13 +531,19 @@ function CharCityFrom(ChartCityName, ChartCityCount){
 function sumChartStayTime(STCityName,StayTime){
     var pieChart = echarts.init(document.getElementById('sumChartStayTime'));
 
-    for(var i= 0;i<10;i++){
-        while(StayTime[i]==null){
-            StayTime.push("0");
-            STCityName.push(" ");
+    if(STCityName.length>10){
+        STCityName=STCityName.slice(0,10);
+        StayTime=StayTime.slice(0,10);
+    }
+    else
+    {
+        for(var i= 0;i<10;i++){
+            while(StayTime[i]==null){
+                StayTime.push("0");
+                STCityName.push(" ");
+            }
         }
     }
-
     STCityName.reverse();
     StayTime.reverse();
 

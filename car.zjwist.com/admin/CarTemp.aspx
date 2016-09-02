@@ -2,7 +2,7 @@
     CodeFile="CarTemp.aspx.cs" Inherits="admin_CarTemp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <link rel="stylesheet" type="text/css" href="http://cdn.tourzj.com/css/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/0.4.3/weui.min.css">
     
     <div class="mainNav">
         待处理的车辆信息

@@ -2,7 +2,7 @@
     CodeFile="EmployeeCarNo.aspx.cs" Inherits="admin_EmployeeCarNo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <link href="http://cdn.tourzj.com/css/weui.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://res.wx.qq.com/open/libs/weui/0.4.3/weui.min.css" rel="stylesheet" type="text/css" />
     <div class="mainNav">
         内部车辆设置&nbsp;&nbsp;<a href="javascript:;" onclick="EmployeeAdd()">新增</a>
     </div>

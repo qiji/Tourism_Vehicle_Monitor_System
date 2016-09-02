@@ -6,7 +6,7 @@
     <title>景区旅游车辆实时监测</title>
     <link href="../css/stylejc.css" rel="stylesheet" type="text/css">
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js" type="text/javascript"></script>
-    <script src="http://cdn.tourzj.com/js/echarts.min.js" type="text/javascript"></script>
+    <script src="http://cdn.bootcss.com/echarts/3.2.2/echarts.min.js" type="text/javascript"></script>
     <script src="http://ecomfe.github.io/echarts-builder-web/map/js/china.js" type="text/javascript"></script>
 </head>
 <body class="jiance">

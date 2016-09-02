@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <link href="../css/List.css" rel="Stylesheet" type="text/css" />
     <script src="../js/datePicker/WdatePicker.js" type="text/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="http://cdn.tourzj.com/css/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/0.4.3/weui.min.css">
     <div class="mainNav">
         内部车辆过车记录
     </div>

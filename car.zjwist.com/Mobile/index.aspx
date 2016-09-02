@@ -7,7 +7,7 @@
     <link id="cssid" href="css/Default1_N.css" type="text/css" rel="stylesheet">
     <script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.2.2/echarts.common.min.js"></script>
-    <script src="http://cdn.tourzj.com/js/jscookier.js"></script>
+    <script src="http://qy.zjwist.com/js/jscookier.js"></script>
 </head>
 <body>
     <div class="csstitle">
@@ -30,28 +30,31 @@
     <div id="divactdata">
         <div class="clear">
         </div>
-        <div class="beforday" id="dayCurrBefor">
+        <%--<div class="beforday" id="dayCurrBefor">
             前一天
+        </div>--%>
+        <div class="datetext">
+            日期选择:
         </div>
         <div class="datechoose">
-            <span class="datechoosespan" id="datechoosespanshow">2016-08-15</span>
+            <span class="datechoosespan" id="datechoosespanshow"></span>
             <input id="datechooseinput" class="datechooseinput" type="date" onclick="datechanged(this)"
-                onblur="datechanged(this')" onchange="currdatechange(this)" onmouseout="datechanged(this)"
-                 />
+                onblur="datechanged(this')" onchange="datechanged(this)" onmouseout="datechanged(this)"/>
         </div>
         <div class="endday">
             <div id="dayCurrEnd">
-                后一天</div>
+                确定</div>
         </div>
         <div class="clear">
         </div>
-        <div class="titlesumpostion">
+        <div class="titlesumpostion" >
             <div class="titleimg">
                 <span>当日车流概况</span>
             </div>
             <div class="cartodaysummary">
                 <div class="clear">
                 </div>
+                <div id="saturation">
                 <div class="csscurrdata">
                     <div class="csscurrdataimg2">
                         &nbsp;
@@ -60,7 +63,7 @@
                         当前饱和度
                     </div>
                     <div class="csscurrdatavalue" id="nowlevel">
-                        80%
+                        
                     </div>
                 </div>
                 <div class="clear">
@@ -69,6 +72,7 @@
                     <div class="cssbarflat">
                         <%--在js脚本中设置这个class 的宽度！--%>
                     </div>
+                </div>
                 </div>
                 <div class="clear">
                 </div>
@@ -79,7 +83,7 @@
                         </div>
                         <div class="svleftdiv">
                             <div class="svlefttvalue" id="entercount">
-                                942</div>
+                                </div>
                             <div class="svlefttext">
                                 当日进入车辆</div>
                         </div>
@@ -93,7 +97,7 @@
                         </div>
                         <div class="svleftdiv">
                             <div class="svlefttvalue" id="staynightcount">
-                                942</div>
+                                </div>
                             <div class="svlefttext">
                                 昨日过夜车辆</div>
                         </div>
@@ -113,12 +117,12 @@
             <div class="cartypebycar">
                 <br />
                 <span class="cartypetext">轿车</span><br />
-                <span class="cartypevalue" id="cartypebycar">593</span>
+                <span class="cartypevalue" id="cartypebycar"></span>
             </div>
             <div class="cartypebybus">
                 <br />
                 <span class="cartypetext">客车</span><br />
-                <span class="cartypevalue" id="cartypebybus">593</span>
+                <span class="cartypevalue" id="cartypebybus"></span>
             </div>
         </div>
         <div class="clear">
@@ -143,7 +147,7 @@
         </div>
         <div class="clear">
         </div>
-        <div class="titlepostion">
+        <%--<div class="titlepostion">
             <div class="titleimg">
                 <span>当日离开车辆</span>
             </div>
@@ -160,7 +164,7 @@
             </div>
         </div>
         <div class="clear">
-        </div>
+        </div>--%>
         <br />
         <br />
         &nbsp;
@@ -221,7 +225,7 @@
         </div>
         <div id="divsumdate" class="sumdateselect">
             <div class="sumdatebegin">
-                <span id="datebeginshow" class="sumdatespanshow">2016-05-01</span>
+                <span id="datebeginshow" class="sumdatespanshow"></span>
                 <input id="dateBegin" class="sumdateinput" type="date" onclick="datechanged(this)"
                     onblur="datechanged(this')" onchange="datechanged(this)" onmouseout="datechanged(this)" />
             </div>
@@ -229,7 +233,7 @@
                 至
             </div>
             <div class="sumdatebegin">
-                <span id="dateendshow" class="sumdatespanshow">2016-05-01</span>
+                <span id="dateendshow" class="sumdatespanshow"></span>
                 <input id="dateEnd" class="sumdateinput" type="date" onclick="datechanged(this)"
                     onblur="datechanged(this)" onchange="datechanged(this)" onmouseout="datechanged(this)" />
             </div>
@@ -241,7 +245,7 @@
         </div>
         <div id="divsummonth" class="summonthselect">
             <div class="summonthbegin">
-                <span id="monthbeginshow" class="summonthspanshow">2016-05</span>
+                <span id="monthbeginshow" class="summonthspanshow"></span>
                 <input id="monthbegin" class="sumdateinput" type="month" onclick="datechanged(this)"
                     onblur="datechanged(this)" onchange="datechanged(this)" onmouseout="datechanged(this)" />
             </div>
@@ -249,7 +253,7 @@
                 确定
             </div>
             <div id="divmonthend" class="summonthbegin summonthbtnend">
-                <span id="monthendshow" class="summonthspanshow">2016-05</span>
+                <span id="monthendshow" class="summonthspanshow"></span>
                 <input id="monthend" class="sumdateinput" type="month" onclick="datechanged(this)"
                     onblur="datechanged(this)" onchange="datechanged(this)" onmouseout="datechanged(this)" />
             </div>
@@ -261,7 +265,7 @@
         </div>
         <div id="divsumtypedate" class="sumdateselect">
             <div class="sumdatebegin">
-                <span id="datetypebeginshow" class="sumdatespanshow">2016-05-01</span>
+                <span id="datetypebeginshow" class="sumdatespanshow"></span>
                 <input id="datetypebegin" class="sumdateinput" type="date" onclick="datechanged(this)"
                     onblur="datechanged(this')" onchange="datechanged(this)" onmouseout="datechanged(this)" />
             </div>
@@ -269,7 +273,7 @@
                 至
             </div>
             <div class="sumdatebegin">
-                <span id="datetypeendshow" class="sumdatespanshow">2016-05-01</span>
+                <span id="datetypeendshow" class="sumdatespanshow"></span>
                 <input id="datetypeend" class="sumdateinput" type="date" onclick="datechanged(this)"
                     onblur="datechanged(this)" onchange="datechanged(this)" onmouseout="datechanged(this)" />
             </div>
@@ -310,12 +314,12 @@
                 <div class="cartypebycar">
                     <br />
                     <span class="cartypetext">轿车</span><br />
-                    <span class="cartypevalue" id="sumcartypevalue">593</span>
+                    <span class="cartypevalue" id="sumcartypevalue"></span>
                 </div>
                 <div class="cartypebybus">
                     <br />
                     <span class="cartypetext">客车</span><br />
-                    <span class="cartypevalue" id="sumbustypevalue">593</span>
+                    <span class="cartypevalue" id="sumbustypevalue"></span>
                 </div>
             </div>
             <div id="sumChartCarType" class="CurrChart sumPieCarType">
@@ -331,20 +335,20 @@
             dateobj.parentElement.getElementsByTagName('span')[0].innerHTML = dateobj.value;
         }
 
-        function NextDateButtonSet() {
-            if ($("#datechooseinput").val() == getTodayBegin()) {
-                $("#dayCurrEnd").hide();
-            }
-            else {
-                $("#dayCurrEnd").show();
-            }
-        }
+//        function NextDateButtonSet() {
+//            if ($("#datechooseinput").val() == getTodayBegin()) {
+//                $("#dayCurrEnd").hide();
+//            }
+//            else {
+//                $("#dayCurrEnd").show();
+//            }
+//        }
 
-        function currdatechange(dateobj) {
-            datechanged(dateobj);
-            NextDateButtonSet();
-            GetData();
-        }
+//        function currdatechange(dateobj) {
+//            datechanged(dateobj);
+////            NextDateButtonSet();
+//            GetData();
+//        }
     </script>
     <script src="js/JSEcharts.js" type="text/javascript"></script>
     <script src="js/index.js" type="text/javascript"></script>
