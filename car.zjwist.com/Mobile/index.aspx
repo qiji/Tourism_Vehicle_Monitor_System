@@ -52,7 +52,7 @@
                 <span>当日车流概况</span>
             </div>
             <div class="cartodaysummary">
-                <div class="clear">
+                <%--<div class="clear">
                 </div>
                 <div id="saturation">
                 <div class="csscurrdata">
@@ -71,11 +71,11 @@
                 <div class="cssbarbackground">
                     <div class="cssbarflat">
                         <%--在js脚本中设置这个class 的宽度！--%>
-                    </div>
+                    <%--</div>
                 </div>
                 </div>
                 <div class="clear">
-                </div>
+                </div>--%>
                 <div class="cssSumValue">
                     <div class="csssvleft">
                         <div class="svleftflag">
@@ -267,7 +267,7 @@
             <div class="sumdatebegin">
                 <span id="datetypebeginshow" class="sumdatespanshow"></span>
                 <input id="datetypebegin" class="sumdateinput" type="date" onclick="datechanged(this)"
-                    onblur="datechanged(this')" onchange="datechanged(this)" onmouseout="datechanged(this)" />
+                    onblur="datechanged(this)" onchange="datechanged(this)" onmouseout="datechanged(this)" />
             </div>
             <div class="sumdateto">
                 至

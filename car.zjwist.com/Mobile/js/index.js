@@ -37,14 +37,14 @@ function GetData() {
         function (e) {
             document.title= e.UnitName + "旅游车辆监测统计分析系统";
             
-            $("#saturation").hide();
-            if($("#datechoosespanshow").html()==getTodayBegin()){
-                $("#saturation").show();
-                $(".titlesumpostion").css("height", "220px");
-            }
-            else{
-                $(".titlesumpostion").css("height", "140px");
-            }
+//            $("#saturation").hide();
+//            if($("#datechoosespanshow").html()==getTodayBegin()){
+//                $("#saturation").show();
+//                $(".titlesumpostion").css("height", "220px");
+//            }
+//            else{
+            $(".titlesumpostion").css("height", "140px");
+//            }
           
             $("#nowlevel").text(e.Level);
             $(".cssbarflat").width(e.Level);

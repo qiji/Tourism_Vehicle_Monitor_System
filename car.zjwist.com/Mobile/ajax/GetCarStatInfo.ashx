@@ -31,27 +31,13 @@ public class GetCarStatInfo : IHttpHandler
                     context.Request["UnitID"] }, out sqlexec, out sqlresult);
 
 
-                int ordercount = 1;
-                int otherprovince = 0;
+                
                 foreach (DataRow dr in ds.Tables[0].Rows)
                 {
-                    if (ordercount > 10 && context.Request["AreaType"] == "0")
-                    {
-                        otherprovince += Convert.ToInt32(dr["ComeCount"]);
-                    }
-                    else
-                    {
-                        csd.CityName.Add(dr["DestName"].ToString());
-                        csd.ComeCount.Add(dr["ComeCount"].ToString());
-                    }
-
-                    ordercount++;
+                    csd.CityName.Add(dr["DestName"].ToString());
+                    csd.ComeCount.Add(dr["ComeCount"].ToString());
                 }
-                if (context.Request["AreaType"] == "0" && otherprovince > 0)
-                {
-                    csd.CityName.Add("其他");
-                    csd.ComeCount.Add(otherprovince.ToString());
-                }
+                
 
                 ds.Tables[1].DefaultView.Sort = "StayTime desc";
 
