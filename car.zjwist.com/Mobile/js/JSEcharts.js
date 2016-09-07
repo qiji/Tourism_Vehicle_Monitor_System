@@ -1,4 +1,4 @@
-﻿//车辆总数颜色控制
+﻿//车辆总数颜色控制 =1为夜间模式
 function getCurritemStylecolor() {
     if (cssmodelonclick == "0") {
         return 'rgb(84, 110, 255)'
@@ -94,6 +94,14 @@ function gettextstylecolor(){
     }
 }
 
+//柱状图银光颜色控制
+function getshadowcolor(){
+    if(cssmodelonclick == "0"){
+        return '#B8C2FF';
+    }else{
+        return 'rgba(0, 255, 169,1)';
+    }
+}
 
 
 //实时统计今日进入车辆折线图
@@ -452,6 +460,12 @@ function CharCityFrom(ChartCityName, ChartCityCount){
             name:'来源地',
             type:'bar',
             barWidth: '40%',
+            itemStyle:{
+                normal:{
+                    shadowBlur: 30,
+                    shadowColor: getshadowcolor()
+                }
+            },
             data:ChartCityCount
         }]
         });
@@ -522,6 +536,12 @@ function CharCityFrom(ChartCityName, ChartCityCount){
                 name:'来源地',
                 type:'bar',
                 barWidth: '40%',
+                itemStyle:{
+                    normal:{
+                        shadowBlur: 30,
+                        shadowColor: getshadowcolor()
+                    }
+                },
                 data:ChartCityCount
             }]
          });
@@ -604,6 +624,12 @@ function sumChartStayTime(STCityName,StayTime){
             name:'来源地',
             type:'bar',
             barWidth: '40%',
+            itemStyle:{
+                normal:{
+                    shadowBlur: 30,
+                    shadowColor: getshadowcolor()
+                }
+            },
             data:StayTime
         }]
         });
