@@ -15,17 +15,15 @@
         <div class="cilineforgridview">
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White"
                 GridLines="Vertical" BorderColor="#C2D3ED" CellPadding="3" BorderStyle="Solid"
-                BorderWidth="1px" HeaderStyle-Height="25" EmptyDataText="没有相关数据" 
-                PageSize="20" onrowdatabound="GridView1_RowDataBound" Width="767px">
+                BorderWidth="1px" HeaderStyle-Height="25" EmptyDataText="没有相关数据" PageSize="20"
+                OnRowDataBound="GridView1_RowDataBound" Width="716px">
                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                 <RowStyle Height="25px" BorderColor="#C2D3ED" BorderStyle="Solid" BorderWidth="1px" />
                 <Columns>
                     <asp:HyperLinkField DataNavigateUrlFields="DeviceID,UnitID" DataNavigateUrlFormatString="DeviceEdit.aspx?DeviceID={0}&UnitID={1}"
                         DataTextField="DeviceName" HeaderText="设备名称" />
-                  
                     <asp:BoundField DataField="DeviceInstall" HeaderText="安装地点" />
-                    <asp:HyperLinkField DataNavigateUrlFields="IPAddress" 
-                        DataNavigateUrlFormatString="Http://{0}/doc/page/login.asp" 
+                    <asp:HyperLinkField DataNavigateUrlFields="IPAddress" Target="_blank" DataNavigateUrlFormatString="Http://{0}/doc/page/login.asp"
                         DataTextField="IPAddress" HeaderText="IP地址" />
                     <asp:TemplateField HeaderText="算法">
                         <ItemTemplate>
@@ -41,11 +39,8 @@
                             <%# GetDeviceState(Eval("State"))%>
                         </ItemTemplate>
                     </asp:TemplateField>
-
-                    <asp:HyperLinkField DataNavigateUrlFields="UnitID,DeviceName," 
-                        DataNavigateUrlFormatString="LogDevice.aspx?UnitID={0}&amp;devicename={1}" 
+                    <asp:HyperLinkField DataNavigateUrlFields="UnitID,DeviceName," DataNavigateUrlFormatString="LogDevice.aspx?UnitID={0}&amp;devicename={1}"
                         HeaderText="设备日志" Text="设备日志" />
-
                 </Columns>
                 <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Center" CssClass="cigvp"
                     Font-Size="15px" />

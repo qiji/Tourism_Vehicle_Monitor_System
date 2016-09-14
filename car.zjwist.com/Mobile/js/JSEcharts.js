@@ -398,9 +398,11 @@ function CarCountChange(ChartFivMinute,CurrCarCount) {
 //实时统计今日车辆来源柱形图
 function CharCityFrom(ChartCityName, ChartCityCount){
         var pieChart = echarts.init(document.getElementById('divCharCityFrom'));
-        var cityname = [];
+        
+
         ChartCityName.reverse();
         ChartCityCount.reverse();
+
         pieChart.setOption({
         color: getcityfromcolor(),
         tooltip : {
@@ -474,6 +476,14 @@ function CharCityFrom(ChartCityName, ChartCityCount){
 //统计数据下的车辆来源分析
     function sumCarComeFrom(ChartCityName, ChartCityCount){
        sumColumnChart   = echarts.init(document.getElementById('sumChartComeFrom'));
+
+
+       for(var i= 0;i<10;i++){
+            while(ChartCityName[i]==null){
+                ChartCityCount.push("0");
+                ChartCityName.push(" ");
+            }
+        }
 
         ChartCityName.reverse();
         ChartCityCount.reverse();
@@ -691,6 +701,7 @@ function sumChartCarChange(SDate,FCount,CompareFCount,MonthBegin,MonthEnd){
             series: [
             {
                 type: 'line',
+                smooth:true,
                 itemStyle: {
                    	    normal: {
                             color: getCountinitemStylecolor()
@@ -711,6 +722,7 @@ function sumChartCarChange(SDate,FCount,CompareFCount,MonthBegin,MonthEnd){
             },
             {
                 type: 'line',
+                smooth:true,
                 itemStyle: {
                        	normal: {
                             color: getCountoutitemStylecolor()
@@ -781,6 +793,7 @@ function sumChartCarChange(SDate,FCount,CompareFCount,MonthBegin,MonthEnd){
             {
                 name: '数量',
                 type: 'line',
+                smooth:true,
                 itemStyle: {
                    	    normal: {
                             color: getCountinitemStylecolor()

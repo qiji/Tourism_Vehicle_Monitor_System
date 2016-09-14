@@ -8,16 +8,17 @@ using System.Web;
 /// </summary>
 public class DeviceInfo
 {
-	public DeviceInfo()
-	{
-		//
-		//TODO: 在此处添加构造函数逻辑
-		//
+    public DeviceInfo()
+    {
+        //
+        //TODO: 在此处添加构造函数逻辑
+        //
 
-	}
+    }
 
     public int DeviceID { get; set; }
     public string DeviceName { get; set; }
+    public string DeviceAddress { get; set; }
     public int UnitID { get; set; }
     public string UnitName { get; set; }
     public string LastTime { get; set; }
@@ -28,6 +29,8 @@ public class DeviceInfo
     public string ListenPort { get; set; }
     public string DeviceUserID { get; set; }
     public string DevicePwd { get; set; }
+    public string BeginTime { get; set; }
+    public string EndTime { get; set; }
 
     public int DVRLoginID { get; set; }
 }

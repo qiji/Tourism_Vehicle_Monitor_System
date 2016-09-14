@@ -2,81 +2,53 @@
 var divChart = [1,2,3,4];
 
 
-$("#datechange").val(getTodayBegin());
 
-function datechangeonclick()
+function ChartChange(ChangeID) {    
+    var TempChart = divChart[ChangeID];
+    divChart[ChangeID] = divChart[3];
+    divChart[3] = TempChart;
+    
+    SetChart(ChangeID);
+    SetChart(3);
+       
+}
+
+function SetChart(divid)
 {
-    GetData();
+    switch(divChart[divid])
+    {
+        case 1:
+           CurrInfoData();
+        break;
+        case 2:
+            CurrCountData();
+        break;
+        case 3:
+            CharCityFrom();
+        break;
+        case 4:
+            ChartShowMap();
+        break;
+    }
 }
 
 
-
-    var deviceinfo = document.getElementById("deviceinfoexcel");
-
-    function DIaddRow(DeviceName, EnterCount,LeaveCount) {
-            
-        var newRow = deviceinfo.insertRow(); //创建新行
-
-        var DI = newRow.insertCell(); //创建新单元格
-        DI.innerHTML = DeviceName; //单元格内的内容
-        DI.setAttribute("align", "left"); //设置位置
-
-        var DEC = newRow.insertCell(); //创建新单元格
-        DEC.innerHTML = EnterCount; //单元格内的内容
-        DEC.setAttribute("align", "center"); //设置位置
-
-        var DLC = newRow.insertCell(); //创建新单元格
-        DLC.innerHTML = LeaveCount; //单元格内的内容
-        DLC.setAttribute("align", "center"); //设置位置
-
-    }
-
-//function ChartChange(ChangeID) {    
-//    var TempChart = divChart[ChangeID];
-//    divChart[ChangeID] = divChart[3];
-//    divChart[3] = TempChart;
-//    
-//    SetChart(ChangeID);
-//    SetChart(3);
-//       
-//}
-
-//function SetChart(divid)
-//{
-//    switch(divChart[divid])
-//    {
-//        case 1:
-//           CurrInfoData();
-//        break;
-//        case 2:
-//            CurrCountData();
-//        break;
-//        case 3:
-//            CharCityFrom();
-//        break;
-//        case 4:
-//            ChartShowMap();
-//        break;
-//    }
-//}
-
-
-//function GetChartdiv(divvalue)
-//{
-//    for (var i = 0; i < divChart.length; i++) {
-//        if (divChart[i] == divvalue)    
-//          return i+1;
-//    }   
-//    
-//}
-
-//当日进入车辆
-function CarEnterCount(){
-//    var divorder = GetChartdiv(1);
-//    $(".charttitle"+divorder).html("今日车辆变化");
-    var CurrInfoData = echarts.init(document.getElementById("divchart2"));
-
+function GetChartdiv(divvalue)
+{
+    for (var i = 0; i < divChart.length; i++) {
+        if (divChart[i] == divvalue)    
+          return i+1;
+    }   
     
+}
+
+//今日车辆变化
+function CurrInfoData(){
+    var divorder = GetChartdiv(1);
+    $(".charttitle"+divorder).html("今日车辆变化");
+    var CurrInfoData = echarts.init(document.getElementById("divchart" + divorder));
+
+
 
     CurrInfoData.setOption({
         tooltip: {
@@ -114,7 +86,7 @@ function CarEnterCount(){
         },
         yAxis: {
             type: 'value',
-            data: CarData.ChartEnterCount,
+            data: CarData.ChartCurrCount,
             splitLine:false,
             axisLabel:{
                 show:true,
@@ -144,28 +116,137 @@ function CarEnterCount(){
                         }])
                     }
                 },
-            data:CarData.ChartEnterCount,
+            data:CarData.ChartCurrCount,
         }]
     });
 }
 
 
+//今日进出车辆
+function CurrCountData(){
+    var divorder = GetChartdiv(2);
+    $(".charttitle"+divorder).html("今日进出车辆");
+    var CurrCountData = echarts.init(document.getElementById("divchart" + divorder));
+
+        function gettooltipstring(params)
+        {
+            if (params[0].value==null)
+            {
+                return params[0].name+'<br /><span style="color:#47fad0">∨</span> <br /><span style="color:red">∧</span>';
+            }
+            else
+            {
+                return params[0].name+'<br /><span style="color:#47fad0">∨</span>'+params[0].value+'<br /><span style="color:red">∧</span>'+params[1].value;
+            }
+        }
+
+    CurrCountData.setOption({
+        tooltip: {
+            trigger: 'axis',
+            formatter: function(params){
+                return  gettooltipstring(params);
+            },
+            borderWidth: 1,
+            borderColor: '#ffffff',
+            textStyle: {
+                fontWeight: '100',
+                fontSize: 13
+            }
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: CarData.ChartFivMinute,
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: 'rgb(89,65,123)'
+                }
+            },
+            axisLabel: {
+                show: true,
+                textStyle: {
+                    color: '#fff'
+                }
+            }
+        }],
+        yAxis: [
+        {
+            type: 'value',
+            splitLine: false,
+            axisLabel: {
+                show: true,
+                textStyle: {
+                    color:  '#fff'
+                }
+            }
+        }],
+        series: [
+        {
+            name: '进入',
+            type: 'line',
+            itemStyle: {
+                   	normal: {
+                        color: 'rgb(111, 255, 219)'
+                    }
+                },
+            areaStyle: { 
+                normal: {
+                    color : new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgb(91, 19, 207)'
+                            }, {
+                            offset: 1,
+                                color:'rgb(49, 14, 72)'
+                            }])
+                } 
+            },
+            data: CarData.ChartEnterCount
+        },
+        {
+            name: '离开',
+            type: 'line',
+            itemStyle: {
+                   	normal: {
+                        color: 'rgb(202, 67, 125)'
+                    }
+                },
+            areaStyle: { 
+                normal: {
+                    color : new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgb(152, 86, 124)'
+                            }, {
+                            offset: 1,
+                                color: 'rgb(49, 14, 72)'
+                            }])
+                } 
+            },
+            data: CarData.ChartLeaveCount
+        }]
+    });
+
+}
 
 //今日车辆来源柱形图
 function CharCityFrom(){
-//    var divorder = GetChartdiv(3);
-//    $(".charttitle"+divorder).html("今日车辆来源");
-    var CharCityFrom = echarts.init(document.getElementById("divchart3"));
+    var divorder = GetChartdiv(3);
+    $(".charttitle"+divorder).html("今日车辆来源");
+    var CharCityFrom = echarts.init(document.getElementById("divchart" + divorder));
 
     for (var i = 0; i < 10; i++) {
-        
         while (CarData.ChartCityName[i] == null) {
-            CarData.ChartCityCount.push("0");
             CarData.ChartCityName.push(" ");
+            CarData.ChartCityCount.push("0");
         }
-        
     }
-   
     
     CharCityFrom.setOption({
         color: ["#6fffdc"],
@@ -225,12 +306,6 @@ function CharCityFrom(){
             name:'来源地',
             type:'bar',
             barWidth: '20%',
-            itemStyle:{
-                normal:{
-                    shadowBlur:15,
-                    shadowColor: 'rgba(0, 255, 169,1)'
-                }
-            },
             data:CarData.ChartCityCount
         }]
     });
@@ -240,27 +315,27 @@ var ChartsMap;
 
 function ChartShowMap() {
 
-//    var divorder = GetChartdiv(4);
-//    $(".charttitle"+divorder).html("旅游车辆迁徙图");
-    ChartsMap = echarts.init(document.getElementById("divchart4"));
+    var divorder = GetChartdiv(4);
+    $(".charttitle"+divorder).html("旅游车辆迁徙图");
+    ChartsMap = echarts.init(document.getElementById("divchart" + divorder));
 
-//    function getcenter(){
-//        if(divorder==4){
-//            return [centerlat,centerlnt];
-//        }
-//        else{
-//            return [rightlat,rightlnt];
-//        }
-//    }
+    function getcenter(){
+        if(divorder==4){
+            return [centerlat,centerlnt];
+        }
+        else{
+            return [rightlat,rightlnt];
+        }
+    }
 
-//    function getzoom(){
-//        if(divorder==4){
-//            return unitzoom;
-//        }
-//        else{
-//            return rightunitzoom;
-//        }
-//    }
+    function getzoom(){
+        if(divorder==4){
+            return unitzoom;
+        }
+        else{
+            return rightunitzoom;
+        }
+    }
 
 
     var MapData = $.parseJSON(CarData.MapData);
@@ -422,8 +497,8 @@ function ChartShowMap() {
                 }
             },
            
-            center:[centerlat,centerlnt],
-            zoom: unitzoom,
+            center:getcenter(),
+            zoom: getzoom(),
             roam: true,
             itemStyle: {
                 normal: {
@@ -444,56 +519,42 @@ function ChartShowMap() {
 function GetData() {
     $.getJSON("WelcomeScenic.ashx", {
         unitid: unitid,
-        datechange:$("#datechange").val(),
         r:Math.random()
     }, function (data) {
         CarData = data;
 
         $("#nowcount").text(CarData.CurrCount);
-//        $("#nowlevel").text(CarData.Level);
-//        $(".scalebarflat").width(CarData.Level);
-        
+        $("#nowlevel").text(CarData.Level);
+        $(".scalebarflat").width(CarData.Level);
+        $("#entercount").text(CarData.EnterCount);
         $("#staynightcount").text(CarData.StayNightCount);
         $("#carennercount").text(CarData.EnterCount);
         $("#carleavecount").text(CarData.LeaveCount);
 
-        var entercount = 0;
-
+       
         for(var i = 0; i<CarData.ChartTypeName.length;i++) {
             switch(CarData.ChartTypeName[i])
             {
                 case "客车":
-                    
                     $("#typebybus").text(CarData.ChartTypeCount[i]);
                 break;
                 case "轿车":
                     $("#typebycar").text(CarData.ChartTypeCount[i]);
                 break;
             }
-           entercount += CarData.ChartTypeCount[i];
+           
         }
-
-        $("#entercount").text(entercount);
-
+       
         ChartShowMap();
-        CarEnterCount();
+        CurrInfoData();
+        CurrCountData();
         CharCityFrom();
-
-        for (var i = deviceinfo.rows.length - 1; i >= 0; i--) {
-            deviceinfo.deleteRow(0);
-        }
-        DIaddRow("设备位置", "进入(辆)","离开(辆)");
         
-      
-        for (var i = 0; i < CarData.deviceCountInfo.length; i++) {
-            DIaddRow(CarData.deviceCountInfo[i].DeviceName, CarData.deviceCountInfo[i].EnterCount,CarData.deviceCountInfo[i].LeaveCount);
-        }
-
-
-
     });
     //5分钟以后刷新一次
     setTimeout("GetData()", 5 * 60 * 1000);
 }
 
+
 GetData();
+

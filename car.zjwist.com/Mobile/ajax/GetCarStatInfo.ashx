@@ -60,11 +60,18 @@ public class GetCarStatInfo : IHttpHandler
                 foreach (DataRow dr in dt.Rows)
                 {
                     csd.SDate.Add(dr["SDate"].ToString());
-                    
-                    if (string.IsNullOrEmpty(dr["Fcount"].ToString()))
+
+
+                    if (context.Request["monthbegin"] == DateTime.Now.Date.ToString("yyyy-MM") &&
+                        Convert.ToDateTime(DateTime.Now.Date.ToString("yyyy-MM") + "-" + (dr["SDate"]).ToString()) > DateTime.Now)
                     {
-                        csd.FCount.Add(" ");
+                        csd.FCount.Add("");
                     }
+
+                    //if (string.IsNullOrEmpty(dr["Fcount"].ToString()))
+                    //{
+                    //    csd.FCount.Add("");
+                    //}
                     else
                     {
                         csd.FCount.Add(dr["Fcount"].ToString());

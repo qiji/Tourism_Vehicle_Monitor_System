@@ -13,151 +13,105 @@ public class WelcomeScenic : IHttpHandler
         context.Response.ContentType = "text/plain";
         bool sqlexec;
         string sqlresult;
-        double coefficient;
 
-
+      
+        
         WSData wsd = new WSData();
 
-        DataSet ds = MySQL.ExecProc("usp_WelcomeScenic_PC", new string[] { context.Request["UnitID"], context.Request["datechange"] }, out sqlexec, out sqlresult);
+        DataSet ds = MySQL.ExecProc("usp_WelcomeScenic_PCold", new string[] { context.Request["UnitID"] }, out sqlexec, out sqlresult);
         wsd.UnitName = ds.Tables[0].Rows[0]["UnitName"].ToString();
         wsd.CityName = ds.Tables[0].Rows[0]["CityName"].ToString();
-        coefficient = Convert.ToDouble(ds.Tables[0].Rows[0]["Coefficient"]);
         wsd.DeviceCount = Convert.ToInt32(ds.Tables[1].Rows[0]["DeviceCount"]);
         wsd.CurrCount = Convert.ToInt32(ds.Tables[2].Rows[0]["CurrCount"]);
 
-        if (!string.IsNullOrEmpty(ds.Tables[7].Rows[0]["StayNightCount"].ToString()))
+
+        double level = wsd.CurrCount * 100.0 / Convert.ToInt32(ds.Tables[0].Rows[0]["CarMaxCount"]);
+        if (level > 100)
         {
-            wsd.StayNightCount = ds.Tables[7].Rows[0]["StayNightCount"].ToString();
+            wsd.Level = "100%";
         }
         else
         {
-            wsd.StayNightCount = "0";
-        }
-
+            wsd.Level = level.ToString("F1") + "%";
+        }   
+        
+        wsd.StayNightCount = ds.Tables[7].Rows[0]["StayNightCount"].ToString();
         wsd.EnterCount = ds.Tables[3].Rows[0]["EnterCount"].ToString();
         wsd.LeaveCount = ds.Tables[3].Rows[0]["LeaveCount"].ToString();
 
-        int entercount, leavecount, totalentercount, totalleavecount, chartcurrcount;
-        entercount = leavecount = totalentercount = totalleavecount = chartcurrcount = 0;
-
-        int j = 0;
+        int entercount, leavecount;
+        entercount = 0;
+        leavecount = 0;
 
         foreach (DataRow dr in ds.Tables[4].Rows)
         {
-
-
-            if (j % 2 == 0)
+            wsd.ChartFivMinute.Add(dr["rTime"].ToString());
+            if (string.IsNullOrEmpty(dr["CurrCount"].ToString()))
             {
-                wsd.ChartFivMinute.Add(dr["rTime"].ToString());
-
-                if (context.Request["datechange"] == DateTime.Now.ToString("yyyy-MM-dd") &&
-                    Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " " + dr["rtime"].ToString() + ":00") > DateTime.Now)
-                {
-                    wsd.ChartEnterCount.Add(null);
-                    wsd.ChartLeaveCount.Add(null);
-                    wsd.ChartCurrCount.Add(null);
-                }
-                else
-                {
-                    int leavecountchange = Convert.ToInt32(Math.Truncate(leavecount * coefficient));
-
-                    wsd.ChartEnterCount.Add(entercount.ToString());
-                    wsd.ChartLeaveCount.Add(leavecountchange.ToString("F0"));
-
-                    if (chartcurrcount < 0)
-                    {
-                        wsd.ChartCurrCount.Add("0");
-                    }
-                    else
-                    {
-                        wsd.ChartCurrCount.Add(chartcurrcount.ToString("F0"));
-                    }
-                }
-
-                if (string.IsNullOrEmpty(dr["EnterCount"].ToString()))
-                {
-                    entercount = 0;
-                }
-                else
-                {
-                    entercount = Convert.ToInt32(dr["EnterCount"]);
-                }
-                if (string.IsNullOrEmpty(dr["LeaveCount"].ToString()))
-                {
-                    leavecount = 0;
-                }
-                else
-                {
-                    leavecount = Convert.ToInt32(dr["LeaveCount"]);
-                }
-
+                wsd.ChartCurrCount.Add(null);
             }
-
             else
             {
-                if (!string.IsNullOrEmpty(dr["EnterCount"].ToString()))
-                {
-                    entercount += Convert.ToInt32(dr["EnterCount"]);
-                }
-                if (!string.IsNullOrEmpty(dr["LeaveCount"].ToString()))
-                {
-                    leavecount += Convert.ToInt32(dr["LeaveCount"]);
-                }
+                //wsd.ChartCurrCount.Add(Convert.ToInt32(dr["CurrCount"]));
+                wsd.ChartCurrCount.Add(dr["CurrCount"].ToString());
             }
-            j++;
+            if (string.IsNullOrEmpty(dr["EnterCount"].ToString()))
+            {
+                wsd.ChartEnterCount.Add(null);
+            }
+            else
+            {
+                entercount += Convert.ToInt32(dr["EnterCount"]);
+                wsd.ChartEnterCount.Add(entercount.ToString());
+            }
+
+            if (string.IsNullOrEmpty(dr["LeaveCount"].ToString()))
+            {
+                wsd.ChartLeaveCount.Add(null);
+            }
+            else
+            {
+                leavecount += Convert.ToInt32(dr["LeaveCount"]);
+                wsd.ChartLeaveCount.Add(leavecount.ToString());
+            }
         }
 
         foreach (DataRow dr in ds.Tables[5].Rows)
         {
             wsd.ChartTypeName.Add(((CarEnum.CarType)Convert.ToInt32(dr["CarType"])).ToString());
-
             wsd.ChartTypeCount.Add(Convert.ToInt32(dr["TypeCount"]));
-
-
         }
 
         wsd.MapData = "{\"" + ds.Tables[0].Rows[0]["UnitName"].ToString() + "\":[" + ds.Tables[0].Rows[0]["lat"].ToString() + "," + ds.Tables[0].Rows[0]["lnt"].ToString() + "],"; ;
 
         //int MoreFiveCity = 0;
-
-        int citycount = 0;
+        
+        int  citycount= 0;
         foreach (DataRow dr in ds.Tables[6].Rows)
         {
             if (dr["CityName"].ToString() != "丽水")
             {
 
-                if (Convert.ToInt32(dr["MCount"]) > 5 || citycount < 11)
+                if ( Convert.ToInt32(dr["MCount"])>5 || citycount < 11)
                 {
                     wsd.ChartCityName.Add(dr["CityName"].ToString());
                     wsd.ChartCityCount.Add(Convert.ToInt32(dr["MCount"]));
                 }
                 else
                 {
-                    wsd.ChartCityName.Add(dr["CityName"].ToString());
+                    wsd.ChartCityNameLess.Add(dr["CityName"].ToString());
                     wsd.ChartCityCountLess.Add(Convert.ToInt32(dr["MCount"]));
                 }
             }
             wsd.MapData += "\"" + dr["CityName"].ToString() + "\":[" + dr["lon"].ToString() + "," + dr["lat"].ToString() + "],";
-
+            
             citycount++;
         }
 
         wsd.MapData = wsd.MapData.Substring(0, wsd.MapData.Length - 1) + "}";
 
-        foreach (DataRow dr in ds.Tables[8].Rows)
-        {
-            WSData.DeviceCountInfo di = new WSData.DeviceCountInfo();
-
-            di.DeviceName = dr["DeviceInstall"].ToString();
-            di.EnterCount = Convert.ToInt32(dr["DeviceEnterCount"]);
-            di.LeaveCount = Convert.ToInt32(dr["DeviceLeaveCount"]);
-
-            wsd.deviceCountInfo.Add(di);
-        }
-
 
         context.Response.Write(Newtonsoft.Json.JsonConvert.SerializeObject(wsd));
-
     }
 
     public bool IsReusable
@@ -182,8 +136,6 @@ public class WelcomeScenic : IHttpHandler
             ChartCityCount = new List<int>();
             ChartCityNameLess = new List<string>();
             ChartCityCountLess = new List<int>();
-
-            deviceCountInfo = new List<DeviceCountInfo>();
 
         }
         /// <summary>
@@ -260,24 +212,14 @@ public class WelcomeScenic : IHttpHandler
         /// 来源地数量小于5
         /// </summary>
         public List<int> ChartCityCountLess { get; set; }
-
-
+        
+        
         /// <summary>
         /// 地图的数据！
         /// </summary>
         public string MapData { get; set; }
 
-        public List<DeviceCountInfo> deviceCountInfo { get; set; }
 
-        public class DeviceCountInfo
-        {
-            public string DeviceName { get; set; }
-            public int EnterCount { get; set; }
-            public int LeaveCount { get; set; }
-
-        }
 
     }
-
-
 }

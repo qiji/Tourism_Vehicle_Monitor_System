@@ -300,6 +300,8 @@ namespace CaptureDevSys
             deviceapi.IsSaveImage = cbSaveImg.Checked;
         }
 
+       
+
 
     }
 }

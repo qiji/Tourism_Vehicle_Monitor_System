@@ -2,28 +2,6 @@
 <wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
-      <s:element name="TestSaveCarInfo">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="DeviceName" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CarNo" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="PassTime" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="NoColor" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CarType" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CarDirection" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CarImg" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="Believe1" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="Believe2" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="TestSaveCarInfoResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="TestSaveCarInfoResult" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="SaveCarInfo">
         <s:complexType>
           <s:sequence>
@@ -129,12 +107,6 @@
       </s:element>
     </s:schema>
   </wsdl:types>
-  <wsdl:message name="TestSaveCarInfoSoapIn">
-    <wsdl:part name="parameters" element="tns:TestSaveCarInfo" />
-  </wsdl:message>
-  <wsdl:message name="TestSaveCarInfoSoapOut">
-    <wsdl:part name="parameters" element="tns:TestSaveCarInfoResponse" />
-  </wsdl:message>
   <wsdl:message name="SaveCarInfoSoapIn">
     <wsdl:part name="parameters" element="tns:SaveCarInfo" />
   </wsdl:message>
@@ -178,10 +150,6 @@
     <wsdl:part name="parameters" element="tns:SetDeviceErrorResponse" />
   </wsdl:message>
   <wsdl:portType name="CarServiceSoap">
-    <wsdl:operation name="TestSaveCarInfo">
-      <wsdl:input message="tns:TestSaveCarInfoSoapIn" />
-      <wsdl:output message="tns:TestSaveCarInfoSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="SaveCarInfo">
       <wsdl:input message="tns:SaveCarInfoSoapIn" />
       <wsdl:output message="tns:SaveCarInfoSoapOut" />
@@ -213,15 +181,6 @@
   </wsdl:portType>
   <wsdl:binding name="CarServiceSoap" type="tns:CarServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="TestSaveCarInfo">
-      <soap:operation soapAction="http://tempuri.org/TestSaveCarInfo" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="SaveCarInfo">
       <soap:operation soapAction="http://tempuri.org/SaveCarInfo" style="document" />
       <wsdl:input>
@@ -288,15 +247,6 @@
   </wsdl:binding>
   <wsdl:binding name="CarServiceSoap12" type="tns:CarServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="TestSaveCarInfo">
-      <soap12:operation soapAction="http://tempuri.org/TestSaveCarInfo" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="SaveCarInfo">
       <soap12:operation soapAction="http://tempuri.org/SaveCarInfo" style="document" />
       <wsdl:input>

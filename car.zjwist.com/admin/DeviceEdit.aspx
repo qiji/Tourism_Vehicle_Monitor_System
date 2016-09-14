@@ -2,7 +2,6 @@
     CodeFile="DeviceEdit.aspx.cs" Inherits="admin_DeviceEdit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    
     <div class="mainNav">
         设备编辑 -
         <asp:Label ID="lbUnitName" runat="server" Text="Label"></asp:Label>
@@ -69,6 +68,20 @@
         </div>
         <div class="cilr">
             <asp:TextBox runat="server" ID="tbListenPort"></asp:TextBox>
+        </div>
+    </div>
+    <div class="ciline">
+        <div class="cill">
+            抓拍起始时间
+        </div>
+        <div class="cilr">
+            <asp:TextBox runat="server" ID="tbTimeBegin"></asp:TextBox>
+        </div>
+        <div class="cill">
+            抓拍结束时间
+        </div>
+        <div class="cilr">
+            <asp:TextBox runat="server" ID="tbtimeEnd"></asp:TextBox>
         </div>
     </div>
     <div class="ciline">

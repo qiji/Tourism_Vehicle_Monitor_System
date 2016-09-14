@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/admin.master" AutoEventWireup="true"
-    CodeFile="WelcomeScenic.aspx.cs" Inherits="admin_WelcomeScenic" %>
+    CodeFile="oldWelcomeScenic.aspx.cs" Inherits="admin_WelcomeScenic" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script src="http://cdn.bootcss.com/echarts/3.2.2/echarts.min.js"></script>
     <script src="http://echarts.baidu.com/asset/map/js/china.js"></script>
-    <%--<link href="../css/0908newmain.css" rel="stylesheet" type="text/css" />--%>
+    
+
     <script src="../js/screenfull.js" type="text/javascript"></script>
-    <script src="../js/jsdate.js" type="text/javascript"></script>
     <script>
         SetMenuSelect("liactdata");
         $("#divbody").height(document.documentElement.clientHeight);
@@ -14,65 +14,87 @@
     <div class="actdata">
         <div class="centertop">
             <div class="centertop1">
-                <div class="ct1datechange">
-                    <span>日期选择</span>
-                    <div>
-                        <input type='date' id="datechange"/>
+                <div class="ct1top">
+                    <div class="ct1topleft ct1topimage1">
+                        <div class="currdatatext">
+                            当前景区停留
+                        </div>
                     </div>
-                    <div class="divdatechange" onclick="datechangeonclick()">确定</div>
+                    <div class="ct1topright">
+                        <div class="currdatavalue" id="nowcount">
+                            888
+                        </div>
+                    </div>
                 </div>
-                
+                <div class="ct1top">
+                    <div class="ct1topleft ct1topimage2">
+                        <div class="currdatatext">
+                            当前饱和度
+                        </div>
+                    </div>
+                    <div class="ct1topright">
+                        <div class="currdatavalue" id="nowlevel">
+                            888
+                        </div>
+                    </div>
+                </div>
+                <div class="ct1bottom">
+                    <div class="scalebarbackground">
+                        <div class="scalebarflat">
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="centertop2">
                 <div class="ct2left">
                     <div class="ct2leftimg">
                         &nbsp;</div>
                     <div class="ct2text">
-                        <span class="ct2value" id="entercount"></span>
+                        <span class="ct2value" id="entercount">999</span>
                         <br />
                         <span class="ct2title">今日进入车辆</span>
                     </div>
                     <div class="ct2leftflag">
-                    &nbsp;
                     </div>
                 </div>
                 <div class="ct2right">
                     <div class="ct2rightimg">
                         &nbsp;</div>
                     <div class="ct2text">
-                        <span class="ct2value" id="staynightcount"></span>
+                        <span class="ct2value" id="staynightcount">999</span>
                         <br />
                         <span class="ct2title">昨日过夜车辆</span>
                     </div>
                     <div class="ct2rightflag">
-                    &nbsp;
                     </div>
                 </div>
             </div>
-            
+            <div class="centertop3">
+                <div class="ct3line">
+                </div>
+                <div class="ct3top">
+                    <div class="ct3imgtop">
+                    </div>
+                    <div class="ct3title">
+                        进入车辆
+                    </div>
+                    <div class="ct3valuetop" id="carennercount">
+                        333
+                    </div>
+                </div>
+                <div class="ct3top ct3bottom">
+                    <div class="ct3imgbottom">
+                    </div>
+                    <div class="ct3title">
+                        离开车辆
+                    </div>
+                    <div class="ct3valuebottom" id="carleavecount">
+                        333
+                    </div>
+                </div>
+            </div>
             <div class="centertop4">
-                <div class="ct2left">
-                    <div class="typecarimg">
-                        &nbsp;</div>
-                    <div class="ct2text">
-                        <span class="ct2value" id="typebycar"></span>
-                        <br />
-                        <span class="ct2title">轿车数量</span>
-                    </div>
-                    <div class="ct2leftflag"></div>
-                </div>
-                <div class="ct2right">
-                    <div class="typebusimg">
-                        &nbsp;</div>
-                    <div class="ct2text">
-                        <span class="ct2value" id="typebybus">0</span>
-                        <br />
-                        <span class="ct2title">客车数量</span>
-                    </div>
-                    <div class="ct2rightflag"></div>
-                </div>
-
-                <%--<div class="ct4line">
+                <div class="ct4line">
                 </div>
                 <div class="ct4content">
                     <div class="ct4imgleft">
@@ -101,7 +123,7 @@
                             1200
                         </div>
                     </div>
-                </div>--%>
+                </div>
             </div>
         </div>
         <div class="blankheight1">
@@ -121,13 +143,12 @@
             <div class="bodyrighttop">
                 <div class="charttop">
                     <div class="charttopleft charttitle1">
-                        各点位进出情况</div>
-                    <%--<div class="charttopright" onclick="ChartChange(0)">
-                    </div>--%>
+                        今日车辆变化</div>
+                    <div class="charttopright" onclick="ChartChange(0)">
+                    </div>
                 </div>
-                <div class="chartdiv" style="padding:50px">
-                    <table  class="deviceinfoexeclstyle" id="deviceinfoexcel" cellspacing="0" cellpadding="0"  >
-                    </table>
+                <div class="chartdiv" id="divchart1">
+                    右1
                 </div>
             </div>
             <div class="blankheight1">
@@ -135,9 +156,9 @@
             <div class="bodyrightcenter">
                 <div class="charttop">
                     <div class="charttopleft charttitle2">
-                        当日进入车辆</div>
-                   <%-- <div class="charttopright" onclick="ChartChange(1)">
-                    </div>--%>
+                        今日进出车辆</div>
+                    <div class="charttopright" onclick="ChartChange(1)">
+                    </div>
                 </div>
                 <div class="chartdiv" id="divchart2">
                     右2
@@ -148,9 +169,9 @@
             <div class="bodyrightbottom">
                 <div class="charttop">
                     <div class="charttopleft charttitle3">
-                        当日车辆来源</div>
-                    <%--<div class="charttopright" onclick="ChartChange(2)">
-                    </div>--%>
+                        今日车辆来源</div>
+                    <div class="charttopright" onclick="ChartChange(2)">
+                    </div>
                 </div>
                 <div class="chartdiv" id="divchart3">
                     右3
@@ -197,8 +218,6 @@
             }
         };
         
-
-
     </script>
     <script src="welcomeScenic.js" type="text/javascript"></script>
 </asp:Content>

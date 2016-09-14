@@ -395,7 +395,7 @@
             this.tbListenIP.Name = "tbListenIP";
             this.tbListenIP.Size = new System.Drawing.Size(98, 21);
             this.tbListenIP.TabIndex = 58;
-            this.tbListenIP.Text = "192.168.10.106";
+            this.tbListenIP.Text = "114.55.59.143";
             // 
             // label11
             // 

@@ -98,7 +98,9 @@
 
 
         var comefrom = document.getElementById("carcomefromexecl");
+        
         function CFaddRow(cellvalue1, cellvalue2) {
+            
             var newRow = comefrom.insertRow(); //创建新行
             var newCell1 = newRow.insertCell(); //创建新单元格
             newCell1.innerHTML = cellvalue1; //单元格内的内容
@@ -123,6 +125,13 @@
 
         function sumCarComeFrom(ChartCityName, ChartCityCount) {
             sumColumnChart = echarts.init(document.getElementById('sumChartComeFrom'));
+
+            for (var i = 0; i < 20; i++) {
+                while (ChartCityName[i] == null) {
+                    ChartCityCount.push("0");
+                    ChartCityName.push(" ");
+                }
+            }
 
             sumColumnChart.setOption({
                 color: ["#6fffdc"],
@@ -180,7 +189,13 @@
             {
                 name: '来源地',
                 type: 'bar',
-                barWidth: '60%',
+                barWidth: '40%',
+                itemStyle: {
+                    normal: {
+                        shadowBlur: 30,
+                        shadowColor: 'rgba(0, 255, 169,1)'
+                    }
+                },
                 data: ChartCityCount
             }]
             });
@@ -253,7 +268,13 @@
         {
             name: '来源地',
             type: 'bar',
-            barWidth: '60%',
+            barWidth: '40%',
+            itemStyle: {
+                normal: {
+                    shadowBlur: 30,
+                    shadowColor: 'rgba(0, 255, 169,1)'
+                }
+            },
             data: StayTime
         }]
             });
@@ -269,16 +290,12 @@
                          r: Math.random()
                      },
                      function (e) {
-                         sumCarComeFrom(e.CityName, e.ComeCount);
-                         sumChartStayTime(e.STCityName, e.StayTime);
-
                          for (var i = comefrom.rows.length - 1; i >= 0; i--) {
                              comefrom.deleteRow(0);
                          }
                          CFaddRow("来源地", "数量");
                          for (var i = 0; i < e.CityName.length; i++) {
                              CFaddRow(e.CityName[i], e.ComeCount[i]);
-
                          }
 
                          for (var i = stayhour.rows.length - 1; i >= 0; i--) {
@@ -287,8 +304,13 @@
                          SHaddRow("来源地", "时长");
                          for (var i = 0; i < e.STCityName.length; i++) {
                              SHaddRow(e.STCityName[i], e.StayTime[i]);
-
                          }
+
+
+                         sumCarComeFrom(e.CityName, e.ComeCount);
+                         sumChartStayTime(e.STCityName, e.StayTime);
+
+                         
                      })
         }
 

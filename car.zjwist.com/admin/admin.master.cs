@@ -12,7 +12,7 @@ public partial class admin_admin : System.Web.UI.MasterPage
         if (!IsPostBack)
         {
             UserCookieInfo uc = CookierManage.CookierAPI<UserCookieInfo>.GetCookierObject(UserCookieInfo.UserCookierName);
-            imgunitlogo.Src = "http://car.zjwist.com/uploadfile/160831/pcusercarlogo.png";
+            imgunitlogo.Src = uc.UnitLogo;
             spanusername.InnerText = uc.TrueName;
             devicecount.InnerText = "监控点" + uc.MonitorCount + "个";
             divTopDate.InnerText = DateTime.Now.ToString("yyyy-MM-dd");

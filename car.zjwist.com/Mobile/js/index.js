@@ -46,11 +46,11 @@ function GetData() {
             $(".titlesumpostion").css("height", "140px");
 //            }
           
-            $("#nowlevel").text(e.Level);
-            $(".cssbarflat").width(e.Level);
+//            $("#nowlevel").text(e.Level);
+//            $(".cssbarflat").width(e.Level);
            
-            $("#entercarcount").text(e.EnterCount);
-            $("#leavecarcount").text(e.LeaveCount);
+            //$("#entercarcount").text(e.EnterCount);
+            //$("#leavecarcount").text(e.LeaveCount);
 
             CharCityFrom(e.ChartCityName, e.ChartCityCount);
             CarEnterCount(e.ChartFivMinute, e.ChartEnterCount,e.MaxELCount);

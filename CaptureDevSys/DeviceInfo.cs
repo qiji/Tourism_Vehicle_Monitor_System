@@ -7,9 +7,9 @@ namespace CaptureDevSys
 {
     public class DeviceInfo
     {
-        public enum DeviceState:byte 
+        public enum DeviceState : byte
         {
-            正常状态=1,
+            正常状态 = 1,
             重启状态,
             注册状态,
         }
@@ -25,6 +25,7 @@ namespace CaptureDevSys
 
         public int DeviceID { get; set; }
         public string DeviceName { get; set; }
+        public string DeviceAddress { get; set; }
         public int UnitID { get; set; }
         public string UnitName { get; set; }
         public string LastTime { get; set; }
@@ -35,6 +36,8 @@ namespace CaptureDevSys
         public string ListenPort { get; set; }
         public string DeviceUserID { get; set; }
         public string DevicePwd { get; set; }
+        public string BeginTime { get; set; }
+        public string EndTime { get; set; }
 
         public int DVRLoginID { get; set; }
         public int DVRAlarmHandle { get; set; }
@@ -43,6 +46,36 @@ namespace CaptureDevSys
         public override string ToString()
         {
             return "(" + UnitName + ")" + DeviceName;
+        }
+
+        public DateTime beginTime
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(BeginTime))
+                {
+                    return DateTime.MinValue;
+                }
+                else
+                {
+                    return Convert.ToDateTime(BeginTime);
+                }
+            }
+        }
+
+        public DateTime endTime
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(EndTime))
+                {
+                    return DateTime.MinValue;
+                }
+                else
+                {
+                    return Convert.ToDateTime(EndTime);
+                }
+            }
         }
     }
 }

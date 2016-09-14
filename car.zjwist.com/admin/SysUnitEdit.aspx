@@ -65,8 +65,7 @@
                 车辆承载量</div>
             <div class="blkl_02" style="width: 29%">
                 <asp:TextBox ID="tbCarMaxCount" runat="server"></asp:TextBox>
-                <asp:Button ID="btnGetMaxCarCount" runat="server" Text="自动获取" 
-                    onclick="btnGetMaxCarCount_Click" />
+                <asp:Button ID="btnGetMaxCarCount" runat="server" Text="自动获取" OnClick="btnGetMaxCarCount_Click" />
             </div>
         </div>
         <div class="clear">
@@ -75,9 +74,26 @@
     <div class="block_list">
         <div class="blkl_left">
             <div class="blkl_01">
-                系数</div>
+                进入离开系数</div>
             <div class="blkl_02" style="width: 29%; float: left">
                 <asp:TextBox ID="tbcoefficient" runat="server"></asp:TextBox>
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="block_list">
+        <div class="blkl_left">
+            <div class="blkl_01">
+                企业APPID</div>
+            <div class="blkl_02" style="width: 29%; float: left">
+                <asp:TextBox ID="tbappid" runat="server"></asp:TextBox><asp:CheckBox ID="cbsend"
+                    Text="发送信息" runat="server" />
+            </div>
+             <div class="blkl_01">
+                接收人手机号</div>
+            <div class="blkl_02" style="width: 29%; float: left">
+                <asp:TextBox ID="tbmobile" runat="server" Width="300px"></asp:TextBox>
             </div>
         </div>
         <div class="clear">
@@ -104,7 +120,7 @@
         <div class="clear">
         </div>
     </div>
-    <div class="block_list">
+    <%--<div class="block_list">
         <div class="blkl_left">
             <div class="blkl_01" style="width: 10%; float: left">
                 右侧经度</div>
@@ -124,13 +140,14 @@
         </div>
         <div class="clear">
         </div>
-    </div>
+    </div>--%>
     <div class="block_list">
         <div class="blkl_left">
             <div class="blkl_01">
-                景区车辆数据归零时间点</div>
+                归零时间点</div>
             <div class="blkl_02" style="width: 29%; float: left">
                 <asp:TextBox ID="tbCarClearTime" runat="server"></asp:TextBox>
+                <asp:CheckBox ID="cbNight" Text="夜间车辆记录" runat="server" />
             </div>
             <div class="blkl_01">
                 单位Logo</div>
@@ -160,8 +177,9 @@
                 说明</div>
             <div class="conins_txt">
                 <p>
-                    其中通过时间，景区一般为几个小时，而县级目的地，一般以天来计算
+                    1.其中通过时间，景区一般为几个小时，而县级目的地，一般以天来计算
                     <br />
+                    2.本地车辆前缀设置不为空的时候，在实时数据和统计数据中会排除掉本地的车辆数据！！！
                 </p>
             </div>
         </div>

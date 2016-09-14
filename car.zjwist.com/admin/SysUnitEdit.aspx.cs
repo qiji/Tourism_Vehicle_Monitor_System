@@ -38,6 +38,8 @@ public partial class admin_SysUnitEdit : System.Web.UI.Page
             }
             if (UnitID == 0)
             {
+                tbPassTime.Text = "30";
+                tbcoefficient.Text = "1";
                 btnDelete.Visible = false;
             }
             else
@@ -50,14 +52,19 @@ public partial class admin_SysUnitEdit : System.Web.UI.Page
                 tbLnt.Text = dt.Rows[0]["Lnt"].ToString();
                 tbCarMaxCount.Text = dt.Rows[0]["CarMaxCount"].ToString();
                 tbcoefficient.Text = dt.Rows[0]["Coefficient"].ToString();
+                tbappid.Text = dt.Rows[0]["qyAppID"].ToString();
+                tbmobile.Text = dt.Rows[0]["Mobile"].ToString();
                 tbCarClearTime.Text = dt.Rows[0]["CarClearTime"].ToString();
                 UpLoadFile1.FileName = dt.Rows[0]["UnitLogo"].ToString();
                 tbcenterlat.Text = dt.Rows[0]["centerlat"].ToString();
                 tbcenterlnt.Text = dt.Rows[0]["centerlnt"].ToString();
                 tbcenterzoom.Text = dt.Rows[0]["zoom"].ToString();
-                tbrightlat.Text = dt.Rows[0]["rightlat"].ToString();
-                tbrightlnt.Text = dt.Rows[0]["rightlnt"].ToString();
-                tbrightzoom.Text = dt.Rows[0]["rightzoom"].ToString();
+                //tbrightlat.Text = dt.Rows[0]["rightlat"].ToString();
+                //tbrightlnt.Text = dt.Rows[0]["rightlnt"].ToString();
+                //tbrightzoom.Text = dt.Rows[0]["rightzoom"].ToString();
+                cbNight.Checked = Convert.ToBoolean(dt.Rows[0]["RecNight"]);
+                cbsend.Checked = Convert.ToBoolean(dt.Rows[0]["issend"]);
+
             }
         }
     }
@@ -83,14 +90,19 @@ public partial class admin_SysUnitEdit : System.Web.UI.Page
         tbPassTime.Text,
         tbCarMaxCount.Text,
         tbcoefficient.Text,
+        tbappid.Text,
+        cbsend.Checked ? "1" : "0",
+        tbmobile.Text,
         tbCarClearTime.Text,
         UpLoadFile1.FileName,
         tbcenterlat.Text,
         tbcenterlnt.Text,
         tbcenterzoom.Text,
-        tbrightlat.Text,
-        tbrightlnt.Text,
-        tbrightzoom.Text
+        "",
+        "",
+        "1",
+        cbNight.Checked?"1":"0",
+
         }, out sqlexec, out sqlresult);
         if (sqlexec)
         {
@@ -116,13 +128,13 @@ public partial class admin_SysUnitEdit : System.Web.UI.Page
         Response.Redirect(WebHint.HintURL);
 
     }
-    
+
     protected void btnGetMaxCarCount_Click(object sender, EventArgs e)
     {
         if (UnitID != 0)
         {
-            DataTable dt = MySQL.ExecProc("usp_Sys_UnitInfo_GetMaxCarCount", 
-                new string[] { UnitID.ToString() }, 
+            DataTable dt = MySQL.ExecProc("usp_Sys_UnitInfo_GetMaxCarCount",
+                new string[] { UnitID.ToString() },
                 out sqlexec, out sqlresult).Tables[0];
             tbCarMaxCount.Text = dt.Rows[0][0].ToString();
         }

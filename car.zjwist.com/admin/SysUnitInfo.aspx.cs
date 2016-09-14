@@ -52,15 +52,26 @@ public partial class admin_SysUnitInfo : System.Web.UI.Page
 
             di.DeviceID = Convert.ToInt32(dr["DeviceID"]);
             di.DeviceName = dr["DeviceName"].ToString();
+            di.DeviceAddress = dr["DeviceInstall"].ToString();
             di.UnitID = Convert.ToInt32(dr["UnitID"]);
             di.UnitName = dr["UnitName"].ToString();
-            di.LastTime = Convert.ToDateTime(dr["LastTime"]).ToString("yyyy-MM-dd HH:mm:ss");
+            if (string.IsNullOrEmpty(dr["LastTime"].ToString()))
+            {
+                di.LastTime = "2000-01-01";
+            }
+            else
+            {
+                di.LastTime = Convert.ToDateTime(dr["LastTime"]).ToString("yyyy-MM-dd HH:mm:ss");
+            }
             di.DeviceIP = dr["IPAddress"].ToString();
             di.DevicePort = dr["DevicePort"].ToString();
+
             di.ListenIP = dr["ListenIP"].ToString();
             di.ListenPort = dr["ListenPort"].ToString();
             di.DeviceUserID = dr["DeviceUserID"].ToString();
             di.DevicePwd = dr["DevicePwd"].ToString();
+            di.BeginTime = dr["shotbegintime"].ToString();
+            di.EndTime = dr["shotendtime"].ToString();
             di.DVRLoginID = -1;
             devlists.Add(di);
         }

@@ -99,30 +99,32 @@ public class CarService : System.Web.Services.WebService
 
 
         string CarDirectionDB = CarDirection == "19" ? "0" : "1";
+
+
         string imgurl = "";
         #region 图片保存
         if (!string.IsNullOrEmpty(CarImg))
         {
-            imgurl = Base64ImgSave(CarImg);
+            //imgurl = Base64ImgSave(CarImg);
             //图片服务器坏了！！！
 
-            //BFResult br = new BFResult();
-            //try
-            //{
-            //    byte[] bytes = Convert.FromBase64String(CarImg);
-            //    BigFileService bs = new BigFileService(CarEnum.BigServiceSysID);
-            //    br = bs.UpLoadALL("0", carno + "_" + PassTime + ".jpg", "image/jpeg", bytes, "1024", "768");
-            //    if (br.code == 1)
-            //    {
-            //        imgurl = "http://big.tourzj.com/bfinfo/GetFile/" + br.message;
-            //    }
-            //    //MemoryStream memStream = new MemoryStream(bytes);
-            //    //BinaryFormatter binFormatter = new BinaryFormatter();
-            //    //Image img = (Image)binFormatter.Deserialize(memStream);
-            //}
-            //catch
-            //{
-            //}
+            BFResult br = new BFResult();
+            try
+            {
+                byte[] bytes = Convert.FromBase64String(CarImg);
+                BigFileService bs = new BigFileService(CarEnum.BigServiceSysID);
+                br = bs.UpLoadALL("0", carno + "_" + PassTime + ".jpg", "image/jpeg", bytes, "1024", "768");
+                if (br.code == 1)
+                {
+                    imgurl = "http://big.tourzj.com/bfinfo/GetFile/" + br.message;
+                }
+                //MemoryStream memStream = new MemoryStream(bytes);
+                //BinaryFormatter binFormatter = new BinaryFormatter();
+                //Image img = (Image)binFormatter.Deserialize(memStream);
+            }
+            catch
+            {
+            }
         }
         #endregion
 

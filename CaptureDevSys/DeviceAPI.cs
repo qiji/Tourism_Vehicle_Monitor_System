@@ -35,6 +35,8 @@ namespace CaptureDevSys
             全部撤防
         }
 
+
+
         //显示设备信息或者是抓拍信息
         public delegate void ShowInfoData(InfoType infotype, DeviceInfo deviceinfo, string data);
         public event ShowInfoData OnShowInfoData;
@@ -131,7 +133,17 @@ namespace CaptureDevSys
             }
             DeviceInfo di = (DeviceInfo)dvs.ToArray()[0];
 
+            if (di.beginTime != DateTime.MinValue)
+            {
+                if (DateTime.Now < di.beginTime || DateTime.Now > di.endTime)
+                {
+                    return;
+                }
+            }
+
             CHCNetSDK.NET_ITS_PLATE_RESULT struITSPlateResult = new CHCNetSDK.NET_ITS_PLATE_RESULT();
+
+
 
             uint dwSize = (uint)Marshal.SizeOf(struITSPlateResult);
 
@@ -159,6 +171,9 @@ namespace CaptureDevSys
                 }
             }
 
+            //log4net.ILog log = log4net.LogManager.GetLogger("abc");
+            //log.Debug(Newtonsoft.Json.JsonConvert.SerializeObject(struITSPlateResult));
+
             //抓拍时间：年月日时分秒
             string strTimeYear = string.Format("{0:D4}", struITSPlateResult.struSnapFirstPicTime.wYear) + "-" +
                 string.Format("{0:D2}", struITSPlateResult.struSnapFirstPicTime.byMonth) + "-" +
@@ -168,8 +183,16 @@ namespace CaptureDevSys
                 + string.Format("{0:D2}", struITSPlateResult.struSnapFirstPicTime.bySecond);
 
             di.LastTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            //上传结果
-            string stringAlarm = di.DeviceName + "抓拍上传，" + "车牌：" + struITSPlateResult.struPlateInfo.sLicense + "，车辆序号：" + struITSPlateResult.struVehicleInfo.dwIndex;
+
+            // 对上传的车牌含颜色，对其做处理
+            string carNo = struITSPlateResult.struPlateInfo.sLicense;
+            if (carNo.Length > 7)
+            {
+                carNo = carNo.Substring(carNo.Length - 7, 7);
+            }
+
+
+
 
             //struITSPlateResult.struPlateInfo.sLicense 车牌号码 
 
@@ -189,6 +212,8 @@ namespace CaptureDevSys
                     CarType = "H";
                     break;
                 case 3:
+                case 4:
+                case 5:
                 case 9:
                     CarType = "X";
                     break;
@@ -218,19 +243,21 @@ namespace CaptureDevSys
             }
 
             //设置车辆方向
-            string CarDirection = struITSPlateResult.byDir == 1 ? "19" : "20";
+            //string CarDirection = struITSPlateResult.byDir == 1 ? "19" : "20";
 
+            //使用触发的车道号来判断方向
+            string CarDirection = struITSPlateResult.byDriveChan == 1 ? "19" : "20";
 
+            //上传结果
+            string stringAlarm = "[" + di.UnitName + "-" + di.DeviceAddress + "]抓拍上传，" + "车牌：" + carNo + "，方向：" + (CarDirection == "19" ? "进入" : "离开");
 
-            carservice.TestSaveCarInfo(di.DeviceName,
-                struITSPlateResult.struPlateInfo.sLicense,
+            carservice.SaveCarInfo(di.DeviceName,
+                                        carNo,
                                         strTimeYear,
                                         CarNocolor,
                                         CarType,
                                         CarDirection,
-                                        imgBase64,
-                                         struITSPlateResult.struPlateInfo.byEntireBelieve,
-                                         struITSPlateResult.struPlateInfo.byBelieve[0]);
+                                        imgBase64);
 
             if (OnShowInfoData != null)
             {
@@ -650,7 +677,7 @@ namespace CaptureDevSys
                 if (sendNotify)
                 {
                     //发送通知！！！
-                    carstatbyday.SendMsgForCarToAdmin("【" + deviceInfo.UnitName + "】的" + deviceInfo.DeviceName + " 设备重启失败,错误原因：" + CHCNetSDK.NET_DVR_GetLastError().ToString());
+                    carstatbyday.SendMsgForCarToAdmin("【" + deviceInfo.UnitName + "】的" + deviceInfo.UnitName + " 设备重启失败,错误原因：" + CHCNetSDK.NET_DVR_GetLastError().ToString());
                 }
 
                 deviceInfo.State = DeviceInfo.DeviceState.注册状态;
@@ -711,8 +738,17 @@ namespace CaptureDevSys
             {
                 return;
             }
-            //先预览，再抓拍！关闭预览
 
+            //不在抓拍时间范围内，不需要发送手动抓拍命令
+            if (deviceInfo.beginTime != DateTime.MinValue)
+            {
+                if (DateTime.Now < deviceInfo.beginTime || DateTime.Now > deviceInfo.endTime)
+                {
+                    return;
+                }
+            }
+
+            //先预览，再抓拍！关闭预览
             CHCNetSDK.NET_DVR_MANUALSNAP strucManualsnap = new CHCNetSDK.NET_DVR_MANUALSNAP();
 
             CHCNetSDK.NET_DVR_PLATE_RESULT struPlateResult = new CHCNetSDK.NET_DVR_PLATE_RESULT();
@@ -752,7 +788,7 @@ namespace CaptureDevSys
                 if (di.DVRAlarmHandle != DeviceInfo.Const_DeviceDisable || di.State == DeviceInfo.DeviceState.注册状态)
                 {
                     TimeSpan timespan = (TimeSpan)(DateTime.Now - Convert.ToDateTime(di.LastTime));
-                    if (timespan.Minutes >= 1)
+                    if (timespan.Minutes >= 15)
                     {
                         switch (di.State)
                         {

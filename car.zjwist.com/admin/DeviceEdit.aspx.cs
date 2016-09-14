@@ -45,7 +45,7 @@ public partial class admin_DeviceEdit : System.Web.UI.Page
                 dt = MySQL.ExecProc("usp_Sys_DeviceInfo_GetByDeviceID", new string[] { deviceid }, out sqlexec, out sqlresult).Tables[0];
                 lbDeviceID.Text = dt.Rows[0]["DeviceID"].ToString();
                 tbDeviceName.Text = dt.Rows[0]["DeviceName"].ToString();
-               
+
                 tbDeviceInstall.Text = dt.Rows[0]["DeviceInstall"].ToString();
                 tbIPAddress.Text = dt.Rows[0]["IPAddress"].ToString();
                 ddlDeviceArc.SelectedValue = dt.Rows[0]["DeviceArc"].ToString();
@@ -56,6 +56,11 @@ public partial class admin_DeviceEdit : System.Web.UI.Page
                 tbDevicePort.Text = dt.Rows[0]["DevicePort"].ToString();
                 tbListenIP.Text = dt.Rows[0]["ListenIP"].ToString();
                 tbListenPort.Text = dt.Rows[0]["ListenPort"].ToString();
+
+                tbTimeBegin.Text = dt.Rows[0]["shotbegintime"].ToString();
+                tbtimeEnd.Text = dt.Rows[0]["shotendtime"].ToString();
+
+
             }
         }
     }
@@ -85,7 +90,9 @@ public partial class admin_DeviceEdit : System.Web.UI.Page
                 tbListenIP.Text,
                 tbListenPort.Text,
                 tbDeviceUserID.Text,
-                tbDevicePWD.Text
+                tbDevicePWD.Text,
+                tbTimeBegin.Text,
+                tbtimeEnd.Text
         }, out sqlexec, out sqlresult);
 
         if (sqlexec)
