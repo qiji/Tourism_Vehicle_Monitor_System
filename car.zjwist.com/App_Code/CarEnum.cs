@@ -23,6 +23,7 @@ public class CarEnum
         景区常规算法 = 0,
         高速算法 = 1,
         景区双向算法 = 2,
+        景区反向算法 = 3,
     }
 
     public enum UnitType : int

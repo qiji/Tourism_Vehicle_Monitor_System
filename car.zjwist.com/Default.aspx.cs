@@ -51,7 +51,7 @@ public partial class _Default : System.Web.UI.Page
             }
             else
             {
-                Response.Redirect("admin/WelcomeScenic.aspx");
+                Response.Redirect("admin/WelCome.aspx");
             }
         }
     }

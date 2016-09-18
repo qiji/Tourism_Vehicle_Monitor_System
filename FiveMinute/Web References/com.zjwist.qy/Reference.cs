@@ -13,7 +13,7 @@
 // 
 #pragma warning disable 1591
 
-namespace CaptureDevSys.com.zjwist.qy {
+namespace FiveMinute.com.zjwist.qy {
     using System;
     using System.Web.Services;
     using System.Diagnostics;
@@ -43,7 +43,7 @@ namespace CaptureDevSys.com.zjwist.qy {
         
         /// <remarks/>
         public CarStatByDay() {
-            this.Url = global::CaptureDevSys.Properties.Settings.Default.CaptureDevSys_com_zjwist_qy_CarStatByDay;
+            this.Url = global::FiveMinute.Properties.Settings.Default.FiveMinute_com_zjwist_qy_CarStatByDay;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;

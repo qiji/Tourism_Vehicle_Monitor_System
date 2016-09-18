@@ -11,8 +11,9 @@ namespace PushCarStatInfo
         {
             try
             {
-                com.zjwist.qy.CarStatByDay cs = new com.zjwist.qy.CarStatByDay();
-                cs.StatByDay(3, DateTime.Now.ToString("yyyy-MM-dd"));
+                new com.zjwist.qy.CarStatByDay().StatCarInfoForSendMessage(DateTime.Now.ToString("yyyy-MM-dd"));
+                //com.zjwist.qy.CarStatByDay cs = new com.zjwist.qy.CarStatByDay();
+                //cs.StatByDay(3, DateTime.Now.ToString("yyyy-MM-dd"));
                 //Console.Write(ss);
                 //Console.ReadLine();
             }

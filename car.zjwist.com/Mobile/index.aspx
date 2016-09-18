@@ -355,26 +355,10 @@
             dateobj.parentElement.getElementsByTagName('span')[0].innerHTML = dateobj.value;
         }
 
-        //        function NextDateButtonSet() {
-        //            if ($("#datechooseinput").val() == getTodayBegin()) {
-        //                $("#dayCurrEnd").hide();
-        //            }
-        //            else {
-        //                $("#dayCurrEnd").show();
-        //            }
-        //        }
-
-        //        function currdatechange(dateobj) {
-        //            datechanged(dateobj);
-        ////            NextDateButtonSet();
-        //            GetData();
-        //        }
+     
     </script>
     <script src="js/JSEcharts.js" type="text/javascript"></script>
     <script src="js/index.js" type="text/javascript"></script>
-    <script>
-        
-       
-    </script>
+
 </body>
 </html>

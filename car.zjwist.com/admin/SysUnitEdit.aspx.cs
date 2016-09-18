@@ -39,7 +39,7 @@ public partial class admin_SysUnitEdit : System.Web.UI.Page
             if (UnitID == 0)
             {
                 tbPassTime.Text = "30";
-                tbcoefficient.Text = "1";
+                //tbcoefficient.Text = "1";
                 btnDelete.Visible = false;
             }
             else
@@ -51,7 +51,7 @@ public partial class admin_SysUnitEdit : System.Web.UI.Page
                 tbLat.Text = dt.Rows[0]["Lat"].ToString();
                 tbLnt.Text = dt.Rows[0]["Lnt"].ToString();
                 tbCarMaxCount.Text = dt.Rows[0]["CarMaxCount"].ToString();
-                tbcoefficient.Text = dt.Rows[0]["Coefficient"].ToString();
+                //tbcoefficient.Text = dt.Rows[0]["Coefficient"].ToString();
                 tbappid.Text = dt.Rows[0]["qyAppID"].ToString();
                 tbmobile.Text = dt.Rows[0]["Mobile"].ToString();
                 tbCarClearTime.Text = dt.Rows[0]["CarClearTime"].ToString();
@@ -64,7 +64,9 @@ public partial class admin_SysUnitEdit : System.Web.UI.Page
                 //tbrightzoom.Text = dt.Rows[0]["rightzoom"].ToString();
                 cbNight.Checked = Convert.ToBoolean(dt.Rows[0]["RecNight"]);
                 cbsend.Checked = Convert.ToBoolean(dt.Rows[0]["issend"]);
-
+                cbUsedLocal.Checked = Convert.ToBoolean(dt.Rows[0]["UsedLocal"]);
+                tbAESKey.Text = dt.Rows[0]["AESKey"].ToString();
+                tbToken.Text = dt.Rows[0]["Token"].ToString();
             }
         }
     }
@@ -89,7 +91,8 @@ public partial class admin_SysUnitEdit : System.Web.UI.Page
         tbLnt.Text,
         tbPassTime.Text,
         tbCarMaxCount.Text,
-        tbcoefficient.Text,
+        "1",
+        //tbcoefficient.Text,
         tbappid.Text,
         cbsend.Checked ? "1" : "0",
         tbmobile.Text,
@@ -102,7 +105,9 @@ public partial class admin_SysUnitEdit : System.Web.UI.Page
         "",
         "1",
         cbNight.Checked?"1":"0",
-
+        cbUsedLocal.Checked ? "1":"0",
+        tbToken.Text,
+        tbAESKey.Text
         }, out sqlexec, out sqlresult);
         if (sqlexec)
         {

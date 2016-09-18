@@ -4,10 +4,10 @@
         数据分析
     </div>
     <ul>
-        <li id="liactdata" class="menulevel2 mactdata"><a href="Welcome.aspx" runat="server"
-            id="aWelCome">实时数据</a></li>
-        <li id="lisumdata" class="menulevel2 msumdata"><a href="statinfo.aspx" runat="server"
-            id="aStatInfo">统计数据</a></li>
+        <li id="liactdata" class="menulevel2 mactdata"><a href="WelCome.aspx" id="aWelCome">
+            实时数据</a></li>
+        <li id="lisumdata" class="menulevel2 msumdata"><a href="statcomefrom.aspx" id="aStatInfo">
+            统计数据</a></li>
     </ul>
     <div class="menulevel1 mdataquery">
         数据查询

@@ -1,11 +1,11 @@
-﻿<%@ WebHandler Language="C#" Class="WelcomeScenic" %>
+﻿<%@ WebHandler Language="C#" Class="Welcome" %>
 
 using System;
 using System.Web;
 using System.Data;
 using System.Collections.Generic;
 
-public class WelcomeScenic : IHttpHandler
+public class Welcome : IHttpHandler
 {
 
     public void ProcessRequest(HttpContext context)
@@ -13,65 +13,44 @@ public class WelcomeScenic : IHttpHandler
         context.Response.ContentType = "text/plain";
         bool sqlexec;
         string sqlresult;
-        double coefficient;
-
 
         WSData wsd = new WSData();
+        UserCookieInfo uc = CookierManage.CookierAPI<UserCookieInfo>.GetCookierObject(UserCookieInfo.UserCookierName);
 
-        DataSet ds = MySQL.ExecProc("usp_WelcomeScenic_PC", new string[] { context.Request["UnitID"], context.Request["datechange"] }, out sqlexec, out sqlresult);
+
+        DataSet ds = MySQL.ExecProc("usp_Welcome",
+            new string[] { context.Request["UnitID"], context.Request["datechange"] },
+            out sqlexec, out sqlresult);
+
         wsd.UnitName = ds.Tables[0].Rows[0]["UnitName"].ToString();
         wsd.CityName = ds.Tables[0].Rows[0]["CityName"].ToString();
-        coefficient = Convert.ToDouble(ds.Tables[0].Rows[0]["Coefficient"]);
-        wsd.DeviceCount = Convert.ToInt32(ds.Tables[1].Rows[0]["DeviceCount"]);
-        wsd.CurrCount = Convert.ToInt32(ds.Tables[2].Rows[0]["CurrCount"]);
 
-        if (!string.IsNullOrEmpty(ds.Tables[7].Rows[0]["StayNightCount"].ToString()))
+        //wsd.EnterCount = ds.Tables[1].Rows[0]["EnterCount"].ToString();
+        //wsd.LeaveCount = ds.Tables[1].Rows[0]["LeaveCount"].ToString();
+
+        //wsd.StayNightCount = string.IsNullOrEmpty(ds.Tables[1].Rows[0]["StayNightCount"].ToString()) ? "0" : ds.Tables[2].Rows[0]["StayNightCount"].ToString();
+        wsd.StayNightCount = ds.Tables[1].Rows[0]["StayNightCount"].ToString();
+
+
+        int entercount = 0;
+        int XMin = 0; //X轴的分钟的刻度
+
+        foreach (DataRow dr in ds.Tables[2].Rows)
         {
-            wsd.StayNightCount = ds.Tables[7].Rows[0]["StayNightCount"].ToString();
-        }
-        else
-        {
-            wsd.StayNightCount = "0";
-        }
-
-        wsd.EnterCount = ds.Tables[3].Rows[0]["EnterCount"].ToString();
-        wsd.LeaveCount = ds.Tables[3].Rows[0]["LeaveCount"].ToString();
-
-        int entercount, leavecount, totalentercount, totalleavecount, chartcurrcount;
-        entercount = leavecount = totalentercount = totalleavecount = chartcurrcount = 0;
-
-        int j = 0;
-
-        foreach (DataRow dr in ds.Tables[4].Rows)
-        {
-
-
-            if (j % 2 == 0)
+            if (XMin % 2 == 0)
             {
                 wsd.ChartFivMinute.Add(dr["rTime"].ToString());
 
                 if (context.Request["datechange"] == DateTime.Now.ToString("yyyy-MM-dd") &&
                     Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " " + dr["rtime"].ToString() + ":00") > DateTime.Now)
                 {
-                    wsd.ChartEnterCount.Add(null);
-                    wsd.ChartLeaveCount.Add(null);
-                    wsd.ChartCurrCount.Add(null);
+                    wsd.ChartEnterCount.Add("");
+
                 }
                 else
                 {
-                    int leavecountchange = Convert.ToInt32(Math.Truncate(leavecount * coefficient));
-
                     wsd.ChartEnterCount.Add(entercount.ToString());
-                    wsd.ChartLeaveCount.Add(leavecountchange.ToString("F0"));
 
-                    if (chartcurrcount < 0)
-                    {
-                        wsd.ChartCurrCount.Add("0");
-                    }
-                    else
-                    {
-                        wsd.ChartCurrCount.Add(chartcurrcount.ToString("F0"));
-                    }
                 }
 
                 if (string.IsNullOrEmpty(dr["EnterCount"].ToString()))
@@ -82,14 +61,6 @@ public class WelcomeScenic : IHttpHandler
                 {
                     entercount = Convert.ToInt32(dr["EnterCount"]);
                 }
-                if (string.IsNullOrEmpty(dr["LeaveCount"].ToString()))
-                {
-                    leavecount = 0;
-                }
-                else
-                {
-                    leavecount = Convert.ToInt32(dr["LeaveCount"]);
-                }
 
             }
 
@@ -99,56 +70,42 @@ public class WelcomeScenic : IHttpHandler
                 {
                     entercount += Convert.ToInt32(dr["EnterCount"]);
                 }
-                if (!string.IsNullOrEmpty(dr["LeaveCount"].ToString()))
-                {
-                    leavecount += Convert.ToInt32(dr["LeaveCount"]);
-                }
             }
-            j++;
+            XMin++;
         }
 
-        foreach (DataRow dr in ds.Tables[5].Rows)
+        foreach (DataRow dr in ds.Tables[3].Rows)
         {
             wsd.ChartTypeName.Add(((CarEnum.CarType)Convert.ToInt32(dr["CarType"])).ToString());
-
             wsd.ChartTypeCount.Add(Convert.ToInt32(dr["TypeCount"]));
-
-
         }
 
         wsd.MapData = "{\"" + ds.Tables[0].Rows[0]["UnitName"].ToString() + "\":[" + ds.Tables[0].Rows[0]["lat"].ToString() + "," + ds.Tables[0].Rows[0]["lnt"].ToString() + "],"; ;
 
-        //int MoreFiveCity = 0;
-
-        int citycount = 0;
-        foreach (DataRow dr in ds.Tables[6].Rows)
+        //来源地
+        foreach (DataRow dr in ds.Tables[4].Rows)
         {
-            if (dr["CityName"].ToString() != "丽水")
-            {
 
-                if (Convert.ToInt32(dr["MCount"]) > 5 || citycount < 11)
-                {
-                    wsd.ChartCityName.Add(dr["CityName"].ToString());
-                    wsd.ChartCityCount.Add(Convert.ToInt32(dr["MCount"]));
-                }
-                else
-                {
-                    wsd.ChartCityName.Add(dr["CityName"].ToString());
-                    wsd.ChartCityCountLess.Add(Convert.ToInt32(dr["MCount"]));
-                }
-            }
+            wsd.ChartCityName.Add(dr["CityName"].ToString());
+            wsd.ChartCityCount.Add(Convert.ToInt32(dr["MCount"]));
+
             wsd.MapData += "\"" + dr["CityName"].ToString() + "\":[" + dr["lon"].ToString() + "," + dr["lat"].ToString() + "],";
-
-            citycount++;
         }
 
-        wsd.MapData = wsd.MapData.Substring(0, wsd.MapData.Length - 1) + "}";
 
-        foreach (DataRow dr in ds.Tables[8].Rows)
+        wsd.MapData = wsd.MapData.Substring(0, wsd.MapData.Length - 1) + "}";
+        //6各点位进出信息
+        foreach (DataRow dr in ds.Tables[5].Rows)
         {
             WSData.DeviceCountInfo di = new WSData.DeviceCountInfo();
-
-            di.DeviceName = dr["DeviceInstall"].ToString();
+            if ((CarEnum.UnitType)uc.UnitType == CarEnum.UnitType.县)
+            {
+                di.DeviceName = "<a href='ScenicShow.aspx?unitid=" + dr["UnitID"].ToString() + "' target='_blank' class='sceniclist'>" + dr["DeviceInstall"].ToString() + "</a>";
+            }
+            else
+            {
+                di.DeviceName = dr["DeviceInstall"].ToString();
+            }
             di.EnterCount = Convert.ToInt32(dr["DeviceEnterCount"]);
             di.LeaveCount = Convert.ToInt32(dr["DeviceLeaveCount"]);
 
@@ -173,16 +130,13 @@ public class WelcomeScenic : IHttpHandler
         public WSData()
         {
             ChartFivMinute = new List<string>();
-            ChartCurrCount = new List<string>();
+            //ChartCurrCount = new List<string>();
             ChartEnterCount = new List<string>();
-            ChartLeaveCount = new List<string>();
+
             ChartTypeName = new List<string>();
             ChartTypeCount = new List<int>();
             ChartCityName = new List<string>();
             ChartCityCount = new List<int>();
-            ChartCityNameLess = new List<string>();
-            ChartCityCountLess = new List<int>();
-
             deviceCountInfo = new List<DeviceCountInfo>();
 
         }
@@ -222,18 +176,12 @@ public class WelcomeScenic : IHttpHandler
         /// 5分钟的时间刻度！
         /// </summary>
         public List<string> ChartFivMinute { get; set; }
-        /// <summary>
-        /// 当前车辆变化
-        /// </summary>
-        public List<string> ChartCurrCount { get; set; }
+
         /// <summary>
         /// 进入车辆数量变化
         /// </summary>
         public List<string> ChartEnterCount { get; set; }
-        /// <summary>
-        /// 离开车辆数量变化
-        /// </summary>
-        public List<string> ChartLeaveCount { get; set; }
+
         /// <summary>
         /// 车辆类型
         /// </summary>
@@ -248,20 +196,9 @@ public class WelcomeScenic : IHttpHandler
         /// </summary>
         public List<string> ChartCityName { get; set; }
         /// <summary>
-        /// 来源地数量大于5
+        /// 来源地数量
         /// </summary>
         public List<int> ChartCityCount { get; set; }
-
-        /// <summary>
-        /// 来源地名称
-        /// </summary>
-        public List<string> ChartCityNameLess { get; set; }
-        /// <summary>
-        /// 来源地数量小于5
-        /// </summary>
-        public List<int> ChartCityCountLess { get; set; }
-
-
         /// <summary>
         /// 地图的数据！
         /// </summary>

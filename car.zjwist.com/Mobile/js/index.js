@@ -6,56 +6,26 @@ var sumColumnChart;
 var sumlineChart;
 var sumpieChart;
 
-
-//    $("#dayCurrBefor").on("click", function () {
-//        var daynow = $("#datechooseinput").val();
-//        var predate = getTodayBefore(daynow);
-//        $("#datechooseinput").val(predate);
-//        $("#datechoosespanshow").html(predate);
-//        NextDateButtonSet();
-//        GetData();
-//    });
-
-    
     $("#dayCurrEnd").on("click", function () {
-//        var daynow = $("#datechooseinput").val();
-//        $("#datechooseinput").val(getTodayAfter(daynow));
-//        $("#datechoosespanshow").html(getTodayAfter(daynow));
-//        NextDateButtonSet();
+
         GetData();
     });
 
-    
-
 function GetData() {
-    $.getJSON("ajax/WelComeMobile.ashx",
+    $.getJSON("../ajax/WelCome.ashx",
         {
             UnitID: unitid,
-            beginday:$("#datechooseinput").val(),
+            datechange:$("#datechooseinput").val(),
             r: Math.random()
         },
         function (e) {
             document.title= e.UnitName + "旅游车辆监测统计分析系统";
-            
-//            $("#saturation").hide();
-//            if($("#datechoosespanshow").html()==getTodayBegin()){
-//                $("#saturation").show();
-//                $(".titlesumpostion").css("height", "220px");
-//            }
-//            else{
+
             $(".titlesumpostion").css("height", "140px");
-//            }
-          
-//            $("#nowlevel").text(e.Level);
-//            $(".cssbarflat").width(e.Level);
-           
-            //$("#entercarcount").text(e.EnterCount);
-            //$("#leavecarcount").text(e.LeaveCount);
+
 
             CharCityFrom(e.ChartCityName, e.ChartCityCount);
             CarEnterCount(e.ChartFivMinute, e.ChartEnterCount,e.MaxELCount);
-//            CarLeaveCount(e.ChartFivMinute,e.ChartLeaveCount,e.MaxELCount);
-//            CarCountChange(e.ChartFivMinute,e.ChartCurrCount);
 
             var entercount = 0;
             for(var i = 0; i<e.ChartTypeName.length;i++) {
@@ -396,38 +366,33 @@ function GetData() {
     //获取查询数据(来源统计，车型统计)
     function DoStat1()
     {
-        var ProName = [];
-        var ProCount = [];
-
-        $.getJSON("ajax/GetCarStatInfo.ashx",
-                {
-                    type:1,
-                    BeginDate: $("#dateBegin").val(),
-                    EndDate: $("#dateEnd").val(),
-                    AreaType: sumareatype,
-                    UnitID: unitid,
-                    r: Math.random()
-                },
-                function(e){
-                    sumCarComeFrom(e.CityName,e.ComeCount);
-                    sumChartStayTime(e.STCityName,e.StayTime);
+        $.getJSON("../ajax/StatGetCarComeFrom.ashx",
+        {
+            BeginDate: $("#dateBegin").val(),
+            EndDate: $("#dateEnd").val(),
+            AreaType: sumareatype,
+            UnitID: unitid,
+            r: Math.random()
+        },
+        function(e){
+            sumCarComeFrom(e.CityName,e.ComeCount);
+            sumChartStayTime(e.STCityName,e.StayTime);
                    
-                })
+        });
     }
 
-    function DoStat3()
-    {
-         $.getJSON("ajax/GetCarStatInfo.ashx",
-                {
-                    type:3,
-                    BeginDate: $("#datetypebegin").val(),
-                    EndDate: $("#datetypeend").val(),
-                    UnitID: unitid,
-                    r: Math.random(),
-                },
-                function(e){
-                    sumChartCarType(e.CarType,e.TypeCount);
-                })
+    function DoStat3() {
+
+        $.getJSON("../ajax/StatGetCarTypeInfo.ashx",
+            {
+                BeginDate: $("#datetypebegin").val(),
+                EndDate: $("#datetypeend").val(),
+                UnitID: unitid,
+                r: Math.random(),
+            },
+            function(e){
+                sumChartCarType(e.CarType,e.TypeCount);
+            });
     }
 
     //获取查询数据(流量统计)
@@ -437,9 +402,9 @@ function GetData() {
         {
             monthend = $("#monthend").val()
         }
-        $.getJSON("ajax/GetCarStatInfo.ashx",
+
+        $.getJSON("../ajax/StatGetCarFlowInfo.ashx",
                 {
-                    type:2,
                     MonthBegin:$("#monthbegin").val(),
                     MonthEnd:monthend,
                     UnitID: unitid,

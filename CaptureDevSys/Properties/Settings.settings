@@ -5,8 +5,5 @@
     <Setting Name="CaptureDevSys_com_zjwist_car_CarService" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://car.zjwist.com/carservice.asmx</Value>
     </Setting>
-    <Setting Name="CaptureDevSys_com_zjwist_qy_CarStatByDay" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://qy.zjwist.com/ws/carstatbyday.asmx</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

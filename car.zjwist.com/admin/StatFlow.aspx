@@ -275,7 +275,7 @@
                 if (j==monthbegin)
                 {
                     monthbeginhtml += "<div class='statyearmonthbegin statformatdateselect' onclick='monthbeginonclick("+j+",this)'>" + j + "月 </div>";
-                    monthendhtml += "<div class='statyearmonthend statformatdateselect' onclick='monthendonclick("+j+",this)'>" + j + "月 </div>";
+                    monthendhtml += "<div class='statyearmonthend monthendselect' onclick='monthendonclick(" + j + ",this)'>" + j + "月 </div>";
                 }
                 else
                 {

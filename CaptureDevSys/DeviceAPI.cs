@@ -61,7 +61,8 @@ namespace CaptureDevSys
 
         List<DeviceInfo> devicelists;
         private com.zjwist.car.CarService carservice = new com.zjwist.car.CarService();
-        private com.zjwist.qy.CarStatByDay carstatbyday = new com.zjwist.qy.CarStatByDay();
+        //不需要发送通知，在5分钟的数据处理中，会发送通知！
+        //private com.zjwist.qy.CarStatByDay carstatbyday = new com.zjwist.qy.CarStatByDay();
 
         public DeviceAPI()
         {
@@ -654,7 +655,7 @@ namespace CaptureDevSys
         /// 设备重启
         /// </summary>
         /// <param name="deviceInfo"></param>
-        public void DeviceReboot(DeviceInfo deviceInfo, bool sendNotify = false)
+        public void DeviceReboot(DeviceInfo deviceInfo)
         {
             if (DeviceIsNull(deviceInfo))
             {
@@ -673,12 +674,12 @@ namespace CaptureDevSys
                 DeviceUnRegist(deviceInfo);
 
 
-
-                if (sendNotify)
-                {
-                    //发送通知！！！
-                    carstatbyday.SendMsgForCarToAdmin("【" + deviceInfo.UnitName + "】的" + deviceInfo.UnitName + " 设备重启失败,错误原因：" + CHCNetSDK.NET_DVR_GetLastError().ToString());
-                }
+                //不需要发送通知！
+                //if (sendNotify)
+                //{
+                //    //发送通知！！！
+                //    carstatbyday.SendMsgForCarToAdmin("【" + deviceInfo.UnitName + "】的" + deviceInfo.UnitName + " 设备重启失败,错误原因：" + CHCNetSDK.NET_DVR_GetLastError().ToString());
+                //}
 
                 deviceInfo.State = DeviceInfo.DeviceState.注册状态;
 
@@ -796,7 +797,7 @@ namespace CaptureDevSys
                                 DeviceManualSpan(di);
                                 break;
                             case DeviceInfo.DeviceState.重启状态:
-                                DeviceReboot(di, true);
+                                DeviceReboot(di);
                                 break;
                             case DeviceInfo.DeviceState.注册状态:
                                 DeviceRegist(di);

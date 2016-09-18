@@ -92,7 +92,6 @@
 
         }
 
-
         function sumChartCarType(CarType, TypeCount) {
             
             

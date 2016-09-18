@@ -157,13 +157,22 @@ function CharCityFrom(){
 //    $(".charttitle"+divorder).html("今日车辆来源");
     var CharCityFrom = echarts.init(document.getElementById("divchart3"));
 
+
+    var cityname = [];
+    var citycount = [];
+
     for (var i = 0; i < 10; i++) {
         
-        while (CarData.ChartCityName[i] == null) {
-            CarData.ChartCityCount.push("0");
-            CarData.ChartCityName.push(" ");
+        if (CarData.ChartCityName.length < i)
+        {
+           cityname.push("");
+            citycount.push("");
         }
-        
+        else
+        {
+            cityname.push(CarData.ChartCityName[i]);
+            citycount.push(CarData.ChartCityCount[i]);
+        }
     }
    
     
@@ -192,7 +201,7 @@ function CharCityFrom(){
         xAxis : [
         {
             type : 'category',
-            data : CarData.ChartCityName,
+            data : cityname,
             axisTick: {
                 alignWithLabel: true
             },
@@ -231,7 +240,7 @@ function CharCityFrom(){
                     shadowColor: 'rgba(0, 255, 169,1)'
                 }
             },
-            data:CarData.ChartCityCount
+            data:citycount
         }]
     });
 }
@@ -297,24 +306,17 @@ function ChartShowMap() {
         //如果省外数据，使用迁徙图，如果是省内数据，使用散点图！
         //本市的数据不计算在内
         if (CarData.ChartCityName[i] != CarData.CityName) {
-            ComeFromDataMore.push([{ name: CarData.ChartCityName[i] }, { name: CarData.UnitName, value: CarData.ChartCityCount[i]}]);
+            if (i<10)
+            {
+                 ComeFromDataLess.push([{ name: CarData.ChartCityName[i] }, { name: CarData.UnitName, value: CarData.ChartCityCount[i]}]);
+            }
+            else
+            {
+                ComeFromDataMore.push([{ name: CarData.ChartCityName[i] }, { name: CarData.UnitName, value: CarData.ChartCityCount[i]}]);
+            }
         }
     }
-    
-    for (var i = 0; i < CarData.ChartCityNameLess.length; i++) {
-        //处理：省外数据和省内数据！
-        //如果省外数据，使用迁徙图，如果是省内数据，使用散点图！
-        //本市的数据不计算在内
-        if (CarData.ChartCityNameLess[i] != CarData.CityName) {
-            if (CarData.ChartCityName.Length < 10) {
-                ComeFromDataMore.push([{ name: CarData.ChartCityNameLess[i] }, { name: CarData.UnitName, value: CarData.ChartCityCountLess[i]}]);
-            }
-            else {
-                ComeFromDataLess.push([{ name: CarData.ChartCityNameLess[i] }, { name: CarData.UnitName, value: CarData.ChartCityCountLess[i]}]);
-            }
-            
-        }
-    }
+
 
     var mapseries = [];
 
@@ -337,7 +339,7 @@ function ChartShowMap() {
 				            curveness: 0.2
 				        }
 				    },
-				    data: convertData(ComeFromDataMore)
+				    data: convertData(ComeFromDataLess)
 				},
                 {
 				    name: '',
@@ -360,7 +362,7 @@ function ChartShowMap() {
 				            color:'gray'
 				        }
 				    },
-				    data: ComeFromDataLess.map(function (dataItem) {
+				    data: ComeFromDataMore.map(function (dataItem) {
 				        return {
 				            name: dataItem[0].name,
 				            value: MapData[dataItem[0].name].concat([dataItem[1].value])
@@ -388,7 +390,7 @@ function ChartShowMap() {
 				            color: '#ffa022'
 				        }
 				    },
-				    data: ComeFromDataMore.map(function (dataItem) {
+				    data: ComeFromDataLess.map(function (dataItem) {
 				        return {
 				            name: dataItem[0].name,
 				            value: MapData[dataItem[0].name].concat([dataItem[1].value])
@@ -436,26 +438,26 @@ function ChartShowMap() {
                 }
             }
         },
-        series: mapseries,
+        series: mapseries
     });
 }
 
 
 function GetData() {
-    $.getJSON("WelcomeScenic.ashx", {
+    $.getJSON("../ajax/Welcome.ashx", {
         unitid: unitid,
         datechange:$("#datechange").val(),
         r:Math.random()
     }, function (data) {
         CarData = data;
 
-        $("#nowcount").text(CarData.CurrCount);
+//        $("#nowcount").text(CarData.CurrCount);
 //        $("#nowlevel").text(CarData.Level);
 //        $(".scalebarflat").width(CarData.Level);
         
         $("#staynightcount").text(CarData.StayNightCount);
-        $("#carennercount").text(CarData.EnterCount);
-        $("#carleavecount").text(CarData.LeaveCount);
+//        $("#carennercount").text(CarData.EnterCount);
+//        $("#carleavecount").text(CarData.LeaveCount);
 
         var entercount = 0;
 

@@ -30,21 +30,7 @@ public class CarService : System.Web.Services.WebService
         //InitializeComponent(); 
     }
 
-    //自己车辆信息保存测试
-    //[WebMethod]
-    //public string TestSaveCarInfo(string DeviceName,
-    //    string CarNo,
-    //    string PassTime,
-    //    string NoColor,
-    //    string CarType,
-    //    string CarDirection,
-    //    string CarImg,
-    //    int Believe1,
-    //    int Believe2)
-    //{
-    //    MySQL.ExecProc("usp_test_save", new string[] { "车牌号：" + CarNo + " 置信度：" + Believe1.ToString() + "|" + Believe2.ToString() }, out SQLExec, out SQLResult);
-    //    return "保存成功";
-    //}
+
 
     private string Base64ImgSave(string base64img)
     {
@@ -149,19 +135,47 @@ public class CarService : System.Web.Services.WebService
         }
     }
 
-    //单个景点旅游车辆监测情况
+    /// <summary>
+    /// 获得所有需要发送早间通知的单位
+    /// </summary>
+    /// <returns></returns>
     [WebMethod]
-    public DataSet CarStatByDay(int unitid, string carday)
+    public DataTable SendMessage_GetUnitInfo()
+    {
+        return MySQL.ExecProc("usp_Sys_UnitInfo_GetBySendMessage", new string[] { }, out SQLExec, out SQLResult).Tables[0];
+    }
+
+    /// <summary>
+    /// 设置设别率
+    /// </summary>
+    [WebMethod]
+    public void SendMessage_SetRecoReate()
+    {
+        MySQL.ExecProc("usp_Car_RecoRate_Save", new string[] { }, out SQLExec, out SQLResult);
+    }
+
+
+    /// <summary>
+    /// 前一天的车辆监测汇总情况
+    /// </summary>
+    /// <param name="unitid"></param>
+    /// <param name="carday"></param>
+    /// <returns></returns>
+    [WebMethod]
+    public DataSet SendMessage_StatByUnitID(int unitid, string carday)
     {
         return MySQL.ExecProc("usp_Car_StatByDay", new string[] { unitid.ToString(), carday }, out SQLExec, out SQLResult);
     }
 
-    //日志,识别率及各个点位设备监控情况
+    /// <summary>
+    /// 日志,识别率及各个点位设备监控情况
+    /// </summary>
+    /// <param name="unitid"></param>
+    /// <param name="logday"></param>
+    /// <returns></returns>
     [WebMethod]
-    public DataSet CarLogByDay(int unitid, string logday)
+    public DataSet SendMessage_Log(int unitid, string logday)
     {
-        MySQL.ExecProc("usp_Car_RecoRate_Save", new string[] { }, out SQLExec, out SQLResult);
-
         return MySQL.ExecProc("usp_Car_LogByDay", new string[] { unitid.ToString(), logday }, out SQLExec, out SQLResult);
     }
 
@@ -169,7 +183,7 @@ public class CarService : System.Web.Services.WebService
     /// 清除3个月以上的图片数据！
     /// </summary>
     [WebMethod]
-    public void CarImageDelete()
+    public void SendMessage_CarImageDelete()
     {
         BFService.BigFileService bs = new BigFileService(CarEnum.BigServiceSysID);
 
@@ -206,7 +220,10 @@ public class CarService : System.Web.Services.WebService
         MySQL.ExecProc("usp_Car_SaveTemp_Proc", new string[] { }, out SQLExec, out SQLResult);
     }
 
-
+    /// <summary>
+    /// 30分钟没有数据的监控点位数据
+    /// </summary>
+    /// <returns></returns>
     [WebMethod]
     public DataTable GetWithOutInfo()
     {
@@ -214,10 +231,20 @@ public class CarService : System.Web.Services.WebService
             new string[] { }, out SQLExec, out SQLResult).Tables[0];
     }
 
+    /// <summary>
+    /// 设置监控点位异常
+    /// </summary>
+    /// <param name="DeviceName"></param>
     [WebMethod]
     public void SetDeviceError(string DeviceName)
     {
         MySQL.ExecProc("usp_Sys_DeviceInfo_SetError", new string[] { DeviceName }, out SQLExec, out SQLResult);
+    }
+
+    [WebMethod]
+    public DataTable GetUnitInfoByUnitID(string unitid)
+    {
+        return MySQL.ExecProc("usp_sys_unitinfo_getbyunitid", new string[] { unitid }, out SQLExec, out SQLResult).Tables[0];
     }
 }
 

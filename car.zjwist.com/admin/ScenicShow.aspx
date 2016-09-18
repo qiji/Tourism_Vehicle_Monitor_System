@@ -1,16 +1,15 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/admin.master" AutoEventWireup="true"
-    CodeFile="WelcomeScenic.aspx.cs" Inherits="admin_WelcomeScenic" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/admin.master" AutoEventWireup="true" CodeFile="ScenicShow.aspx.cs" Inherits="admin_ScenicShow" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script src="http://cdn.bootcss.com/echarts/3.2.2/echarts.min.js"></script>
     <script src="http://echarts.baidu.com/asset/map/js/china.js"></script>
-    <%--<link href="../css/0908newmain.css" rel="stylesheet" type="text/css" />--%>
     <script src="../js/screenfull.js" type="text/javascript"></script>
     <script src="../js/jsdate.js" type="text/javascript"></script>
     <script>
         SetMenuSelect("liactdata");
         $("#divbody").height(document.documentElement.clientHeight);
     </script>
+    
     <div class="actdata">
         <div class="centertop">
             <div class="centertop1">
@@ -71,37 +70,6 @@
                     </div>
                     <div class="ct2rightflag"></div>
                 </div>
-
-                <%--<div class="ct4line">
-                </div>
-                <div class="ct4content">
-                    <div class="ct4imgleft">
-                    </div>
-                    <div class="ct4table">
-                        <div class="ct4title">
-                            轿车
-                        </div>
-                    </div>
-                    <div class="ct4table">
-                        <div class="ct4value" id="typebycar">
-                            1200
-                        </div>
-                    </div>
-                </div>
-                <div class="ct4content ct4contentright">
-                    <div class="ct4imgright">
-                    </div>
-                    <div class="ct4table">
-                        <div class="ct4title">
-                            客车
-                        </div>
-                    </div>
-                    <div class="ct4table">
-                        <div class="ct4value" id="typebybus">
-                            1200
-                        </div>
-                    </div>
-                </div>--%>
             </div>
         </div>
         <div class="blankheight1">
@@ -122,8 +90,6 @@
                 <div class="charttop">
                     <div class="charttopleft charttitle1">
                         各点位进出情况</div>
-                    <%--<div class="charttopright" onclick="ChartChange(0)">
-                    </div>--%>
                 </div>
                 <div class="chartdiv" style="padding:50px">
                     <table  class="deviceinfoexeclstyle" id="deviceinfoexcel" cellspacing="0" cellpadding="0"  >
@@ -158,7 +124,7 @@
             </div>
         </div>
     </div>
-    <script src="../js/screenfull.js" type="text/javascript"></script>
+   
     <script>
 
         var unitid = "<%=unitid %>";
@@ -166,39 +132,13 @@
         var centerlnt = "<%=centerlnt %>";
         var unitzoom = "<%=unitzoom %>";
 
-        var rightlat = "<%=rightlat %>";
-        var rightlnt = "<%=rightlnt %>";
-        var rightunitzoom = "<%=rightunitzoom %>";
 
-        var IsFullScreen = 0;
-        $(".changescreenmode").on("click", function () {
-
-            IsFullScreen = 1 - IsFullScreen;
-            ShowInfo();
-
-        });
-
-        function ShowInfo() {
-            var elem = document.getElementsByClassName('form1')[0];
-
-            if (IsFullScreen == 1) {
-                $(".leftmenu").hide();
-                $(".rightbody").css("width", "100%");
-                screenfull.request(elem);
-                $("#divbody").height($("#divbody").height() + 100);
-                $(".changescreenmode").css("background-image", "url(../images/screenrestore.png)");
-            }
-            else {
-                screenfull.exit();
-                $(".leftmenu").show();
-                $(".rightbody").css("width", "87.5%");
-                $("#divbody").height($("#divbody").height() - 100);
-                $(".changescreenmode").css("background-image", "url(../images/screenfull.png)");
-            }
-        };
-        
-
+        $(".leftmenu").hide();
+        $(".rightbody").css("width", "100%");
+       
+        $("#divbody").height($("#divbody").height() + 100);
 
     </script>
     <script src="welcomeScenic.js" type="text/javascript"></script>
 </asp:Content>
+

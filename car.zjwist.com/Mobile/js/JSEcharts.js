@@ -399,9 +399,26 @@ function CarCountChange(ChartFivMinute,CurrCarCount) {
 function CharCityFrom(ChartCityName, ChartCityCount){
         var pieChart = echarts.init(document.getElementById('divCharCityFrom'));
         
+      
+        var cityname = [];
+        var citycount = [];
 
-        ChartCityName.reverse();
-        ChartCityCount.reverse();
+        for (var i = 0; i < 10; i++) {
+        
+            if (ChartCityName.length < i)
+            {
+                cityname.push("");
+                citycount.push("");
+            }
+            else
+            {
+                cityname.push(ChartCityName[i]);
+                citycount.push(ChartCityCount[i]);
+            }
+        }
+
+        cityname.reverse();
+        citycount.reverse();
 
         pieChart.setOption({
         color: getcityfromcolor(),
@@ -443,7 +460,7 @@ function CharCityFrom(ChartCityName, ChartCityCount){
         yAxis : [
         {
             type : 'category',
-            data : ChartCityName,
+            data : cityname,
             
             axisTick: {
                 alignWithLabel: true
@@ -468,7 +485,7 @@ function CharCityFrom(ChartCityName, ChartCityCount){
                     shadowColor: getshadowcolor()
                 }
             },
-            data:ChartCityCount
+            data:citycount
         }]
         });
 }

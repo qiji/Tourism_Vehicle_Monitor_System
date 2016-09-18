@@ -24,7 +24,7 @@
         <div class="container">
         <div class="row">
             <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-xs-12">
-            <span>古堰画乡旅游车辆检测</span>
+            <span>旅游车辆监测统计分析系统</span>
             </div>
         </div>
         </div>
@@ -80,12 +80,14 @@
                     $("#alertNote").html("用户名或者密码错误");
                 }
                 else {
-                    if (data == "0") {
-                        window.location.href = "index.aspx";
-                    }
-                    else if (data == "1") {
-                        window.location.href = "county.aspx";
-                    }
+                    window.location.href = "index.aspx";
+
+//                    if (data == "0") {
+//                        window.location.href = "index.aspx";
+//                    }
+//                    else if (data == "1") {
+//                        window.location.href = "county.aspx";
+//                    }
                 }
             })
         }

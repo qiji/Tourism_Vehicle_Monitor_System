@@ -5,12 +5,13 @@ using System.Web;
 using System.Collections.Generic;
 using System.Data;
 
-public class StatGetCarComeFrom : IHttpHandler {
+public class StatGetCarComeFrom : IHttpHandler
+{
 
     public void ProcessRequest(HttpContext context)
     {
         context.Response.ContentType = "text/plain";
-        
+
 
         bool sqlexec;
         string sqlresult;
@@ -28,7 +29,7 @@ public class StatGetCarComeFrom : IHttpHandler {
         foreach (DataRow dr in ds.Tables[0].Rows)
         {
             csd.CityName.Add(dr["DestName"].ToString());
-            csd.ComeCount.Add(dr["ComeCount"].ToString());   
+            csd.ComeCount.Add(dr["ComeCount"].ToString());
         }
 
         ds.Tables[1].DefaultView.Sort = "StayTime desc";
@@ -40,7 +41,7 @@ public class StatGetCarComeFrom : IHttpHandler {
 
         }
         context.Response.Write(Newtonsoft.Json.JsonConvert.SerializeObject(csd));
-        
+
     }
 
     public class CSData
@@ -71,12 +72,13 @@ public class StatGetCarComeFrom : IHttpHandler {
         /// </summary>
         public List<string> StayTime { get; set; }
     }
-        public bool IsReusable
+
+    public bool IsReusable
+    {
+        get
         {
-            get
-            {
-                return false;
-            }
+            return false;
         }
-    
+    }
+
 }

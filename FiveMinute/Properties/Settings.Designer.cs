@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CaptureDevSys.Properties {
+namespace FiveMinute.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -27,9 +27,19 @@ namespace CaptureDevSys.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("http://car.zjwist.com/carservice.asmx")]
-        public string CaptureDevSys_com_zjwist_car_CarService {
+        public string FiveMinute_com_zjwist_car_CarService {
             get {
-                return ((string)(this["CaptureDevSys_com_zjwist_car_CarService"]));
+                return ((string)(this["FiveMinute_com_zjwist_car_CarService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://qy.zjwist.com/ws/carstatbyday.asmx")]
+        public string FiveMinute_com_zjwist_qy_CarStatByDay {
+            get {
+                return ((string)(this["FiveMinute_com_zjwist_qy_CarStatByDay"]));
             }
         }
     }

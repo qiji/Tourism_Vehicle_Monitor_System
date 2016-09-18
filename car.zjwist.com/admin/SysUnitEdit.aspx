@@ -6,156 +6,110 @@
     <div class="mainNav">
         单位信息
     </div>
-    <div class="block_list">
-        <div class="blkl_left">
-            <div class="blkl_01">
-                上级单位</div>
-            <div class="blkl_02" style="width: 29%; float: left">
-                <asp:Label ID="lbpName" runat="server" Text="lbpName"></asp:Label>
-            </div>
-            <div class="blkl_01">
-                单位类型</div>
-            <div class="blkl_02" style="width: 29%">
-                <asp:Label ID="lbUnitType" runat="server" Text="lbUnitType"></asp:Label>
-            </div>
+    <div class="ciline" style="height: 50px">
+        <div class="cill">
+            上级单位</div>
+        <div class="cilr">
+            <asp:Label ID="lbpName" runat="server" Text="lbpName"></asp:Label>
         </div>
-        <div class="clear">
+        <div class="cill">
+            单位类型</div>
+        <div class="cilr">
+            <asp:Label ID="lbUnitType" runat="server" Text="lbUnitType"></asp:Label>
         </div>
-    </div>
-    <div class="block_list">
-        <div class="blkl_left">
-            <div class="blkl_01">
-                单位名称</div>
-            <div class="blkl_02" style="width: 29%; float: left">
-                <asp:TextBox ID="tbUnitName" runat="server"></asp:TextBox>
-            </div>
-            <div class="blkl_01">
-                地区车辆前缀</div>
-            <div class="blkl_02" style="width: 29%">
-                <asp:TextBox ID="tbCarNoPre" runat="server"></asp:TextBox>
-            </div>
+        <div class="cill">
+            单位名称</div>
+        <div class="cilr">
+            <asp:TextBox ID="tbUnitName" runat="server"></asp:TextBox>
         </div>
-        <div class="clear">
+        <div class="cill">
+            地区车辆前缀</div>
+        <div class="cilr">
+            <asp:TextBox ID="tbCarNoPre" runat="server"></asp:TextBox>
+        </div>
+        <div class="cilr">
+            <asp:CheckBox runat="server" ID="cbUsedLocal" Text="不排除本地车辆" />
         </div>
     </div>
-    <div class="block_list">
-        <div class="blkl_left">
-            <div class="blkl_01">
-                景区经度</div>
-            <div class="blkl_02" style="width: 29%; float: left">
-                <asp:TextBox ID="tbLat" runat="server"></asp:TextBox>
-            </div>
-            <div class="blkl_01">
-                景区纬度</div>
-            <div class="blkl_02" style="width: 29%">
-                <asp:TextBox ID="tbLnt" runat="server"></asp:TextBox>
-            </div>
+    <div class="ciline" style="height: 50px">
+        <div class="cill">
+            景区经度</div>
+        <div class="cilr">
+            <asp:TextBox ID="tbLat" runat="server"></asp:TextBox>
         </div>
-        <div class="clear">
+        <div class="cill">
+            景区纬度</div>
+        <div class="cilr">
+            <asp:TextBox ID="tbLnt" runat="server"></asp:TextBox>
         </div>
-    </div>
-    <div class="block_list">
-        <div class="blkl_left">
-            <div class="blkl_01">
-                通过时间</div>
-            <div class="blkl_02" style="width: 29%; float: left">
-                <asp:TextBox ID="tbPassTime" runat="server"></asp:TextBox>分钟
-            </div>
-            <div class="blkl_01">
-                车辆承载量</div>
-            <div class="blkl_02" style="width: 29%">
-                <asp:TextBox ID="tbCarMaxCount" runat="server"></asp:TextBox>
-                <asp:Button ID="btnGetMaxCarCount" runat="server" Text="自动获取" OnClick="btnGetMaxCarCount_Click" />
-            </div>
+        <div class="cill">
+            通过时间</div>
+        <div class="cilr">
+            <asp:TextBox ID="tbPassTime" runat="server"></asp:TextBox>分钟
         </div>
-        <div class="clear">
+        <div class="cill">
+            车辆承载量</div>
+        <div class="cilr">
+            <asp:TextBox ID="tbCarMaxCount" runat="server"></asp:TextBox>
+            <asp:Button ID="btnGetMaxCarCount" runat="server" Text="自动获取" OnClick="btnGetMaxCarCount_Click" />
         </div>
     </div>
-    <div class="block_list">
-        <div class="blkl_left">
-            <div class="blkl_01">
-                进入离开系数</div>
-            <div class="blkl_02" style="width: 29%; float: left">
-                <asp:TextBox ID="tbcoefficient" runat="server"></asp:TextBox>
-            </div>
+    <div class="ciline" style="height: 50px">
+        <div class="cill">
+            企业号APPID</div>
+        <div class="cilr">
+            <asp:TextBox ID="tbappid" runat="server"></asp:TextBox>
         </div>
-        <div class="clear">
+        <div class="cilr">
+            <asp:CheckBox ID="cbsend" Text="发送信息" runat="server" />
         </div>
-    </div>
-    <div class="block_list">
-        <div class="blkl_left">
-            <div class="blkl_01">
-                企业APPID</div>
-            <div class="blkl_02" style="width: 29%; float: left">
-                <asp:TextBox ID="tbappid" runat="server"></asp:TextBox><asp:CheckBox ID="cbsend"
-                    Text="发送信息" runat="server" />
-            </div>
-             <div class="blkl_01">
-                接收人手机号</div>
-            <div class="blkl_02" style="width: 29%; float: left">
-                <asp:TextBox ID="tbmobile" runat="server" Width="300px"></asp:TextBox>
-            </div>
-        </div>
-        <div class="clear">
+        <div class="cill">
+            报警接收人</div>
+        <div class="cilr">
+            <asp:TextBox ID="tbmobile" runat="server" Width="300px"></asp:TextBox>
         </div>
     </div>
-    <div class="block_list">
-        <div class="blkl_left">
-            <div class="blkl_01" style="width: 10%; float: left">
-                中心经度</div>
-            <div class="blkl_02" style="width: 20%; float: left">
-                <asp:TextBox ID="tbcenterlat" runat="server"></asp:TextBox>
-            </div>
-            <div class="blkl_01" style="width: 10%; float: left">
-                中心纬度</div>
-            <div class="blkl_02" style="width: 20%; float: left">
-                <asp:TextBox ID="tbcenterlnt" runat="server"></asp:TextBox>
-            </div>
-            <div class="blkl_01" style="width: 10%; float: left">
-                地图缩放比例</div>
-            <div class="blkl_02" style="width: 20%; float: left">
-                <asp:TextBox ID="tbcenterzoom" runat="server"></asp:TextBox>
-            </div>
+    <div class="ciline" style="height: 50px">
+        <div class="cill">
+            Token</div>
+        <div class="cilr">
+            <asp:TextBox ID="tbToken" runat="server" Width="357px"></asp:TextBox>
         </div>
-        <div class="clear">
+        <div class="cill">
+            ASEKey</div>
+        <div class="cilr">
+            <asp:TextBox ID="tbAESKey" runat="server" Width="300px"></asp:TextBox>
         </div>
     </div>
-    <%--<div class="block_list">
-        <div class="blkl_left">
-            <div class="blkl_01" style="width: 10%; float: left">
-                右侧经度</div>
-            <div class="blkl_02" style="width: 20%; float: left">
-                <asp:TextBox ID="tbrightlat" runat="server"></asp:TextBox>
-            </div>
-            <div class="blkl_01" style="width: 10%; float: left">
-                右侧纬度</div>
-            <div class="blkl_02" style="width: 20%; float: left">
-                <asp:TextBox ID="tbrightlnt" runat="server"></asp:TextBox>
-            </div>
-            <div class="blkl_01" style="width: 10%; float: left">
-                地图缩放比例</div>
-            <div class="blkl_02" style="width: 20%; float: left">
-                <asp:TextBox ID="tbrightzoom" runat="server"></asp:TextBox>
-            </div>
+    <div class="ciline" style="height: 50px">
+        <div class="cill">
+            中心经度</div>
+        <div class="cilr">
+            <asp:TextBox ID="tbcenterlat" runat="server"></asp:TextBox>
         </div>
-        <div class="clear">
+        <div class="cill">
+            中心纬度</div>
+        <div class="cilr">
+            <asp:TextBox ID="tbcenterlnt" runat="server"></asp:TextBox>
         </div>
-    </div>--%>
-    <div class="block_list">
-        <div class="blkl_left">
-            <div class="blkl_01">
-                归零时间点</div>
-            <div class="blkl_02" style="width: 29%; float: left">
-                <asp:TextBox ID="tbCarClearTime" runat="server"></asp:TextBox>
-                <asp:CheckBox ID="cbNight" Text="夜间车辆记录" runat="server" />
-            </div>
-            <div class="blkl_01">
-                单位Logo</div>
-            <div class="blkl_02" style="width: 29%">
-                <uc1:UpLoadFile ID="UpLoadFile1" runat="server" ShowImage="false" IsSaveToOSS="true" />
-            </div>
+        <div class="cill">
+            地图缩放比例</div>
+        <div class="cilr">
+            <asp:TextBox ID="tbcenterzoom" runat="server"></asp:TextBox>
         </div>
-        <div class="clear">
+    </div>
+    <div class="ciline">
+        <div class="cill">
+            归零时间点</div>
+        <div class="cilr">
+            <asp:TextBox ID="tbCarClearTime" runat="server"></asp:TextBox>
+        </div>
+        <div class="cilr">
+            <asp:CheckBox ID="cbNight" Text="夜间车辆记录" runat="server" /></div>
+        <div class="cill">
+            单位Logo</div>
+        <div class="cilr">
+            <uc1:UpLoadFile ID="UpLoadFile1" runat="server" ShowImage="false" IsSaveToOSS="true" />
         </div>
     </div>
     <div class="block_list">
@@ -169,19 +123,6 @@
             </div>
         </div>
         <div class="clear">
-        </div>
-    </div>
-    <div class="con_ins">
-        <div class="conins_block">
-            <div class="conins_tl">
-                说明</div>
-            <div class="conins_txt">
-                <p>
-                    1.其中通过时间，景区一般为几个小时，而县级目的地，一般以天来计算
-                    <br />
-                    2.本地车辆前缀设置不为空的时候，在实时数据和统计数据中会排除掉本地的车辆数据！！！
-                </p>
-            </div>
         </div>
     </div>
 </asp:Content>

@@ -25,7 +25,7 @@
           <div class="container">
             <div class="row">
               <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-xs-12">
-                <span>古堰画乡旅游车辆检测</span>
+                <span>旅游车辆监测分析系统</span>
               </div>
             </div>
           </div>

@@ -29,9 +29,9 @@ namespace PushCarStatInfo.com.zjwist.qy {
     [System.Web.Services.WebServiceBindingAttribute(Name="CarStatByDaySoap", Namespace="http://tempuri.org/")]
     public partial class CarStatByDay : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback StatByDayOperationCompleted;
+        private System.Threading.SendOrPostCallback StatCarInfoForSendMessageOperationCompleted;
         
-        private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
+        private System.Threading.SendOrPostCallback WithOutCarInfoMore30MinOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -72,66 +72,62 @@ namespace PushCarStatInfo.com.zjwist.qy {
         }
         
         /// <remarks/>
-        public event StatByDayCompletedEventHandler StatByDayCompleted;
+        public event StatCarInfoForSendMessageCompletedEventHandler StatCarInfoForSendMessageCompleted;
         
         /// <remarks/>
-        public event HelloWorldCompletedEventHandler HelloWorldCompleted;
+        public event WithOutCarInfoMore30MinCompletedEventHandler WithOutCarInfoMore30MinCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/StatByDay", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string StatByDay(int unitid, string carday) {
-            object[] results = this.Invoke("StatByDay", new object[] {
-                        unitid,
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/StatCarInfoForSendMessage", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void StatCarInfoForSendMessage(string carday) {
+            this.Invoke("StatCarInfoForSendMessage", new object[] {
                         carday});
-            return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void StatByDayAsync(int unitid, string carday) {
-            this.StatByDayAsync(unitid, carday, null);
+        public void StatCarInfoForSendMessageAsync(string carday) {
+            this.StatCarInfoForSendMessageAsync(carday, null);
         }
         
         /// <remarks/>
-        public void StatByDayAsync(int unitid, string carday, object userState) {
-            if ((this.StatByDayOperationCompleted == null)) {
-                this.StatByDayOperationCompleted = new System.Threading.SendOrPostCallback(this.OnStatByDayOperationCompleted);
+        public void StatCarInfoForSendMessageAsync(string carday, object userState) {
+            if ((this.StatCarInfoForSendMessageOperationCompleted == null)) {
+                this.StatCarInfoForSendMessageOperationCompleted = new System.Threading.SendOrPostCallback(this.OnStatCarInfoForSendMessageOperationCompleted);
             }
-            this.InvokeAsync("StatByDay", new object[] {
-                        unitid,
-                        carday}, this.StatByDayOperationCompleted, userState);
+            this.InvokeAsync("StatCarInfoForSendMessage", new object[] {
+                        carday}, this.StatCarInfoForSendMessageOperationCompleted, userState);
         }
         
-        private void OnStatByDayOperationCompleted(object arg) {
-            if ((this.StatByDayCompleted != null)) {
+        private void OnStatCarInfoForSendMessageOperationCompleted(object arg) {
+            if ((this.StatCarInfoForSendMessageCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.StatByDayCompleted(this, new StatByDayCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.StatCarInfoForSendMessageCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string HelloWorld() {
-            object[] results = this.Invoke("HelloWorld", new object[0]);
-            return ((string)(results[0]));
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/WithOutCarInfoMore30Min", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void WithOutCarInfoMore30Min() {
+            this.Invoke("WithOutCarInfoMore30Min", new object[0]);
         }
         
         /// <remarks/>
-        public void HelloWorldAsync() {
-            this.HelloWorldAsync(null);
+        public void WithOutCarInfoMore30MinAsync() {
+            this.WithOutCarInfoMore30MinAsync(null);
         }
         
         /// <remarks/>
-        public void HelloWorldAsync(object userState) {
-            if ((this.HelloWorldOperationCompleted == null)) {
-                this.HelloWorldOperationCompleted = new System.Threading.SendOrPostCallback(this.OnHelloWorldOperationCompleted);
+        public void WithOutCarInfoMore30MinAsync(object userState) {
+            if ((this.WithOutCarInfoMore30MinOperationCompleted == null)) {
+                this.WithOutCarInfoMore30MinOperationCompleted = new System.Threading.SendOrPostCallback(this.OnWithOutCarInfoMore30MinOperationCompleted);
             }
-            this.InvokeAsync("HelloWorld", new object[0], this.HelloWorldOperationCompleted, userState);
+            this.InvokeAsync("WithOutCarInfoMore30Min", new object[0], this.WithOutCarInfoMore30MinOperationCompleted, userState);
         }
         
-        private void OnHelloWorldOperationCompleted(object arg) {
-            if ((this.HelloWorldCompleted != null)) {
+        private void OnWithOutCarInfoMore30MinOperationCompleted(object arg) {
+            if ((this.WithOutCarInfoMore30MinCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.HelloWorldCompleted(this, new HelloWorldCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.WithOutCarInfoMore30MinCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -156,55 +152,11 @@ namespace PushCarStatInfo.com.zjwist.qy {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
-    public delegate void StatByDayCompletedEventHandler(object sender, StatByDayCompletedEventArgs e);
+    public delegate void StatCarInfoForSendMessageCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class StatByDayCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal StatByDayCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
-    public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class HelloWorldCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal HelloWorldCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
+    public delegate void WithOutCarInfoMore30MinCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591

@@ -8,32 +8,14 @@ using System.Data;
 
 public partial class admin_statcartype : System.Web.UI.Page
 {
-    
+
 
     protected string unitid;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (string.IsNullOrEmpty(Request["ScenicID"]))
-        {
-            unitid = CookierManage.CookierAPI<UserCookieInfo>.GetCookierObject(UserCookieInfo.UserCookierName).UnitID.ToString();
-        }
-        else
-        {
-            unitid = Request["ScenicID"];
-        }
-
-
-
-
+        unitid = CookierManage.CookierAPI<UserCookieInfo>.GetCookierObject(UserCookieInfo.UserCookierName).UnitID.ToString();
     }
-
-
-    
-
- 
-
-
 
     protected string GetCarType(object cartype)
     {

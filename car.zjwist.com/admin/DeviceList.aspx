@@ -16,7 +16,7 @@
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White"
                 GridLines="Vertical" BorderColor="#C2D3ED" CellPadding="3" BorderStyle="Solid"
                 BorderWidth="1px" HeaderStyle-Height="25" EmptyDataText="没有相关数据" PageSize="20"
-                OnRowDataBound="GridView1_RowDataBound" Width="716px">
+                OnRowDataBound="GridView1_RowDataBound">
                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                 <RowStyle Height="25px" BorderColor="#C2D3ED" BorderStyle="Solid" BorderWidth="1px" />
                 <Columns>
