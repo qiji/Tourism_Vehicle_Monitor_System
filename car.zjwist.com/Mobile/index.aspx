@@ -54,7 +54,7 @@
                     <div class="datechoose">
                         <span class="datechoosespan" id="datechoosespanshow"></span>
                         <input id="datechooseinput" class="datechooseinput" type="date" onclick="datechanged(this)"
-                            onblur="datechanged(this')" onchange="datechanged(this)" onmouseout="datechanged(this)" />
+                            onblur="datechanged(this)" onchange="datechanged(this)" onmouseout="datechanged(this)" />
                     </div>
                     <div class="endday">
                         <div id="dayCurrEnd">
