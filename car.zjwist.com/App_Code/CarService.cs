@@ -75,6 +75,11 @@ public class CarService : System.Web.Services.WebService
         //    return "";
         //}
         string carno = CarNo.Trim();
+        if (carno == "无车牌")
+        {
+            carno = "无法识别";
+        }
+
         string CarTypeASCII = ((int)CarType.ToUpper().ToCharArray()[0]).ToString();
 
         //货车信息
